@@ -55,6 +55,7 @@ const DATA = {
       nowTitle: "Сейчас",
       skillsTitle: "Навыки",
       gamesTitle: "Игры",
+      champTitle: "Чемпионаты",
       libsTitle: "Статьи и библиотеки",
       contactTitle: "Связаться",
       contactLead: "Ищу роль Product Engineer, где фичу можно вести целиком, от проблемы пользователя до метрики. Рассматриваю и позиции техлида или тимлида.",
@@ -87,6 +88,7 @@ const DATA = {
       nowTitle: "Now",
       skillsTitle: "Skills",
       gamesTitle: "Games",
+      champTitle: "Championships",
       libsTitle: "Articles and libraries",
       contactTitle: "Get in touch",
       contactLead: "Looking for a Product Engineer role where I own a feature end to end, from the user's problem to the metric. Tech lead and team lead roles are on the table too.",
@@ -325,6 +327,11 @@ const DATA = {
 
   more: [
     {
+      ru: { t: "Education bot", d: "Образовательный бот, который делали, пока я преподавал. Короткий срок от идеи до работающего продукта, заняли 2-е место." },
+      en: { t: "Education bot", d: "An education bot built while I was teaching. A short path from idea to a working product; took 2nd place." },
+      from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
+    },
+    {
       ru: { t: "Домашний агент Hermes", d: "Агент на NAS на локальной модели: поиск, дайджесты, мониторинг, напоминания. Больше 20 своих MCP-серверов. Docker он видит только через read-only прокси, а всё, что меняет что-то снаружи, ждёт кнопки в Telegram, без ответа отказ." },
       en: { t: "Hermes, a home agent", d: "An agent on my NAS running a local model: search, digests, monitoring, reminders. 20+ custom MCP servers. It sees Docker only through a read-only proxy, and anything with an external effect waits for a Telegram button, no answer means no." },
       from: "агент с полным доступом", to: "запись только после подтверждения", fromEn: "agent with full access", toEn: "writes only after confirmation"
@@ -490,6 +497,28 @@ const DATA = {
              en: "A superhero dashes across the city saving the elderly and leaves graffiti behind with a tagger. No generative AI used in the game." }
       }
     ]
+  },
+
+  championships: {
+    title: { ru: "WorldSkills Russia, «Программные решения для бизнеса»", en: "WorldSkills Russia, “IT Software Solutions for Business”" },
+    years: "2017–2019",
+    results: [
+      { place: "1", ru: "место на чемпионате Москвы", en: "place, Moscow championship" },
+      { place: "5", ru: "место в национальном финале", en: "place, national final" },
+      { place: "4", ru: "место на DigitalSkills", en: "place, DigitalSkills" }
+    ],
+    text: {
+      ru: [
+        "чемпионат это 6 сессий по 3 часа, по две в день. За это время по требованиям заказчика нужно спроектировать систему, от схемы БД до интерфейса, написать её и защитить перед экспертами",
+        "по сути это продуктовый цикл в миниатюре: разобраться в требованиях, порезать скоуп так, чтобы успеть к дедлайну, и объяснить, почему решение такое. Например, CRM с лидами, звонками и авторизацией на C#, WPF и Entity Framework",
+        "ездил на чемпионаты в разные регионы, а позже уже как преподаватель сам готовил студентов к WorldSkills"
+      ],
+      en: [
+        "a championship is 6 sessions of 3 hours, two per day. In that time you take a client's requirements, design the system from DB schema to UI, build it and defend it in front of experts",
+        "it is a product cycle in miniature: understand the requirements, cut scope to hit the deadline, and explain why the solution looks the way it does. For example, a CRM with leads, calls and auth in C#, WPF and Entity Framework",
+        "competed in several regions, and later, as a lecturer, coached students for WorldSkills myself"
+      ]
+    }
   },
 
   writing: [
@@ -682,6 +711,16 @@ h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-he
 .now .tile.seek .k { color: var(--ins); }
 h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
 .games-intro { margin: 0; color: var(--muted); }
+.champ { margin-top: 2.5rem; max-width: 52rem; }
+.champ-title { font-weight: 600; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: baseline; }
+.champ-title span { color: var(--muted); font-weight: 400; font-size: .9375rem; }
+.champ-res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+.champ-res div { display: flex; align-items: baseline; gap: .6rem; padding: .9rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.champ-res b { font-family: var(--mono); font-size: 2rem; line-height: 1; color: var(--ins); }
+.champ-res span { color: var(--muted); font-size: .9375rem; line-height: 1.35; }
+.champ-text { margin: 0; padding-left: 1.1rem; }
+.champ-text li { margin: .4rem 0; }
+@media (max-width: 560px) { .champ-res { grid-template-columns: 1fr; } }
 .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
 .game { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--surface); }
 .game:hover { border-color: var(--muted); text-decoration: none; }
@@ -860,6 +899,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
         </div>`).join("")}
       <h2>${esc(u.skillsTitle)}</h2>
       <dl class="cv-skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <h2>${esc(u.champTitle)}</h2>
+      <p style="margin:0"><b>${esc(tr(DATA.championships.title))}, ${esc(DATA.championships.years)}.</b> ${DATA.championships.results.map(r => `${esc(r.place)} ${esc(tr(r))}`).join("; ")}.</p>
       <h2>${esc(u.gamesTitle)}</h2>
       <p style="margin:0">${DATA.games.items.map(g => `<b>${esc(g.name)}</b> (${esc(tr(g.meta))})`).join("; ")}. itch.io/zander-games</p>
       <h2>${esc(u.eduTitle)}</h2>
@@ -995,6 +1036,12 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
               <span class="game-meta">${esc(tr(g.meta))}</span>
               <span class="game-d">${esc(tr(g.d))}</span>
             </a>`).join("")}
+        </div>
+        <div class="champ">
+          <h3 class="sub">${esc(u.champTitle)}</h3>
+          <p class="champ-title">${esc(tr(DATA.championships.title))}<span>${esc(DATA.championships.years)}</span></p>
+          <div class="champ-res">${DATA.championships.results.map(r => `<div><b>${esc(r.place)}</b><span>${esc(tr(r))}</span></div>`).join("")}</div>
+          <ul class="champ-text">${DATA.championships.text[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
         </div>
       </section>
 
