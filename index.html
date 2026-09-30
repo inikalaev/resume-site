@@ -378,7 +378,7 @@ const DATA = {
         ]
       },
       diff: [
-        { ru: "нераспознанных колонок на 5 реальных БД", en: "unrecognized columns on 5 real DBs", from: "4 175", to: "1 794" },
+        { ru: "аудит действий в сервисах", en: "user-action auditing", from: "в каждом сервисе свой", to: "один гем на 10 сервисах", fromEn: "a custom one per service", toEn: "one gem across 10 services" },
         { ru: "данные для разработки", en: "dev data", from: "дамп прода или руками", to: "~82K строк без ручных правок", fromEn: "prod dump or by hand", toEn: "~82K rows, zero manual edits" }
       ],
       note: {
@@ -707,6 +707,16 @@ dialog::backdrop { background: rgba(10, 14, 22, .82); }
 dialog img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 6px; }
 dialog p { color: #e4e8ef; text-align: center; margin: .6rem 0 0; font-size: .9375rem; }
 dialog form { position: fixed; top: 1rem; right: 1rem; }
+.lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; border-radius: 50%;
+  border: 0; background: rgba(228, 232, 239, .92); color: #1a2233; font: 400 2rem/1 var(--sans); cursor: pointer;
+  display: grid; place-items: center; padding-bottom: .2rem;
+}
+.lb-nav:hover { background: #fff; }
+.lb-nav[hidden] { display: none; }
+.lb-prev { left: 1rem; }
+.lb-next { right: 1rem; }
+dialog img { user-select: none; -webkit-user-drag: none; }
 dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color: #1a2233; border: 0; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; }
 
 @media (max-width: 860px) {
@@ -722,6 +732,7 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
   .diff { font-size: .8125rem; }
   .diff .row { padding: .15rem .7rem; }
   .diff .head { flex-direction: column; gap: 0; }
+  .lb-nav { top: auto; bottom: 1rem; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -778,7 +789,9 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
 
 <dialog id="lightbox">
   <form method="dialog"><button id="lb-close">Закрыть</button></form>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Предыдущий">‹</button>
   <img id="lb-img" alt="">
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Следующий">›</button>
   <p id="lb-cap"></p>
 </dialog>
 
@@ -866,6 +879,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
     $("#lang-btn").setAttribute("aria-label", lang === "ru" ? "Switch to English" : "Переключить на русский");
     $("#theme-btn").textContent = theme === "dark" ? (lang === "ru" ? "Светлая" : "Light") : (lang === "ru" ? "Тёмная" : "Dark");
     $("#lb-close").textContent = u.close;
+    $("#lb-prev").setAttribute("aria-label", lang === "ru" ? "Предыдущий" : "Previous");
+    $("#lb-next").setAttribute("aria-label", lang === "ru" ? "Следующий" : "Next");
     $("#nav").innerHTML = Object.entries(u.nav).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join("");
 
     const contactLinks = `
@@ -995,13 +1010,35 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
     firstRender = false;
   }
 
+  let lbList = [], lbIdx = 0;
+  function lbShow(i) {
+    lbIdx = (i + lbList.length) % lbList.length;
+    const b = lbList[lbIdx];
+    $("#lb-img").src = b.dataset.src;
+    $("#lb-img").alt = b.dataset.cap;
+    $("#lb-cap").textContent = lbList.length > 1 ? `${b.dataset.cap}  ${lbIdx + 1} / ${lbList.length}` : b.dataset.cap;
+    $("#lb-prev").hidden = $("#lb-next").hidden = lbList.length < 2;
+  }
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-src]");
     if (!b) return;
-    $("#lb-img").src = b.dataset.src;
-    $("#lb-img").alt = b.dataset.cap;
-    $("#lb-cap").textContent = b.dataset.cap;
+    lbList = [...b.closest("[data-shots]").querySelectorAll("[data-src]")];
+    lbShow(lbList.indexOf(b));
     $("#lightbox").showModal();
+  });
+  $("#lb-prev").addEventListener("click", () => lbShow(lbIdx - 1));
+  $("#lb-next").addEventListener("click", () => lbShow(lbIdx + 1));
+  $("#lightbox").addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); lbShow(lbIdx - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); lbShow(lbIdx + 1); }
+  });
+  let touchX = null;
+  $("#lightbox").addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+  $("#lightbox").addEventListener("touchend", e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) lbShow(lbIdx + (dx < 0 ? 1 : -1));
+    touchX = null;
   });
   $("#lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") e.target.close(); });
 
