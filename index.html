@@ -61,6 +61,8 @@ const DATA = {
       writingTitle: "Сообщество",
       nowTitle: "Сейчас",
       skillsTitle: "Чем работаю",
+      gamesTitle: "Игры",
+      libsTitle: "Статьи и библиотеки",
       contactTitle: "Связаться",
       contactLead: "Ищу роль Product Engineer, где фичу можно вести целиком, от проблемы пользователя до метрики. Рассматриваю и позиции техлида или тимлида.",
       zoom: "Нажмите, чтобы увеличить",
@@ -91,6 +93,8 @@ const DATA = {
       writingTitle: "Community",
       nowTitle: "Now",
       skillsTitle: "Tools",
+      gamesTitle: "Games",
+      libsTitle: "Articles and libraries",
       contactTitle: "Get in touch",
       contactLead: "Looking for a Product Engineer role where I own a feature end to end, from the user's problem to the metric. Tech lead and team lead roles are on the table too.",
       zoom: "Click to enlarge",
@@ -332,6 +336,11 @@ const DATA = {
 
   more: [
     {
+      ru: { t: "Домашний агент Hermes", d: "Агент на NAS на локальной модели: поиск, дайджесты, мониторинг, напоминания. Больше 20 своих MCP-серверов. Docker он видит только через read-only прокси, а всё, что меняет что-то снаружи, ждёт кнопки в Telegram, без ответа отказ." },
+      en: { t: "Hermes, a home agent", d: "An agent on my NAS running a local model: search, digests, monitoring, reminders. 20+ custom MCP servers. It sees Docker only through a read-only proxy, and anything with an external effect waits for a Telegram button, no answer means no." },
+      from: "агент с полным доступом", to: "запись только после подтверждения", fromEn: "agent with full access", toEn: "writes only after confirmation"
+    },
+    {
       ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "Разбил прогон на 5 шардов через parallel_tests и починил кэш гемов в образе, шард больше не ставит их заново." },
       en: { t: "CI tests 2.6× faster", d: "Split the run into 5 shards with parallel_tests and fixed gem caching in the image, so shards no longer reinstall gems." },
       from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
@@ -457,18 +466,44 @@ const DATA = {
     ]
   },
 
-  now: {
-    ru: [
-      "работаю в цифровой лаборатории, делаю образовательную платформу",
-      "по вечерам довожу «Свод» до публичного запуска",
-      "на NAS поднял агента, который помогает с домашними делами",
-      "смотрю предложения: Product Engineer, техлид или тимлид, можно удалённо"
-    ],
-    en: [
-      "building an education platform at a digital lab",
-      "getting “Svod” ready for public launch",
-      "running a home agent on my NAS that helps with chores",
-      "open to Product Engineer, tech lead or team lead roles, remote"
+  now: [
+    { k: { ru: "Работа", en: "Work" }, v: { ru: "Образовательная платформа в цифровой лаборатории, Ruby on Rails и Go", en: "An education platform at a digital lab, Ruby on Rails and Go" } },
+    { k: { ru: "Пет-проект", en: "Side project" }, v: { ru: "«Свод» готовлю к публичному запуску, «Оценку 540» к первым пользователям", en: "Getting “Svod” ready for public launch and “Review 540” ready for first users" } },
+    { k: { ru: "Дома", en: "At home" }, v: { ru: "Агент Hermes на NAS: дайджесты, напоминания, мониторинг сервисов", en: "Hermes agent on my NAS: digests, reminders, service monitoring" } },
+    { k: { ru: "Игры", en: "Games" }, v: { ru: "Bull Hellsing и Tagman в разработке", en: "Bull Hellsing and Tagman in development" } },
+    { k: { ru: "Ищу", en: "Looking for" }, v: { ru: "Product Engineer, техлид или тимлид, можно удалённо", en: "Product Engineer, tech lead or team lead, remote works" } }
+  ],
+
+  games: {
+    intro: {
+      ru: "Игры делаю на джемах и для себя. Джем это релиз за выходные с темой и ограничениями, хорошо тренирует резать скоуп и думать о том, как игрок всё это почувствует.",
+      en: "I make games at jams and for myself. A jam is a release in one weekend with a theme and constraints, great practice for cutting scope and thinking about how the player will feel it."
+    },
+    items: [
+      {
+        name: "Papenture", href: "https://zander-games.itch.io/papenture",
+        meta: { ru: "Unreal Engine, Unreal MegaJam 2022, команда из 6 человек", en: "Unreal Engine, Unreal MegaJam 2022, a team of 6" },
+        d: { ru: "Два художника и два параллельных мира, предмет через портал превращается в свою версию из другого мира. Сами себе поставили ограничение: одна текстура на всю игру, спрайты лежат в атласе и берутся сдвигом UV.",
+             en: "Two artists, two parallel worlds; an item passed through a portal turns into its counterpart. We set our own constraint: one texture for the whole game, with sprites taken from an atlas by shifting UVs." }
+      },
+      {
+        name: "AV", href: "https://zander-games.itch.io/av",
+        meta: { ru: "GameMaker, Major Jam 3, тема «Retro»", en: "GameMaker, Major Jam 3, theme “Retro”" },
+        d: { ru: "Пазл-платформер про первобытного человека с огнём. AV-разъём переключает цвет, звук или картинку, и от этого меняется уровень.",
+             en: "A puzzle platformer about a caveman carrying fire. An AV plug switches color, sound or picture, and the level changes with it." }
+      },
+      {
+        name: "Bull Hellsing", href: "https://zander-games.itch.io/bull-hellsing",
+        meta: { ru: "GameMaker, в разработке", en: "GameMaker, in development" },
+        d: { ru: "2D shoot 'em up: днём охотишься на зверей ради ресурсов, ночью отбиваешься от нежити. Прокачка, оружие, квесты.",
+             en: "A 2D shoot 'em up: hunt animals for resources by day, fight the undead by night. Upgrades, weapons, quests." }
+      },
+      {
+        name: "Tagman", href: "https://zander-games.itch.io/tagman",
+        meta: { ru: "Экшен-платформер, в разработке", en: "Action platformer, in development" },
+        d: { ru: "Супергерой носится по городу и спасает стариков, оставляя за собой граффити тегером. Генеративный ИИ в игре не использовали.",
+             en: "A superhero dashes across the city saving the elderly and leaves graffiti behind with a tagger. No generative AI used in the game." }
+      }
     ]
   },
 
@@ -650,8 +685,24 @@ h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-he
 .writing li { padding: .75rem 0; }
 .writing li + li { border-top: 1px solid var(--line); }
 .writing .meta { display: block; color: var(--muted); font-size: .875rem; }
-.now { margin: 0; padding-left: 1.1rem; }
-.now li { margin: .3rem 0; }
+.now { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 860px) { .now { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .now { grid-template-columns: 1fr; } .now .tile.seek { flex-direction: column; gap: .35rem; } }
+.now .tile { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.now .k { color: var(--muted); font-size: .875rem; }
+.now .v { font-weight: 500; line-height: 1.45; }
+.now .tile.seek { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 1rem; border-color: var(--ins); background: var(--ins-bg); }
+.now .tile.seek .v { font-size: 1.125rem; font-weight: 600; }
+#now h2 { margin-bottom: 1.5rem; }
+.now .tile.seek .k { color: var(--ins); }
+h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
+.games-intro { margin: 0; color: var(--muted); }
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.game { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--surface); }
+.game:hover { border-color: var(--muted); text-decoration: none; }
+.game-name { font-weight: 700; font-size: 1.0625rem; color: var(--link); }
+.game-meta { color: var(--muted); font-size: .875rem; }
+.game-d { font-size: .9375rem; line-height: 1.5; }
 .updated { color: var(--muted); font-size: .875rem; margin-top: .75rem; }
 
 footer { padding: 3.5rem 0 5rem; border-top: 1px solid var(--line); }
@@ -824,6 +875,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
         </div>`).join("")}
       <h2>${esc(u.skillsTitle)}</h2>
       <dl class="cv-skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <h2>${esc(u.gamesTitle)}</h2>
+      <p style="margin:0">${DATA.games.items.map(g => `<b>${esc(g.name)}</b> (${esc(tr(g.meta))})`).join("; ")}. itch.io/zander-games</p>
       <h2>${esc(u.eduTitle)}</h2>
       ${DATA.education.map(e => `<div class="cv-exp"><div class="w">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p>${esc(tr(e))}</p></div></div>`).join("")}
       <p class="cv-foot">${esc(u.cvMore)}: <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>. ${esc(tr(DATA.writing[0].meta))}: <a href="${esc(DATA.writing[0].href)}">${esc(DATA.writing[0].href.replace(/^https?:\/\//, ""))}</a></p>`;
@@ -931,26 +984,39 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
               <li><div class="when">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p class="org">${esc(tr(e))}</p></div></li>`).join("")}
           </ol>
         </div>
+        <div class="edu">
+          <h3>${esc(u.skillsTitle)}</h3>
+          <dl class="skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+        </div>
       </section>
 
       <section id="writing" aria-labelledby="writing-h">
+        <h2 id="writing-h">${esc(u.writingTitle)}</h2>
         <div class="two">
           <div>
-            <h2 id="writing-h">${esc(u.writingTitle)}</h2>
+            <h3 class="sub">${esc(u.libsTitle)}</h3>
             <ul class="writing">
               ${DATA.writing.map(w => `<li><a class="print-url" href="${esc(w.href)}">${esc(tr(w))}</a><span class="meta">${esc(tr(w.meta))}</span></li>`).join("")}
             </ul>
           </div>
           <div>
-            <h2>${esc(u.skillsTitle)}</h2>
-            <dl class="skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+            <h3 class="sub">${esc(u.gamesTitle)}</h3>
+            <p class="games-intro">${esc(tr(DATA.games.intro))}</p>
           </div>
+        </div>
+        <div class="games">
+          ${DATA.games.items.map(g => `
+            <a class="game" href="${esc(g.href)}">
+              <span class="game-name">${esc(g.name)}</span>
+              <span class="game-meta">${esc(tr(g.meta))}</span>
+              <span class="game-d">${esc(tr(g.d))}</span>
+            </a>`).join("")}
         </div>
       </section>
 
       <section id="now" aria-labelledby="now-h">
         <h2 id="now-h">${esc(u.nowTitle)}</h2>
-        <ul class="now">${DATA.now[lang].map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+        <div class="now">${DATA.now.map((n, i) => `<div class="tile${i === DATA.now.length - 1 ? " seek" : ""}"><span class="k">${esc(tr(n.k))}</span><span class="v">${esc(tr(n.v))}</span></div>`).join("")}</div>
         <p class="updated">${esc(u.updated)}</p>
       </section>
 
