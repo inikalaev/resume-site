@@ -41,7 +41,7 @@ const DATA = {
   ui: {
     ru: {
       role: "Product Engineer",
-      sub: "Бэкенд на Ruby on Rails и Go, в разработке почти 7 лет. Москва, можно удалённо.",
+      sub: "Бэкенд на Ruby on Rails и Go, в разработке почти 7 лет. Москва, удалённо.",
       quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
       cv: "Скачать резюме, PDF",
       cvCases: "Основные кейсы",
@@ -226,8 +226,8 @@ const DATA = {
       },
       diff: [
         { ru: "расчёт", en: "scoring", from: "формулы в Excel руками", to: "эталон из Excel в регрессионном тесте", fromEn: "hand-made Excel formulas", toEn: "Excel reference locked in a regression test" },
-        { ru: "мутантов в скоринге убито тестами", en: "mutants killed in scoring", from: "65 / 82", to: "80 / 80" },
-        { ru: "находок аудита безопасности открыто", en: "open security audit findings", from: "55", to: "0 за 2 дня", toEn: "0 in 2 days" }
+        { ru: "связь ответа с респондентом", en: "answer-to-respondent link", from: "id человека рядом с оценкой", to: "HMAC, после срока не восстановить", fromEn: "person id next to the score", toEn: "HMAC, unrecoverable after retention" },
+        { ru: "от пустого репозитория до рабочего сервиса", en: "from empty repo to working service", from: "Excel и Google-формы", to: "16 дней", fromEn: "Excel and Google Forms", toEn: "16 days" }
       ],
       note: {
         ru: "Выжившие мутанты привели к реальному багу: колонку, где все ответы «Н/О», код читал как «нет ответов». А сверка с Excel показала расхождение до 0.023 при ошибке округления 0.005. Оказалось, в таблице другой порядок агрегации.",
@@ -346,9 +346,9 @@ const DATA = {
       from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
     },
     {
-      ru: { t: "Флаки видны прямо на MR", d: "Упавший тест ретраится один раз, и если прошёл, на MR появляется лейбл flaky и комментарий с seed. Вынес в общий CI-компонент." },
-      en: { t: "Flaky tests show up on the MR", d: "A failed test retries once, and if it passes the MR gets a flaky label and a comment with the seed. Shipped as a shared CI component." },
-      from: "0", to: "12", unit: { ru: "Ruby-сервисов с детектом", en: "Ruby services with detection" }
+      ru: { t: "Флаки видны прямо на MR", d: "Упавший тест ретраится один раз, и если прошёл, на MR появляется лейбл flaky и комментарий с seed и спеком. Вынес в общий CI-компонент на 12 Ruby-сервисов, за 4 месяца метку увидели 16 разработчиков." },
+      en: { t: "Flaky tests show up on the MR", d: "A failed test retries once, and if it passes the MR gets a flaky label and a comment with the seed and spec. Shipped as a shared CI component for 12 Ruby services; 16 developers saw the label in 4 months." },
+      from: "перезапустили пайплайн и забыли", to: "15 флаки-спеков найдено на 75 MR", fromEn: "re-run the pipeline and forget", toEn: "15 flaky specs caught on 75 MRs"
     },
     {
       ru: { t: "MCP для трекера и вики", d: "22 тула, stdio и HTTP с OAuth, стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение." },
@@ -397,10 +397,6 @@ const DATA = {
     }
   ],
 
-  totals: {
-    ru: ["427 закрытых задач", "346 смерженных MR", "~1 770 коммитов в 29 репозиториях"],
-    en: ["427 resolved tasks", "346 merged MRs", "~1,770 commits across 29 repos"]
-  },
 
   experience: [
     {
@@ -471,7 +467,7 @@ const DATA = {
     { k: { ru: "Пет-проект", en: "Side project" }, v: { ru: "«Свод» готовлю к публичному запуску, «Оценку 540» к первым пользователям", en: "Getting “Svod” ready for public launch and “Review 540” ready for first users" } },
     { k: { ru: "Дома", en: "At home" }, v: { ru: "Агент Hermes на NAS: дайджесты, напоминания, мониторинг сервисов", en: "Hermes agent on my NAS: digests, reminders, service monitoring" } },
     { k: { ru: "Игры", en: "Games" }, v: { ru: "Bull Hellsing и Tagman в разработке", en: "Bull Hellsing and Tagman in development" } },
-    { k: { ru: "Ищу", en: "Looking for" }, v: { ru: "Product Engineer, техлид или тимлид, можно удалённо", en: "Product Engineer, tech lead or team lead, remote works" } }
+    { k: { ru: "Ищу", en: "Looking for" }, v: { ru: "Product Engineer, техлид или тимлид, удалённо", en: "Product Engineer, tech lead or team lead, remote" } }
   ],
 
   games: {
@@ -960,7 +956,6 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
               ${diffBlock([{ ru: m.unit ? m.unit.ru : "", en: m.unit ? m.unit.en : "", from: m.from, to: m.to, fromEn: m.fromEn, toEn: m.toEn }])}
             </article>`).join("")}
         </div>
-        <p class="totals">${DATA.totals[lang].map(t => `<span>${esc(t)}</span>`).join("")}</p>
       </section>
 
       <section id="exp" aria-labelledby="exp-h">
