@@ -14,7 +14,16 @@ if (!raw || !raw.trim()) {
   process.exit(0);
 }
 
-const orgs = JSON.parse(raw);
+// Переносы строк и табы внутри значений заменяются пробелами: при вставке в GitHub они легко попадают в секрет.
+let orgs;
+try {
+  orgs = JSON.parse(raw.replace(/[\u0000-\u001F]+/g, ' '));
+} catch {
+  // Текст ошибки не печатаем: в нём может оказаться кусок значения, а лог публичный.
+  console.error('ORGS_JSON не разбирается как JSON. Проверь кавычки и запятые.');
+  process.exit(1);
+}
+for (const k of Object.keys(orgs)) if (typeof orgs[k] === 'string') orgs[k] = orgs[k].replace(/\s+/g, ' ').trim();
 const required = ['lab', 'space', 'kiskis', 'college', 'onlineUni', 'uni', 'school'];
 const missing = required.filter(k => typeof orgs[k] !== 'string' || !orgs[k].trim());
 if (missing.length) {
