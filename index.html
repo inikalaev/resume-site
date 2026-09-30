@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иван Николаев, Product Engineer</title>
+<meta name="description" content="Product Engineer. Бэкенд на Ruby on Rails и Go, AI-инструменты для разработки: MCP, агенты, контекст.">
+<meta property="og:title" content="Иван Николаев, Product Engineer">
+<meta property="og:description" content="Бэкенд на Ruby on Rails и Go. Собираю контекст для агентов и меряю, что из этого вышло.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%231a2233%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%236fd49b%22%3E+%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131822" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script>
+/* ============================================================
+   DATA: весь текст сайта. Названия компаний и вузов меняются тут.
+   ============================================================ */
+const DATA = {
+  name: { ru: "Иван Николаев", en: "Ivan Nikolaev" },
+  photo: "assets/photo.jpg",
+  contacts: {
+    telegram: "shonnylZ",
+    email: "ivan_n6_20@icloud.com",
+    github: "inikalaev",
+    habr: "ShonZander"
+  },
+  orgs: {
+    lab: "цифровая лаборатория",
+    space: "спейс",
+    kiskis: "КисКис",
+    college: "Шарага",
+    onlineUni: "Онлайн Университет",
+    uni: "Национальный исследовательский университет «шеи»",
+    school: "ESEDU"
+  },
+
+  ui: {
+    ru: {
+      role: "Product Engineer",
+      sub: "Бэкенд на Ruby on Rails и Go, почти 7 лет в разработке. Москва, готов к удалёнке.",
+      quote: "Раньше на любой вопрос я отвечал «всё зависит от контекста». Фраза правдивая и бесполезная. Теперь я этот контекст собираю, отдаю агентам и меряю, что из этого вышло.",
+      cv: "Скачать PDF",
+      write: "Написать в Telegram",
+      nav: { cases: "Кейсы", more: "Ещё", exp: "Опыт", writing: "Тексты", now: "Сейчас" },
+      casesTitle: "Кейсы",
+      casesLead: "Проблема, что сделал и что изменилось. Цифры из трекера, GitLab и тестов, округлены вниз.",
+      problem: "Проблема",
+      did: "Что сделал",
+      result: "Что изменилось",
+      stack: "Стек",
+      moreTitle: "Ещё из рабочего",
+      moreLead: "Задачи поменьше, но каждая с цифрой.",
+      expTitle: "Опыт",
+      eduTitle: "Образование",
+      writingTitle: "Тексты и open source",
+      nowTitle: "Сейчас",
+      skillsTitle: "Чем работаю",
+      contactTitle: "Связаться",
+      contactLead: "Ищу роль Product Engineer или сеньора на бэкенде, где можно отвечать за фичу целиком, от проблемы пользователя до метрики. Расти хочу как инженер, в менеджмент людей не хочу.",
+      zoom: "Нажмите, чтобы увеличить",
+      close: "Закрыть",
+      present: "сейчас",
+      theme: "Тема",
+      updated: "Обновлено 30 сентября 2026"
+    },
+    en: {
+      role: "Product Engineer",
+      sub: "Backend in Ruby on Rails and Go, almost 7 years shipping. Moscow, open to remote.",
+      quote: "For years my answer to everything was “it depends on the context”. True, and useless. Now I collect that context, hand it to AI agents, and measure what comes out.",
+      cv: "Download PDF",
+      write: "Message on Telegram",
+      nav: { cases: "Work", more: "More", exp: "Experience", writing: "Writing", now: "Now" },
+      casesTitle: "Selected work",
+      casesLead: "The problem, what I did, what changed. Numbers come from the tracker, GitLab and test suites, rounded down.",
+      problem: "Problem",
+      did: "What I did",
+      result: "What changed",
+      stack: "Stack",
+      moreTitle: "More from the day job",
+      moreLead: "Smaller pieces, each with a number attached.",
+      expTitle: "Experience",
+      eduTitle: "Education",
+      writingTitle: "Writing and open source",
+      nowTitle: "Now",
+      skillsTitle: "Tools",
+      contactTitle: "Get in touch",
+      contactLead: "Looking for a Product Engineer or senior backend role where I own a feature end to end, from the user's problem to the metric. I want to grow as an engineer, not into people management.",
+      zoom: "Click to enlarge",
+      close: "Close",
+      present: "now",
+      theme: "Theme",
+      updated: "Updated September 30, 2026"
+    }
+  },
+
+  /* Три цифры в шапке: было -> стало */
+  headline: [
+    { ru: "замечаний на ревью, в среднем на MR", en: "review comments per MR", from: "1.57", to: "0.49" },
+    { ru: "смерженных MR за полгода", en: "merged MRs per half-year", from: "40", to: "104" },
+    { ru: "задач за спринт, медиана", en: "tasks per sprint, median", from: "2", to: "6" }
+  ],
+
+  cases: [
+    {
+      id: "context",
+      title: { ru: "Контекст для агентов вместо промптов", en: "Context for agents, not prompts" },
+      tag: { ru: "AI в разработке, основная работа, 2026", en: "AI in engineering, day job, 2026" },
+      problem: {
+        ru: "Агент на рабочем проекте писал код, который потом разворачивали на ревью. Проблема была не в промптах. Агент просто не знал того, что знает команда: решения из трекера, договорённости из вики, историю MR.",
+        en: "At work the agent wrote code that got torn apart in review. Prompts were not the issue. The agent simply did not know what the team knew: decisions buried in the tracker, conventions in the wiki, MR history."
+      },
+      did: {
+        ru: [
+          "собрал контекст из 494 задач и 410 MR: трекер, вики и GitLab подключены к агенту через свои MCP-серверы",
+          "написал около 15 доменных скиллов под реальную рутину: rails-команды в подах k8s, разбор упавших пайплайнов, релизная документация, работа с трекером",
+          "ввёл гигиену контекста: карта кода на 94 строки вместо grep по репозиторию, граф кода, устаревшие описания в архив",
+          "запись во внешние системы только через черновик и подтверждение, агент не видит токенов",
+          "всё мерил: доля универсального пайплайна в вызовах скиллов упала с 88% до 0%, свои скиллы дают 81% вызовов"
+        ],
+        en: [
+          "pulled context from 494 tasks and 410 MRs: tracker, wiki and GitLab wired to the agent through my own MCP servers",
+          "wrote about 15 domain skills for real chores: rails commands in k8s pods, triaging failed pipelines, release notes, tracker work",
+          "set up context hygiene: a 94-line code map instead of grepping the repo, a code graph, stale docs moved to an archive",
+          "writes to external systems only as a draft plus confirmation, the agent never sees tokens",
+          "measured everything: the generic pipeline went from 88% of skill calls to 0%, my own skills now make up 81%"
+        ]
+      },
+      diff: [
+        { ru: "замечаний на ревью на MR", en: "review comments per MR", from: "1.57", to: "0.49" },
+        { ru: "MR без единого замечания", en: "MRs with zero comments", from: "71%", to: "83%" },
+        { ru: "смерженных MR, апрель–сентябрь к тому же сезону 2025", en: "merged MRs, Apr–Sep vs same season 2025", from: "40", to: "104" },
+        { ru: "доля багов среди закрытых задач", en: "bugs among resolved tasks", from: "45%", to: "37%" }
+      ],
+      note: {
+        ru: "Честно про цифры. Обычных продуктовых MR столько же, 37 против 40. Рост дал новый класс работы: 37 MR-кампаний «одна правка на 10–12 сервисов» и 30 MR во внутренние инструменты. Медиана времени до мержа не сократилась, поскольку узкое место в QA и релизах, а не в написании кода. Стоит это около $18 за рабочий день в пересчёте на API.",
+        en: "Being honest about the numbers: regular product MRs stayed flat, 37 vs 40. The growth is a new class of work: 37 cross-service campaigns (one change across 10–12 services) and 30 MRs into internal tooling. Median time to merge did not drop, because the bottleneck is QA and releases, not writing code. All of it costs about $18 per working day at API prices."
+      },
+      stack: "Claude Code, MCP, Agent Skills, Go, Ruby, GitLab API",
+      links: [
+        { ru: "Статья на Хабре, 6 тыс. прочтений", en: "Article on Habr (in Russian), 6K reads", href: "https://habr.com/ru/articles/1075224/" }
+      ],
+      shots: []
+    },
+    {
+      id: "review",
+      title: { ru: "«Оценка 540»: performance review из Excel в продукт", en: "“Review 540”: performance reviews out of Excel" },
+      tag: { ru: "Пет-проект, B2B SaaS, 16 дней", en: "Side project, B2B SaaS, 16 days" },
+      problem: {
+        ru: "Оценка сотрудников по методике 540° жила в Google-формах и Excel. 3 280 строк ответов, HR считал всё формулами руками. Методика рабочая, но приватность держалась на честном слове, а разговор по итогам никак не поддерживался.",
+        en: "A 540° review methodology lived in Google Forms and Excel: 3,280 answer rows, HR computed everything by hand with formulas. The method worked, but privacy relied on trust and the follow-up conversation had no support at all."
+      },
+      did: {
+        ru: [
+          "перенёс методику без изменений, а её запреты сделал кодом: общего рейтинга людей нету, у групп равный вес, «Н/О» не ноль, группа ниже порога скрыта и не участвует в расчёте",
+          "ответ хранит HMAC вместо id респондента, ключ шифруется мастер-ключом, по истечении срока удаляется, и связка «ответ и человек» становится необратимой",
+          "мультитенантность с первого дня: составные внешние ключи, сослаться на строку чужой организации нельзя физически",
+          "три способа пройти анкету, включая матрицу «вопрос × люди» для руководителя с 20 подчинёнными и прохождение в чат-боте",
+          "ИИ-советы по итогам видят ровно тот срез, что и зритель, а совет утверждает человек; 94 MCP-тула под токеном пользователя",
+          "дизайн-система собрана в Claude Design, потом разобрал расхождения «макет против методики»"
+        ],
+        en: [
+          "kept the methodology intact and turned its rules into code: no overall ranking of people, equal group weights, “N/A” is not zero, groups below the threshold are hidden and excluded from math",
+          "answers store an HMAC instead of the respondent id; the key is wrapped by a master key and deleted after retention, making the answer-to-person link irreversible",
+          "multi-tenant from day one: composite foreign keys make referencing another org's row physically impossible",
+          "three ways to fill a survey, including a “question × people” matrix for a manager with 20 reports, and a chat-bot flow",
+          "AI advice sees exactly the slice the viewer can see and is approved by a human; 94 MCP tools run under the user's own token",
+          "design system built in Claude Design, followed by a gap review of mockups against the methodology"
+        ]
+      },
+      diff: [
+        { ru: "расчёт", en: "scoring", from: "формулы в Excel руками", to: "эталон из Excel в регрессионном тесте", fromEn: "hand-made Excel formulas", toEn: "Excel reference locked in a regression test" },
+        { ru: "мутантов в скоринге убито тестами", en: "mutants killed in scoring", from: "65 / 82", to: "80 / 80" },
+        { ru: "находок аудита безопасности открыто", en: "open security audit findings", from: "55", to: "0 за 2 дня", toEn: "0 in 2 days" }
+      ],
+      note: {
+        ru: "Выжившие мутанты нашли реальный баг: колонка, где все ответы «Н/О», читалась как «нет ответов». А регрессия по Excel показала расхождение до 0.023 при ошибке округления 0.005, поскольку порядок агрегации в таблице другой.",
+        en: "The surviving mutants led to a real bug: a column where every answer was “N/A” was read as “no answers”. The Excel regression surfaced a 0.023 drift against a 0.005 rounding error, because the spreadsheet aggregates in a different order."
+      },
+      facts: {
+        ru: ["176 коммитов", "166 эндпоинтов", "696 Go-тестов", "11 e2e-сценариев"],
+        en: ["176 commits", "166 endpoints", "696 Go tests", "11 e2e flows"]
+      },
+      stack: "Go (chi, pgx, sqlc), PostgreSQL, React, TypeScript, MCP, OAuth 2.1",
+      links: [],
+      shots: [
+        { src: "assets/pr-dashboard.png", ru: "Дашборд волны: ячейки ниже порога раскрытия скрыты", en: "Wave dashboard: cells under the disclosure threshold are hidden" },
+        { src: "assets/pr-subject-card.png", ru: "Карточка оцениваемого", en: "Person card" },
+        { src: "assets/pr-survey-builder.png", ru: "Конструктор анкет", en: "Survey builder" },
+        { src: "assets/pr-matrix.png", ru: "Матрица «вопрос × люди»", en: "Question × people matrix" },
+        { src: "assets/pr-dashboard-table.png", ru: "Таблица результатов волны", en: "Wave results table" },
+        { src: "assets/pr-focus-groups.png", ru: "Фокус-группы", en: "Focus groups" },
+        { src: "assets/pr-wave-launch-preview.png", ru: "Предпросмотр запуска волны", en: "Wave launch preview" },
+        { src: "assets/pr-mcp.png", ru: "Подключение ИИ-агента по MCP", en: "Connecting an AI agent over MCP" }
+      ]
+    },
+    {
+      id: "svod",
+      title: { ru: "«Свод»: документы, где оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
+      tag: { ru: "Пет-проект, закрытая бета, svod.webtm.ru", en: "Side project, closed beta, svod.webtm.ru" },
+      problem: {
+        ru: "В Word оформление хранится в самом тексте: у каждого абзаца свой шрифт и отступ. Поэтому диплом по ГОСТу или договор расползаются от любой правки. Началось с моего собственного диплома.",
+        en: "Word stores formatting inside the text: every paragraph carries its own font and indent. So a thesis or a contract falls apart with every edit. It started with my own thesis."
+      },
+      did: {
+        ru: [
+          "абзац знает только свою роль, например «заголовок 2-го уровня»; шрифты, поля и нумерация лежат в настройках шаблона",
+          "один JSON-AST и один серверный рендерер для PDF, DOCX, HTML и Markdown, поэтому превью и скачанный файл совпадают",
+          "компоненты со слотами, линейные версии с закреплением, защита от потерянных правок (409), шаринг по ссылке",
+          "MCP-сервер на 43 тула: прикладываешь вордовский договор в Claude и получаешь шаблон со шапкой-компонентом и полями для номера и даты",
+          "повторы в docx ищутся по сигнатурам абзацев и становятся компонентами; знания для агента генерируются из реестра блоков, CI падает при расхождении",
+          "прогнал на реальном дипломе, ГОСТ-шаблон поправил под ЕСКД; из бенчмарка моделей выбрал ту, что выиграла 3 задачи из 4 и в 9 раз дешевле"
+        ],
+        en: [
+          "a paragraph only knows its role, like “heading level 2”; fonts, margins and numbering live in the template settings",
+          "one JSON AST and one server-side renderer for PDF, DOCX, HTML and Markdown, so preview and download always match",
+          "components with slots, linear versions with pinning, lost-update protection (409), share links",
+          "an MCP server with 43 tools: attach a Word contract in Claude and get a template with a header component and fields for number and date",
+          "repeated blocks in docx are found by paragraph signatures and become components; agent docs are generated from the block registry and CI fails on drift",
+          "tested on a real thesis and fixed the GOST template; picked a model from my own benchmark that won 3 of 4 tasks at 9× lower cost"
+        ]
+      },
+      diff: [
+        { ru: "оформление", en: "formatting", from: "в каждом абзаце", to: "в одном шаблоне", fromEn: "in every paragraph", toEn: "in one template" },
+        { ru: "находок аудита (19 измерений)", en: "audit findings (19 dimensions)", from: "214", to: "разобраны волнами", toEn: "fixed in waves" }
+      ],
+      facts: {
+        ru: ["731 коммит", "~1 700 тестов", "43 MCP-тула", "24 типа блоков"],
+        en: ["731 commits", "~1,700 tests", "43 MCP tools", "24 block types"]
+      },
+      stack: "Rails 8, dry-rb, PostgreSQL, React 19, TipTap, TypeScript, Solid Queue, MCP",
+      links: [
+        { ru: "svod.webtm.ru", en: "svod.webtm.ru", href: "https://svod.webtm.ru" }
+      ],
+      shots: [
+        { src: "assets/svod-landing.png", ru: "Лендинг", en: "Landing page" },
+        { src: "assets/svod-feature-1.png", ru: "Редактор", en: "Editor" },
+        { src: "assets/svod-feature-2.png", ru: "Шаблоны", en: "Templates" },
+        { src: "assets/svod-feature-3.png", ru: "Экспорт", en: "Export" }
+      ]
+    },
+    {
+      id: "tools",
+      title: { ru: "Внутренние AI-инструменты для команды", en: "Internal AI tools for the team" },
+      tag: { ru: "Основная работа, 2025–2026", en: "Day job, 2025–2026" },
+      problem: {
+        ru: "Ответы на вопросы «как у нас устроено» лежали в 1 800 страницах вики и в головах. Трекером агенты пользоваться не умели, а разбор дефектов делался вручную раз в квартал.",
+        en: "Answers to “how does this work here” were spread across 1,800 wiki pages and people's heads. Agents could not use the tracker, and defect analysis was a manual quarterly chore."
+      },
+      did: {
+        ru: [
+          "MCP-сервер для трекера и вики, 22 тула, stdio и HTTP с OAuth; стоит в marketplace компании; запись только через двухфазное подтверждение",
+          "RAG-бот по вики в рабочем мессенджере: 1 834 документа, из них 62 OpenAPI-схемы; eval на golden set, лимиты бюджета и kill-switch",
+          "нашёл тихий баг разбора таблиц, который искажал 57% страниц индекса",
+          "агентный анализ дефектов: трекер, классификация, 8 графиков, черновики паттернов; детерминированное вынес в скрипты"
+        ],
+        en: [
+          "an MCP server for the tracker and wiki, 22 tools, stdio and HTTP with OAuth; listed in the company marketplace; writes need a two-phase confirm",
+          "a RAG bot over the wiki in the team messenger: 1,834 docs including 62 OpenAPI specs; golden-set evals, budget limits and a kill switch",
+          "found a silent table-parsing bug that corrupted 57% of indexed pages",
+          "agent-driven defect analysis: tracker, classification, 8 charts, draft patterns; deterministic steps moved into scripts"
+        ]
+      },
+      diff: [
+        { ru: "eval RAG-бота на golden set", en: "RAG bot golden-set eval", from: "13 / 15", to: "16 / 17" },
+        { ru: "стоимость переиндексации", en: "reindex cost", from: "~200 ₽ полный", to: "0.08 ₽ за страницу", fromEn: "~200 ₽ full", toEn: "0.08 ₽ per page" },
+        { ru: "токенов на анализ дефектов", en: "tokens per defect analysis", from: "~55K", to: "~30K" }
+      ],
+      note: {
+        ru: "Ответ бота стоит 0.5–1.2 ₽, вся инфраструктура около 1 960 ₽ в месяц.",
+        en: "A bot answer costs 0.5–1.2 ₽; the whole infra is about 1,960 ₽ a month."
+      },
+      stack: "Go, Yandex AI Studio, MCP, OAuth, Python, Jupyter",
+      links: [],
+      shots: []
+    },
+    {
+      id: "oss",
+      title: { ru: "Open source из рабочих задач", en: "Open source born from work" },
+      tag: { ru: "Ruby и Go, 2025–2026", en: "Ruby and Go, 2025–2026" },
+      problem: {
+        ru: "Аудит действий пользователей в каждом сервисе писали по-своему. А для локальной разработки и нагрузки не было связных данных: дамп прода нельзя, руками долго.",
+        en: "Every service did user-action auditing its own way. And local development and load tests lacked consistent data: prod dumps are off-limits, hand-made seeds take forever."
+      },
+      did: {
+        ru: [
+          "provenance: аудит действий и изменений моделей в Rails с группировкой по запросу и транзакции, фильтрацией чувствительных данных и хуками доставки. Вырос из внутреннего гема, который я довёл до 10 сервисов (Vector, Kafka, OpenSearch)",
+          "database-seed-cli: читает живую схему PostgreSQL, строит YAML-конфиг и выдаёт детерминированный SQL-сид; учитывает UNIQUE, CHECK и EXCLUDE, рвёт циклы внешних ключей через Tarjan SCC, понимает полиморфные связи Rails; команда fix чинит 10 из 17 видов проблем сама"
+        ],
+        en: [
+          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks. It grew out of an internal gem I rolled out to 10 services (Vector, Kafka, OpenSearch)",
+          "database-seed-cli: reads a live PostgreSQL schema, builds a YAML config and emits a deterministic SQL seed; handles UNIQUE, CHECK and EXCLUDE, breaks FK cycles with Tarjan SCC, understands Rails polymorphic associations; the fix command auto-repairs 10 of 17 issue kinds"
+        ]
+      },
+      diff: [
+        { ru: "нераспознанных колонок на 5 реальных БД", en: "unrecognized columns on 5 real DBs", from: "4 175", to: "1 794" },
+        { ru: "данные для разработки", en: "dev data", from: "дамп прода или руками", to: "~82K строк без ручных правок", fromEn: "prod dump or by hand", toEn: "~82K rows, zero manual edits" }
+      ],
+      note: {
+        ru: "provenance на rubygems: 450 скачиваний. seed-cli проверен на 5 базах по 255–417 таблиц.",
+        en: "provenance on rubygems: 450 downloads. seed-cli verified on 5 databases with 255–417 tables each."
+      },
+      stack: "Ruby, ActiveRecord, Go, PostgreSQL",
+      links: [
+        { ru: "github.com/inikalaev/provenance", en: "github.com/inikalaev/provenance", href: "https://github.com/inikalaev/provenance" },
+        { ru: "github.com/inikalaev/database-seed-cli", en: "github.com/inikalaev/database-seed-cli", href: "https://github.com/inikalaev/database-seed-cli" }
+      ],
+      shots: []
+    }
+  ],
+
+  more: [
+    {
+      ru: { t: "Реплики чтения без сюрпризов", d: "Записи в БД на GET-запросах мешали включить реплики. Написал детектор в RSpec и одну централизованную правку." },
+      en: { t: "Read replicas without surprises", d: "DB writes on GET requests blocked read replicas. Wrote an RSpec detector and one centralized fix." },
+      from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
+    },
+    {
+      ru: { t: "Document-first тесты API", d: "Перевёл request-тесты с генерации схем на проверку против OpenAPI аналитиков. Сейчас так покрыто около 600 операций в 8 спеках." },
+      en: { t: "Document-first API tests", d: "Moved request specs from generating schemas to validating against analysts' OpenAPI. About 600 operations across 8 specs now." },
+      from: "схема из тестов", to: "тесты по схеме", fromEn: "schema from tests", toEn: "tests from schema"
+    },
+    {
+      ru: { t: "Описания API в 10 сервисах", d: "Кампания агентом: одна CI-проверка и 13 MR." },
+      en: { t: "API descriptions across 10 services", d: "An agent-driven campaign: one CI check and 13 MRs." },
+      from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
+    },
+    {
+      ru: { t: "Redis с TLS в 10 сервисах", d: "При переезде нашёл fallback, который маскировал сломанный blacklist токенов: токен оставался валидным после выхода." },
+      en: { t: "Redis over TLS in 10 services", d: "During the move I found a fallback that masked a broken token blacklist: tokens stayed valid after logout." },
+      from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
+    },
+    {
+      ru: { t: "Разбор общего бакета", d: "Разложил общий бакет MinIO по сервисам через манифесты из БД и server-side copy." },
+      en: { t: "Splitting a shared bucket", d: "Split a shared MinIO bucket per service using DB manifests and server-side copy." },
+      from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
+    },
+    {
+      ru: { t: "Шум в Sentry", d: "Нашёл зомби-джобы Sidekiq и вычистил их rake-таском." },
+      en: { t: "Sentry noise", d: "Tracked down zombie Sidekiq jobs and cleaned them up with a rake task." },
+      from: "52K событий", to: "минус 85% шума", fromEn: "52K events", toEn: "85% of the noise gone"
+    },
+    {
+      ru: { t: "Импорт результатов конкурса", d: "Импорт результатов школьников и студентов с проверкой уникальности СНИЛС, задача с критичным приоритетом." },
+      en: { t: "Contest results import", d: "Importing school and university results with national ID uniqueness checks, flagged critical." },
+      from: "413 на файле", to: "25K строк проходят", fromEn: "413 on upload", toEn: "25K rows go through"
+    },
+    {
+      ru: { t: "Отчёт по delivery", d: "Заменил ручной Excel-отчёт дашбордом в Grafana." },
+      en: { t: "Delivery report", d: "Replaced a hand-made Excel report with a Grafana dashboard." },
+      from: "Excel руками", to: "Grafana", fromEn: "manual Excel", toEn: "Grafana"
+    }
+  ],
+
+  totals: {
+    ru: ["427 закрытых задач", "346 смерженных MR", "~1 770 коммитов в 29 репозиториях"],
+    en: ["427 resolved tasks", "346 merged MRs", "~1,770 commits across 29 repos"]
+  },
+
+  experience: [
+    {
+      org: "lab", from: { ru: "ноя 2023", en: "Nov 2023" }, to: null,
+      role: { ru: "Старший бэкенд-разработчик, главный инженер-программист", en: "Senior Backend Engineer, Lead Software Engineer" },
+      text: {
+        ru: "Образовательная платформа: около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. Модули админки, импорт и экспорт данных, рефакторинг легаси, перенос данных из старой CMS на Python. В основном сервисе третий по числу коммитов из 59 авторов. Провожу ревью и менторю.",
+        en: "An education platform: about 30 services in Ruby on Rails and Go, Kafka, PostgreSQL with replicas, k8s. Admin modules, data import and export, legacy refactoring, data migration off an old Python CMS. Third by commits out of 59 authors in the main service. I review code and mentor."
+      }
+    },
+    {
+      org: "space", from: { ru: "авг 2020", en: "Aug 2020" }, to: { ru: "ноя 2023", en: "Nov 2023" },
+      role: { ru: "Фулстек-разработчик", en: "Full-stack Developer" },
+      text: {
+        ru: "Внешние проекты под заказчиков. Через год стал ментором самого крупного из них: оценивал задачи и вместе с менеджером превращал «надо ещё вчера» в реализацию, которая не ломает процессы проекта. Потом продуктовая команда, фича на ChatGPT и менторство бекенда в мобильной команде.",
+        en: "Client projects. A year in, I became the mentor on the largest one: estimated work and, together with the PM, turned “we needed it yesterday” into something that did not break the project's processes. Later a product team, a ChatGPT feature, and backend mentoring for the mobile team."
+      },
+      stack: "Ruby on Rails, NestJS, GraphQL, TypeScript, Angular, Vue.js"
+    },
+    {
+      org: "college", from: { ru: "фев 2022", en: "Feb 2022" }, to: { ru: "июн 2023", en: "Jun 2023" },
+      role: { ru: "Преподаватель спецдисциплин, параллельно с работой", en: "Lecturer, alongside the main job" },
+      text: {
+        ru: "Базы данных, внедрение ИС, операционные системы. Давал задачи из своей рабочей практики, готовил студентов к чемпионату по мобильной разработке, ездил с ними на хакатоны.",
+        en: "Databases, information systems, operating systems. Built assignments from real work, coached students for a mobile development championship, took them to hackathons."
+      }
+    },
+    {
+      org: "onlineUni", from: { ru: "окт 2022", en: "Oct 2022" }, to: { ru: "дек 2022", en: "Dec 2022" },
+      role: { ru: "Преподаватель", en: "Instructor" },
+      text: {
+        ru: "Git, основы программирования, проектирование баз данных, введение в тестирование.",
+        en: "Git, programming basics, database design, intro to QA."
+      }
+    },
+    {
+      org: "kiskis", from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
+      role: { ru: "Техник", en: "Technician" },
+      text: {
+        ru: "Первый сервис на Ruby on Rails: техподдержка с серверным рендерингом. Настройка FTP, Moodle и серверов БД.",
+        en: "My first Ruby on Rails service: a support desk with server-side rendering. FTP, Moodle and DB server setup."
+      }
+    }
+  ],
+
+  education: [
+    { org: "uni", years: "2021–2025", ru: "Институт радиотехники и электроники", en: "Institute of Radio Engineering and Electronics" },
+    { org: "school", years: "2016–2021", ru: "Информатика и вычислительная техника", en: "Computer Science and Engineering" }
+  ],
+
+  skills: {
+    ru: [
+      ["Основное", "Ruby on Rails, Go, PostgreSQL, Kafka, Redis, REST, GraphQL"],
+      ["Инфраструктура", "Docker, Kubernetes, GitLab CI, MinIO, OpenSearch, Grafana"],
+      ["Фронт, когда нужно", "TypeScript, React"],
+      ["AI в работе", "Claude Code, свои MCP-серверы и скиллы, RAG, eval'ы"]
+    ],
+    en: [
+      ["Core", "Ruby on Rails, Go, PostgreSQL, Kafka, Redis, REST, GraphQL"],
+      ["Infra", "Docker, Kubernetes, GitLab CI, MinIO, OpenSearch, Grafana"],
+      ["Frontend when needed", "TypeScript, React"],
+      ["AI at work", "Claude Code, custom MCP servers and skills, RAG, evals"]
+    ]
+  },
+
+  now: {
+    ru: [
+      "работаю в цифровой лаборатории над образовательной платформой",
+      "довожу «Свод» до публичного запуска",
+      "на домашнем NAS живёт агент, который помогает с бытовыми делами",
+      "открыт к предложениям: Product Engineer, remote"
+    ],
+    en: [
+      "building an education platform at a digital lab",
+      "getting “Svod” ready for public launch",
+      "running a home agent on my NAS that helps with chores",
+      "open to Product Engineer roles, remote"
+    ]
+  },
+
+  writing: [
+    {
+      ru: "Я постоянно говорил, что все зависит от контекста, но не стал системным архитектором, или почему контекст важнее промпта",
+      en: "“It depends on the context”, or why context beats the prompt (Habr, in Russian)",
+      meta: { ru: "Хабр, август 2026, 6.3 тыс. прочтений", en: "Habr, August 2026, 6.3K reads" },
+      href: "https://habr.com/ru/articles/1075224/"
+    },
+    {
+      ru: "provenance, гем аудита для Rails",
+      en: "provenance, an audit gem for Rails",
+      meta: { ru: "Ruby, rubygems, MIT", en: "Ruby, rubygems, MIT" },
+      href: "https://github.com/inikalaev/provenance"
+    },
+    {
+      ru: "database-seed-cli, генератор связных данных для PostgreSQL",
+      en: "database-seed-cli, a consistent data generator for PostgreSQL",
+      meta: { ru: "Go, v1.0.0", en: "Go, v1.0.0" },
+      href: "https://github.com/inikalaev/database-seed-cli"
+    }
+  ]
+};
+</script>
+<style>
+:root {
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --ink: #1a2233;
+  --muted: #5b6577;
+  --line: #d9dee7;
+  --link: #2a56a8;
+  --del: #b42318;
+  --del-bg: #fdecea;
+  --ins: #17703f;
+  --ins-bg: #e6f4ec;
+  --shot-bg: #e8ecf2;
+  --sans: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 44rem;
+  --wide: 68rem;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --paper: #131822;
+  --surface: #1a2130;
+  --ink: #e4e8ef;
+  --muted: #98a2b3;
+  --line: #2c3547;
+  --link: #8db4f5;
+  --del: #ff8a80;
+  --del-bg: #3a1f22;
+  --ins: #6fd49b;
+  --ins-bg: #173326;
+  --shot-bg: #0f131b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  font-feature-settings: "tnum" 0;
+}
+a { color: var(--link); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+.col { max-width: var(--measure); }
+
+/* top bar */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 0; }
+.bar nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: .9375rem; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--ink); }
+.toggles { display: flex; gap: .5rem; }
+.toggles button {
+  font: 500 .875rem/1 var(--sans); color: var(--ink); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: .45rem .8rem; cursor: pointer;
+}
+.toggles button:hover { border-color: var(--muted); }
+
+/* hero */
+.hero { padding: 3.5rem 0 4rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem 3rem; align-items: start; }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.02; letter-spacing: -.025em; font-weight: 700; margin: 0; }
+.hero .role { font-size: clamp(1.25rem, 2.4vw, 1.625rem); font-weight: 500; margin: .6rem 0 0; }
+.hero .sub { color: var(--muted); margin: .4rem 0 0; }
+.hero .photo { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.quote { grid-column: 1 / -1; max-width: 40rem; font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.55; margin: .5rem 0 0; }
+
+/* the diff: единственный яркий элемент */
+.diff {
+  font-family: var(--mono); font-size: .9375rem; line-height: 1.5;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  overflow: hidden; margin: 0;
+}
+.diff .head { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; color: var(--muted); border-bottom: 1px solid var(--line); font-size: .8125rem; }
+.diff .row { display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); padding: .15rem 1rem; }
+.diff .row.hunk { color: var(--muted); padding-top: .5rem; font-size: .92em; }
+.diff .row.del { background: var(--del-bg); color: var(--del); }
+.diff .row.ins { background: var(--ins-bg); color: var(--ins); }
+.diff .row .sign { user-select: none; }
+.diff .row .v { font-weight: 600; }
+.hero .diff { grid-column: 1 / -1; max-width: 40rem; }
+.hero-diff-anim .row { opacity: 0; transform: translateX(-6px); animation: row-in .35s ease-out forwards; }
+@keyframes row-in { to { opacity: 1; transform: none; } }
+
+.cta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; }
+.btn {
+  display: inline-block; font-weight: 600; text-decoration: none; padding: .7rem 1.15rem; border-radius: 8px;
+  background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; font-size: 1rem; font-family: var(--sans);
+}
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn:hover { text-decoration: none; opacity: .88; }
+.links { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .9375rem; }
+
+/* sections */
+section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-height: 1.15; margin: 0 0 .5rem; font-weight: 700; }
+.lead { color: var(--muted); margin: 0 0 2.5rem; max-width: var(--measure); }
+
+/* cases */
+.case { padding: 2.75rem 0; }
+.case + .case { border-top: 1px dashed var(--line); }
+.case h3 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); line-height: 1.2; letter-spacing: -.01em; margin: 0; font-weight: 700; }
+.case .tag { color: var(--muted); margin: .35rem 0 1.5rem; font-size: .9375rem; }
+.case-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 24rem); gap: 2.5rem; align-items: start; }
+.case h4 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 .4rem; }
+.case h4:first-child { margin-top: 0; }
+.case p { margin: 0; }
+.case ul { margin: 0; padding-left: 1.1rem; }
+.case li { margin: .35rem 0; }
+.case li::marker { color: var(--muted); }
+.case .note { color: var(--muted); font-size: .9375rem; margin-top: 1rem; }
+.case .facts { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; padding: 0; list-style: none; }
+.case .facts li { margin: 0; font-size: .875rem; padding: .2rem .6rem; border: 1px solid var(--line); border-radius: 999px; }
+.case .stack { font-size: .9375rem; color: var(--muted); margin-top: 1rem; }
+.case .aside { position: sticky; top: 1.5rem; display: grid; gap: 1rem; }
+.case .aside .links { flex-direction: column; }
+
+.shots { margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 1rem; }
+.shots figure { margin: 0; }
+.shots figure:first-child { grid-column: 1 / -1; }
+.shots button { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--shot-bg); cursor: zoom-in; }
+.shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+.shots figure:first-child img { aspect-ratio: 16 / 9; }
+.shots figcaption { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+.shots.single { grid-template-columns: 1fr; }
+
+/* more */
+.more { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 2rem 2.5rem; }
+.more article h3 { font-size: 1.0625rem; margin: 0 0 .3rem; font-weight: 600; }
+.more article p { margin: 0 0 .7rem; color: var(--muted); font-size: .9375rem; }
+.more .diff { font-size: .8125rem; }
+.totals { margin-top: 2.5rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; font-size: .9375rem; }
+
+/* experience */
+.exp { list-style: none; margin: 0; padding: 0; max-width: 52rem; }
+.exp li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding: 1.25rem 0; }
+.exp li + li { border-top: 1px solid var(--line); }
+.exp .when { color: var(--muted); font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.exp h3 { margin: 0; font-size: 1.125rem; font-weight: 600; }
+.exp .org { color: var(--muted); margin: .1rem 0 .5rem; }
+.exp p { margin: 0; }
+.exp .stack { color: var(--muted); font-size: .9375rem; margin-top: .4rem; }
+.edu { margin-top: 2.5rem; }
+.edu h3 { font-size: 1.25rem; margin: 0 0 .5rem; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skills { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; }
+.skills dt { color: var(--muted); }
+.skills dd { margin: 0; }
+.writing { list-style: none; padding: 0; margin: 0; }
+.writing li { padding: .75rem 0; }
+.writing li + li { border-top: 1px solid var(--line); }
+.writing .meta { display: block; color: var(--muted); font-size: .875rem; }
+.now { margin: 0; padding-left: 1.1rem; }
+.now li { margin: .3rem 0; }
+.updated { color: var(--muted); font-size: .875rem; margin-top: .75rem; }
+
+footer { padding: 3.5rem 0 5rem; border-top: 1px solid var(--line); }
+footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
+
+/* lightbox */
+dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1600px); max-height: 94vh; }
+dialog::backdrop { background: rgba(10, 14, 22, .82); }
+dialog img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 6px; }
+dialog p { color: #e4e8ef; text-align: center; margin: .6rem 0 0; font-size: .9375rem; }
+dialog form { position: fixed; top: 1rem; right: 1rem; }
+dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color: #1a2233; border: 0; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .case-grid, .two { grid-template-columns: 1fr; }
+  .case .aside { position: static; }
+  .bar nav { display: none; }
+}
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; padding-top: 1.5rem; }
+  .hero .photo { width: 96px; height: 96px; grid-row: 1; }
+  .exp li { grid-template-columns: 1fr; gap: .25rem; }
+  .shots { grid-template-columns: 1fr 1fr; }
+  .diff { font-size: .8125rem; }
+  .diff .row { padding: .15rem .7rem; }
+  .diff .head { flex-direction: column; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-diff-anim .row { animation: none; opacity: 1; transform: none; }
+}
+
+@media print {
+  @page { size: A4; margin: 14mm 14mm 16mm; }
+  :root, :root[data-theme="dark"] {
+    --paper: #fff; --surface: #fff; --ink: #000; --muted: #444; --line: #bbb; --link: #000;
+    --del: #9a1c12; --del-bg: #fff; --ins: #0f5a31; --ins-bg: #fff; color-scheme: light;
+  }
+  body { font-size: 10pt; line-height: 1.45; }
+  .bar, .cta .btn, .shots, dialog, .no-print { display: none !important; }
+  .wrap { max-width: none; padding: 0; }
+  .hero { padding: 0 0 12pt; gap: 8pt 16pt; }
+  .hero h1 { font-size: 24pt; }
+  .hero .photo { width: 72px; height: 72px; }
+  .quote { font-size: 11pt; }
+  section { padding: 12pt 0; }
+  h2 { font-size: 16pt; }
+  .lead { margin-bottom: 8pt; }
+  .case { padding: 10pt 0; }
+  .case h3, .case .tag, .case h4 { break-after: avoid; }
+  .case h3 { font-size: 13pt; }
+  .case-grid { grid-template-columns: 1fr; gap: 4pt; }
+  .case .aside { position: static; }
+  .diff { font-size: 8.5pt; border-color: #bbb; }
+  .diff .row.del .sign::after { content: ""; }
+  .more { grid-template-columns: 1fr 1fr; gap: 8pt 16pt; }
+  .more article { break-inside: avoid; }
+  .exp li { grid-template-columns: 7rem 1fr; padding: 6pt 0; break-inside: avoid; }
+  .two { grid-template-columns: 1fr 1fr; gap: 16pt; }
+  a { text-decoration: none; }
+  a.print-url::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: #444; word-break: break-all; }
+  footer { padding: 12pt 0 0; }
+  .case .note, .case .facts, #now, .more .diff, .lead, footer h2, footer .cta { display: none !important; }
+  .case li { margin: 1pt 0; }
+  .case h4 { margin: 6pt 0 2pt; }
+  .case .tag { margin-bottom: 4pt; }
+  .hero .diff { max-width: none; }
+  .diff { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: 8pt; padding: 3pt 0; break-inside: avoid; }
+  .diff .head { grid-column: 1 / -1; padding: 2pt 6pt; }
+  .diff .row { display: block; padding: 1pt 6pt; background: none !important; }
+  .diff .row.hunk { padding-top: 1pt; }
+  .diff .row .sign { display: none; }
+  .diff .row.del .v { text-decoration: line-through; font-weight: 400; }
+  .more p { margin: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <nav id="nav" aria-label="Разделы"></nav>
+    <div class="toggles">
+      <button id="lang-btn" type="button"></button>
+      <button id="theme-btn" type="button"></button>
+    </div>
+  </header>
+  <main id="app"></main>
+</div>
+
+<dialog id="lightbox">
+  <form method="dialog"><button id="lb-close">Закрыть</button></form>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const params = new URLSearchParams(location.search);
+  let lang = params.get("lang") || localStorage.getItem("lang") || (navigator.language || "ru").slice(0, 2);
+  if (!["ru", "en"].includes(lang)) lang = "en";
+  let theme = localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  let firstRender = true;
+
+  const pick = (o, k) => (lang === "en" && o[k + "En"] != null) ? o[k + "En"] : o[k];
+  const tr = o => o == null ? "" : (typeof o === "string" ? o : (o[lang] ?? o.ru));
+
+  function diffBlock(rows, head) {
+    const body = rows.map((r, i) => `
+      ${tr(r) ? `<div class="row hunk" style="animation-delay:${i * 160}ms"><span class="sign">@@</span><span>${esc(tr(r))}</span></div>` : ""}
+      <div class="row del" style="animation-delay:${i * 160 + 50}ms"><span class="sign">-</span><span class="v">${esc(pick(r, "from"))}</span></div>
+      <div class="row ins" style="animation-delay:${i * 160 + 100}ms"><span class="sign">+</span><span class="v">${esc(pick(r, "to"))}</span></div>`).join("");
+    return `<div class="diff" role="table">${head ? `<div class="head"><span>${esc(head[0])}</span><span>${esc(head[1])}</span></div>` : ""}${body}</div>`;
+  }
+
+  function shotsBlock(c, u) {
+    if (!c.shots.length) return "";
+    return `<div class="shots" data-shots>${c.shots.map(s => `
+      <figure data-shot>
+        <button type="button" aria-label="${esc(tr(s))}. ${esc(u.zoom)}" data-src="${esc(s.src)}" data-cap="${esc(tr(s))}">
+          <img src="${esc(s.src)}" alt="${esc(tr(s))}" loading="lazy" decoding="async" onerror="this.closest('[data-shot]').remove()">
+        </button>
+        <figcaption>${esc(tr(s))}</figcaption>
+      </figure>`).join("")}</div>`;
+  }
+
+  function render() {
+    const u = DATA.ui[lang];
+    const C = DATA.contacts;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.theme = theme;
+    document.title = `${tr(DATA.name)}, ${u.role}`;
+    $("#lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+    $("#lang-btn").setAttribute("aria-label", lang === "ru" ? "Switch to English" : "Переключить на русский");
+    $("#theme-btn").textContent = theme === "dark" ? (lang === "ru" ? "Светлая" : "Light") : (lang === "ru" ? "Тёмная" : "Dark");
+    $("#lb-close").textContent = u.close;
+    $("#nav").innerHTML = Object.entries(u.nav).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join("");
+
+    const contactLinks = `
+      <a class="print-url" href="https://t.me/${C.telegram}">Telegram @${C.telegram}</a>
+      <a class="print-url" href="mailto:${C.email}">${C.email}</a>
+      <a class="print-url" href="https://github.com/${C.github}">GitHub</a>
+      <a class="print-url" href="https://habr.com/ru/users/${C.habr}/">Habr</a>`;
+
+    const showPhoto = lang === "ru" && DATA.photo;
+    const heroHead = lang === "ru" ? ["ivan-nikolaev.diff", "до и после агентов, 2025–2026"] : ["ivan-nikolaev.diff", "before and after agents, 2025–2026"];
+
+    $("#app").innerHTML = `
+      <div class="hero">
+        <div>
+          <h1>${esc(tr(DATA.name))}</h1>
+          <p class="role">${esc(u.role)}</p>
+          <p class="sub">${esc(u.sub)}</p>
+        </div>
+        ${showPhoto ? `<img class="photo" src="${esc(DATA.photo)}" alt="${esc(tr(DATA.name))}" width="132" height="132">` : ""}
+        <p class="quote">${esc(u.quote)}</p>
+        <div class="${firstRender ? "hero-diff-anim" : ""}" style="grid-column:1/-1;max-width:40rem">${diffBlock(DATA.headline, heroHead)}</div>
+        <div class="cta">
+          <a class="btn" href="https://t.me/${C.telegram}">${esc(u.write)}</a>
+          <button class="btn ghost" type="button" id="print-btn">${esc(u.cv)}</button>
+          <div class="links">${contactLinks}</div>
+        </div>
+      </div>
+
+      <section id="cases" aria-labelledby="cases-h">
+        <h2 id="cases-h">${esc(u.casesTitle)}</h2>
+        <p class="lead">${esc(u.casesLead)}</p>
+        ${DATA.cases.map(c => `
+          <article class="case" id="case-${c.id}">
+            <h3>${esc(tr(c.title))}</h3>
+            <p class="tag">${esc(tr(c.tag))}</p>
+            <div class="case-grid">
+              <div>
+                <h4>${esc(u.problem)}</h4>
+                <p>${esc(tr(c.problem))}</p>
+                <h4>${esc(u.did)}</h4>
+                <ul>${c.did[lang].map(d => `<li>${esc(d)}</li>`).join("")}</ul>
+                ${c.note ? `<p class="note">${esc(tr(c.note))}</p>` : ""}
+              </div>
+              <div class="aside">
+                <h4>${esc(u.result)}</h4>
+                ${diffBlock(c.diff)}
+                ${c.facts ? `<ul class="facts">${c.facts[lang].map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : ""}
+                <p class="stack">${esc(u.stack)}: ${esc(c.stack)}</p>
+                ${c.links.length ? `<div class="links">${c.links.map(l => `<a class="print-url" href="${esc(l.href)}">${esc(tr(l))}</a>`).join("")}</div>` : ""}
+              </div>
+            </div>
+            ${shotsBlock(c, u)}
+          </article>`).join("")}
+      </section>
+
+      <section id="more" aria-labelledby="more-h">
+        <h2 id="more-h">${esc(u.moreTitle)}</h2>
+        <p class="lead">${esc(u.moreLead)}</p>
+        <div class="more">
+          ${DATA.more.map(m => `
+            <article>
+              <h3>${esc(m[lang].t)}</h3>
+              <p>${esc(m[lang].d)}</p>
+              ${diffBlock([{ ru: m.unit ? m.unit.ru : "", en: m.unit ? m.unit.en : "", from: m.from, to: m.to, fromEn: m.fromEn, toEn: m.toEn }])}
+            </article>`).join("")}
+        </div>
+        <p class="totals">${DATA.totals[lang].map(t => `<span>${esc(t)}</span>`).join("")}</p>
+      </section>
+
+      <section id="exp" aria-labelledby="exp-h">
+        <h2 id="exp-h">${esc(u.expTitle)}</h2>
+        <ol class="exp">
+          ${DATA.experience.map(e => `
+            <li>
+              <div class="when">${esc(tr(e.from))} – ${esc(e.to ? tr(e.to) : u.present)}</div>
+              <div>
+                <h3>${esc(tr(e.role))}</h3>
+                <p class="org">${esc(DATA.orgs[e.org])}</p>
+                <p>${esc(tr(e.text))}</p>
+                ${e.stack ? `<p class="stack">${esc(e.stack)}</p>` : ""}
+              </div>
+            </li>`).join("")}
+        </ol>
+        <div class="edu">
+          <h3>${esc(u.eduTitle)}</h3>
+          <ol class="exp">
+            ${DATA.education.map(e => `
+              <li><div class="when">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p class="org">${esc(tr(e))}</p></div></li>`).join("")}
+          </ol>
+        </div>
+      </section>
+
+      <section id="writing" aria-labelledby="writing-h">
+        <div class="two">
+          <div>
+            <h2 id="writing-h">${esc(u.writingTitle)}</h2>
+            <ul class="writing">
+              ${DATA.writing.map(w => `<li><a class="print-url" href="${esc(w.href)}">${esc(tr(w))}</a><span class="meta">${esc(tr(w.meta))}</span></li>`).join("")}
+            </ul>
+          </div>
+          <div>
+            <h2>${esc(u.skillsTitle)}</h2>
+            <dl class="skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="now" aria-labelledby="now-h">
+        <h2 id="now-h">${esc(u.nowTitle)}</h2>
+        <ul class="now">${DATA.now[lang].map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+        <p class="updated">${esc(u.updated)}</p>
+      </section>
+
+      <footer>
+        <div class="col">
+          <h2>${esc(u.contactTitle)}</h2>
+          <p>${esc(u.contactLead)}</p>
+          <div class="cta"><a class="btn" href="https://t.me/${C.telegram}">${esc(u.write)}</a><div class="links">${contactLinks}</div></div>
+        </div>
+      </footer>`;
+
+    $("#print-btn").addEventListener("click", () => window.print());
+    document.querySelectorAll("[data-shots]").forEach(el => {
+      const n = el.querySelectorAll("[data-shot]").length;
+      if (n === 1) el.classList.add("single");
+    });
+    firstRender = false;
+  }
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-src]");
+    if (!b) return;
+    $("#lb-img").src = b.dataset.src;
+    $("#lb-img").alt = b.dataset.cap;
+    $("#lb-cap").textContent = b.dataset.cap;
+    $("#lightbox").showModal();
+  });
+  $("#lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") e.target.close(); });
+
+  $("#lang-btn").addEventListener("click", () => {
+    lang = lang === "ru" ? "en" : "ru";
+    localStorage.setItem("lang", lang);
+    render();
+  });
+  $("#theme-btn").addEventListener("click", () => {
+    theme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
