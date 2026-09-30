@@ -1,21 +1,15 @@
-name: Build CV PDF
+name: Build and publish site
 
 on:
   push:
     branches: [main]
-    paths:
-      - index.html
-      - orgs.example.js
-      - assets/photo.jpg
-      - tools/**
-      - .github/workflows/cv.yml
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: cv
+  group: site
   cancel-in-progress: true
 
 jobs:
@@ -39,10 +33,23 @@ jobs:
       - name: Build PDFs
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: mkdir -p cv && node tools/build-cv.js
+        run: node tools/build-cv.js
+
+      - name: Assemble dist
+        run: tools/build-dist.sh
 
       - uses: actions/upload-artifact@v4
         with:
           name: cv
-          path: cv/*.pdf
+          path: dist/cv/*.pdf
           retention-days: 30
+
+      - name: Push dist branch
+        run: |
+          cd dist
+          git init -q -b dist
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Site build from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" dist
