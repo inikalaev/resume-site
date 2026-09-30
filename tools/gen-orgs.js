@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'orgs.js');
 const raw = process.env.ORGS_JSON;
 
-if (!raw) {
+if (!raw || !raw.trim()) {
   fs.copyFileSync(path.join(root, 'orgs.example.js'), out);
   console.log('ORGS_JSON не задан, взят orgs.example.js');
   process.exit(0);
