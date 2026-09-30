@@ -327,66 +327,92 @@ const DATA = {
 
   more: [
     {
+      meta: { ru: "Наставник команды, 2-е место", en: "Team mentor, 2nd place" },
+      shots: [],
       ru: { t: "EDUG, бот для обучения", d: "Был наставником команды из 4 студентов, пока преподавал. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
       en: { t: "EDUG, a learning bot", d: "I mentored a team of 4 students while teaching. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
       from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
     },
     {
+      meta: { ru: "Пет-проект, NAS, локальная модель", en: "Side project, NAS, local model" },
+      shots: [],
       ru: { t: "Домашний агент Hermes", d: "Агент на NAS на локальной модели: поиск, дайджесты, мониторинг, напоминания. 20 своих MCP-серверов к фото, документам, рецептам, заметкам, торрентам и новостям. Docker он видит только через read-only прокси, а всё, что меняет что-то снаружи, ждёт кнопки в Telegram, без ответа отказ." },
       en: { t: "Hermes, a home agent", d: "An agent on my NAS running a local model: search, digests, monitoring, reminders. 20 custom MCP servers for photos, documents, recipes, notes, torrents and news. It sees Docker only through a read-only proxy, and anything with an external effect waits for a Telegram button, no answer means no." },
       from: "10+ веб-интерфейсов домашних сервисов", to: "один чат в Telegram, 20 MCP", fromEn: "10+ home service web UIs", toEn: "one Telegram chat, 20 MCP servers"
     },
     {
+      meta: { ru: "Основная работа, GitLab CI", en: "Day job, GitLab CI" },
+      shots: [],
       ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "Разбил прогон на 5 шардов через parallel_tests и починил кэш гемов в образе, шард больше не ставит их заново." },
       en: { t: "CI tests 2.6× faster", d: "Split the run into 5 shards with parallel_tests and fixed gem caching in the image, so shards no longer reinstall gems." },
       from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
     },
     {
+      meta: { ru: "Основная работа, 12 Ruby-сервисов", en: "Day job, 12 Ruby services" },
+      shots: [],
       ru: { t: "Флаки видны прямо на MR", d: "Упавший тест ретраится один раз, и если прошёл, на MR появляется лейбл flaky и комментарий с seed и спеком. Вынес в общий CI-компонент на 12 Ruby-сервисов, за 4 месяца метку увидели 16 разработчиков." },
       en: { t: "Flaky tests show up on the MR", d: "A failed test retries once, and if it passes the MR gets a flaky label and a comment with the seed and spec. Shipped as a shared CI component for 12 Ruby services; 16 developers saw the label in 4 months." },
       from: "перезапустили пайплайн и забыли", to: "15 флаки-спеков найдено на 75 MR", fromEn: "re-run the pipeline and forget", toEn: "15 flaky specs caught on 75 MRs"
     },
     {
+      meta: { ru: "Основная работа, Go, MCP", en: "Day job, Go, MCP" },
+      shots: [],
       ru: { t: "MCP для трекера и вики", d: "22 тула, stdio и HTTP с OAuth, стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение." },
       en: { t: "An MCP server for the tracker and wiki", d: "22 tools, stdio and HTTP with OAuth, listed in the company marketplace. Writes need a two-phase confirm." },
       from: "агент не видит задачи", to: "22 тула", fromEn: "agent can't see tasks", toEn: "22 tools"
     },
     {
+      meta: { ru: "Основная работа, агенты, Python", en: "Day job, agents, Python" },
+      shots: [],
       ru: { t: "Разбор дефектов агентами", d: "Выгрузка из трекера, классификация, 8 графиков и черновики паттернов. Детерминированные шаги вынес в скрипты." },
       en: { t: "Agent-driven defect analysis", d: "Tracker export, classification, 8 charts and draft patterns. Deterministic steps moved into scripts." },
       from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks"
     },
     {
+      meta: { ru: "Основная работа, Rails, PostgreSQL", en: "Day job, Rails, PostgreSQL" },
+      shots: [],
       ru: { t: "Реплики чтения без сюрпризов", d: "Включить реплики мешали записи в БД на GET-запросах. Написал детектор в RSpec, и почти всё закрылось одной правкой в общем месте." },
       en: { t: "Read replicas without surprises", d: "DB writes on GET requests blocked read replicas. Wrote an RSpec detector and one centralized fix." },
       from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
     },
     {
+      meta: { ru: "Основная работа, RSpec, OpenAPI", en: "Day job, RSpec, OpenAPI" },
+      shots: [],
       ru: { t: "Document-first тесты API", d: "Раньше схемы генерировались из тестов, перевёл на обратное: тесты проверяют API по OpenAPI аналитиков. Сейчас так около 600 операций в 8 спеках." },
       en: { t: "Document-first API tests", d: "Moved request specs from generating schemas to validating against analysts' OpenAPI. About 600 operations across 8 specs now." },
       from: "схема из тестов", to: "тесты по схеме", fromEn: "schema from tests", toEn: "tests from schema"
     },
     {
+      meta: { ru: "Основная работа, CI, агенты", en: "Day job, CI, agents" },
+      shots: [],
       ru: { t: "Описания API в 10 сервисах", d: "Прогнал агентом по 10 сервисам: одна CI-проверка и 13 MR." },
       en: { t: "API descriptions across 10 services", d: "An agent-driven campaign: one CI check and 13 MRs." },
       from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
     },
     {
+      meta: { ru: "Основная работа, Redis, SSO", en: "Day job, Redis, SSO" },
+      shots: [],
       ru: { t: "Redis с TLS в 10 сервисах", d: "Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов. Токен оставался валидным после выхода." },
       en: { t: "Redis over TLS in 10 services", d: "During the move I found a fallback that masked a broken token blacklist: tokens stayed valid after logout." },
       from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
     },
     {
+      meta: { ru: "Основная работа, MinIO, S3", en: "Day job, MinIO, S3" },
+      shots: [],
       ru: { t: "Разбор общего бакета", d: "Общий бакет MinIO разложил по сервисам, через манифесты из БД и server-side copy." },
       en: { t: "Splitting a shared bucket", d: "Split a shared MinIO bucket per service using DB manifests and server-side copy." },
       from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
     },
     {
+      meta: { ru: "Основная работа, Sidekiq, Sentry", en: "Day job, Sidekiq, Sentry" },
+      shots: [],
       ru: { t: "Настоящие ошибки в Sentry снова видно", d: "85% из 52K событий в Sentry давали зомби-джобы Sidekiq, и настоящие ошибки в них тонули. Нашёл, откуда они берутся, и вычистил rake-таском." },
       en: { t: "Real errors visible in Sentry again", d: "85% of 52K Sentry events came from zombie Sidekiq jobs, drowning out the real errors. Found where they came from and cleaned them up with a rake task." },
       from: "ошибки тонут в зомби-джобах", to: "видно то, что надо чинить", fromEn: "errors buried under zombie jobs", toEn: "you see what needs fixing"
     },
     {
+      meta: { ru: "Основная работа, Grafana", en: "Day job, Grafana" },
+      shots: [],
       ru: { t: "Отчёт по delivery", d: "Ручной отчёт в Excel заменил дашбордом в Grafana." },
       en: { t: "Delivery report", d: "Replaced a hand-made Excel report with a Grafana dashboard." },
       from: "Excel руками", to: "Grafana", fromEn: "manual Excel", toEn: "Grafana"
@@ -712,6 +738,22 @@ h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-he
 .now .tile.seek .k { color: var(--ins); }
 h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
 .games-intro { margin: 0; color: var(--muted); }
+#case-dialog { border: 0; padding: 0; background: transparent; width: min(46rem, 94vw); max-height: 92vh; color: var(--ink); }
+#case-dialog::backdrop { background: rgba(10, 14, 22, .6); }
+.cd-box { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.75rem 1.75rem 2rem; max-height: 92vh; overflow: auto; }
+.cd-box form { float: right; margin: -.5rem -.5rem 0 1rem; }
+.cd-close { font: 500 .9375rem var(--sans); background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: .4rem .9rem; cursor: pointer; }
+#cd-body h3 { font-size: 1.5rem; line-height: 1.2; margin: 0; }
+#cd-body .game-meta { display: block; margin: .35rem 0 1.25rem; }
+#cd-body p { margin: 0 0 1.25rem; }
+#cd-body .shots { margin-top: 1.5rem; }
+.mcard { font: inherit; text-align: left; cursor: pointer; }
+.mcard .clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.mcard-res { margin-top: auto; padding-top: .5rem; font-family: var(--mono); font-size: .8125rem; color: var(--muted); }
+.mcard-res del { color: var(--del); text-decoration: none; }
+.mcard-res ins { color: var(--ins); text-decoration: none; }
+.more-cards { margin-top: 0; }
+
 .champ { margin-top: 2.5rem; }
 .champ-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
 .champ-photo { margin: 0; }
@@ -740,11 +782,11 @@ footer { padding: 3.5rem 0 5rem; border-top: 1px solid var(--line); }
 footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
 
 /* lightbox */
-dialog { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1600px); max-height: 94vh; }
-dialog::backdrop { background: rgba(10, 14, 22, .82); }
-dialog img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 6px; }
-dialog p { color: #e4e8ef; text-align: center; margin: .6rem 0 0; font-size: .9375rem; }
-dialog form { position: fixed; top: 1rem; right: 1rem; }
+#lightbox { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1600px); max-height: 94vh; }
+#lightbox::backdrop { background: rgba(10, 14, 22, .82); }
+#lightbox img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 6px; }
+#lightbox p { color: #e4e8ef; text-align: center; margin: .6rem 0 0; font-size: .9375rem; }
+#lightbox form { position: fixed; top: 1rem; right: 1rem; }
 .lb-nav {
   position: fixed; top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; border-radius: 50%;
   border: 0; background: rgba(228, 232, 239, .92); color: #1a2233; font: 400 2rem/1 var(--sans); cursor: pointer;
@@ -754,8 +796,8 @@ dialog form { position: fixed; top: 1rem; right: 1rem; }
 .lb-nav[hidden] { display: none; }
 .lb-prev { left: 1rem; }
 .lb-next { right: 1rem; }
-dialog img { user-select: none; -webkit-user-drag: none; }
-dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color: #1a2233; border: 0; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; }
+#lightbox img { user-select: none; -webkit-user-drag: none; }
+#lightbox form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color: #1a2233; border: 0; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; }
 
 @media (max-width: 860px) {
   .case-grid, .two { grid-template-columns: 1fr; }
@@ -826,6 +868,13 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
 </div>
 
 <div id="cv" class="cv" aria-hidden="true"></div>
+
+<dialog id="case-dialog" aria-labelledby="cd-title">
+  <div class="cd-box">
+    <form method="dialog"><button class="cd-close" id="cd-close">Закрыть</button></form>
+    <div id="cd-body"></div>
+  </div>
+</dialog>
 
 <dialog id="lightbox">
   <form method="dialog"><button id="lb-close">Закрыть</button></form>
@@ -985,13 +1034,14 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
       <section id="more" aria-labelledby="more-h">
         <h2 id="more-h">${esc(u.moreTitle)}</h2>
         ${u.moreLead ? `<p class="lead">${esc(u.moreLead)}</p>` : ""}
-        <div class="more">
-          ${DATA.more.map(m => `
-            <article>
-              <h3>${esc(m[lang].t)}</h3>
-              <p>${esc(m[lang].d)}</p>
-              ${diffBlock([{ ru: m.unit ? m.unit.ru : "", en: m.unit ? m.unit.en : "", from: m.from, to: m.to, fromEn: m.fromEn, toEn: m.toEn }])}
-            </article>`).join("")}
+        <div class="games more-cards">
+          ${DATA.more.map((m, i) => `
+            <button type="button" class="game mcard" data-more="${i}" aria-haspopup="dialog">
+              <span class="game-name">${esc(m[lang].t)}</span>
+              <span class="game-meta">${esc(tr(m.meta))}</span>
+              <span class="game-d clamp">${esc(m[lang].d)}</span>
+              <span class="mcard-res"><del>${esc(pick(m, "from"))}</del> → <ins>${esc(pick(m, "to"))}</ins></span>
+            </button>`).join("")}
         </div>
       </section>
 
@@ -1098,6 +1148,21 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
     lbShow(lbList.indexOf(b));
     $("#lightbox").showModal();
   });
+  document.addEventListener("click", e => {
+    const c = e.target.closest("[data-more]");
+    if (!c) return;
+    const m = DATA.more[+c.dataset.more];
+    const u = DATA.ui[lang];
+    $("#cd-close").textContent = u.close;
+    $("#cd-body").innerHTML = `
+      <h3 id="cd-title">${esc(m[lang].t)}</h3>
+      <span class="game-meta">${esc(tr(m.meta))}</span>
+      <p>${esc(m[lang].d)}</p>
+      ${diffBlock([{ ru: m.unit ? m.unit.ru : "", en: m.unit ? m.unit.en : "", from: m.from, to: m.to, fromEn: m.fromEn, toEn: m.toEn }])}
+      ${m.shots && m.shots.length ? shotsBlock(m, u) : ""}`;
+    $("#case-dialog").showModal();
+  });
+  $("#case-dialog").addEventListener("click", e => { if (e.target.id === "case-dialog") e.target.close(); });
   $("#lb-prev").addEventListener("click", () => lbShow(lbIdx - 1));
   $("#lb-next").addEventListener("click", () => lbShow(lbIdx + 1));
   $("#lightbox").addEventListener("keydown", e => {
