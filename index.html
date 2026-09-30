@@ -39,26 +39,26 @@ const DATA = {
   ui: {
     ru: {
       role: "Product Engineer",
-      sub: "Бэкенд на Ruby on Rails и Go, почти 7 лет в разработке. Москва, готов к удалёнке.",
-      quote: "Раньше на любой вопрос я отвечал «всё зависит от контекста». Фраза правдивая и бесполезная. Теперь я этот контекст собираю, отдаю агентам и меряю, что из этого вышло.",
+      sub: "Бэкенд на Ruby on Rails и Go, в разработке почти 7 лет. Москва, можно удалённо.",
+      quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
       cv: "Скачать PDF",
       write: "Написать в Telegram",
       nav: { cases: "Кейсы", more: "Ещё", exp: "Опыт", writing: "Тексты", now: "Сейчас" },
       casesTitle: "Кейсы",
-      casesLead: "Проблема, что сделал и что изменилось. Цифры из трекера, GitLab и тестов, округлены вниз.",
+      casesLead: "Что было, что сделал и что поменялось. Цифры из трекера, GitLab и тестов.",
       problem: "Проблема",
       did: "Что сделал",
-      result: "Что изменилось",
+      result: "Что поменялось",
       stack: "Стек",
       moreTitle: "Ещё из рабочего",
-      moreLead: "Задачи поменьше, но каждая с цифрой.",
+      moreLead: "Задачи поменьше, но у каждой есть цифра.",
       expTitle: "Опыт",
       eduTitle: "Образование",
       writingTitle: "Тексты и open source",
       nowTitle: "Сейчас",
       skillsTitle: "Чем работаю",
       contactTitle: "Связаться",
-      contactLead: "Ищу роль Product Engineer или сеньора на бэкенде, где можно отвечать за фичу целиком, от проблемы пользователя до метрики. Расти хочу как инженер, в менеджмент людей не хочу.",
+      contactLead: "Ищу роль Product Engineer или сеньора на бэкенде, где фичу можно вести целиком, от проблемы пользователя до метрики. Хочу расти как инженер, в управление людьми уходить не хочу.",
       zoom: "Нажмите, чтобы увеличить",
       close: "Закрыть",
       present: "сейчас",
@@ -105,19 +105,19 @@ const DATA = {
   cases: [
     {
       id: "context",
-      title: { ru: "Контекст для агентов вместо промптов", en: "Context for agents, not prompts" },
+      title: { ru: "Контекст важнее промпта", en: "Context for agents, not prompts" },
       tag: { ru: "AI в разработке, основная работа, 2026", en: "AI in engineering, day job, 2026" },
       problem: {
-        ru: "Агент на рабочем проекте писал код, который потом разворачивали на ревью. Проблема была не в промптах. Агент просто не знал того, что знает команда: решения из трекера, договорённости из вики, историю MR.",
+        ru: "Агент на рабочем проекте писал код, который потом разворачивали на ревью. Промпты я переписывал много раз, и это почти ничего не давало. Проблема была в том, что агент не знал того, что знает команда: что решили в трекере, о чём договорились в вики, что было в прошлых MR.",
         en: "At work the agent wrote code that got torn apart in review. Prompts were not the issue. The agent simply did not know what the team knew: decisions buried in the tracker, conventions in the wiki, MR history."
       },
       did: {
         ru: [
-          "собрал контекст из 494 задач и 410 MR: трекер, вики и GitLab подключены к агенту через свои MCP-серверы",
-          "написал около 15 доменных скиллов под реальную рутину: rails-команды в подах k8s, разбор упавших пайплайнов, релизная документация, работа с трекером",
-          "ввёл гигиену контекста: карта кода на 94 строки вместо grep по репозиторию, граф кода, устаревшие описания в архив",
-          "запись во внешние системы только через черновик и подтверждение, агент не видит токенов",
-          "всё мерил: доля универсального пайплайна в вызовах скиллов упала с 88% до 0%, свои скиллы дают 81% вызовов"
+          "подключил к агенту трекер, вики и GitLab через свои MCP-серверы, по итогу у него перед глазами 494 задачи и 410 MR",
+          "написал около 15 скиллов под свою рутину: rails-команды в подах k8s, разбор упавших пайплайнов, релизная документация, трекер",
+          "сделал карту кода на 94 строки, чтобы агент не грепал весь репозиторий, и граф кода. Устаревшие описания уношу в архив, поскольку они вредят сильнее, чем их отсутствие",
+          "комментарии в трекер агент пишет только черновиком, токенов он не видит",
+          "по логам посмотрел, что реально работает: универсальный пайплайн был в 88% вызовов скиллов, сейчас 0%, свои скиллы дают 81%"
         ],
         en: [
           "pulled context from 494 tasks and 410 MRs: tracker, wiki and GitLab wired to the agent through my own MCP servers",
@@ -134,7 +134,7 @@ const DATA = {
         { ru: "доля багов среди закрытых задач", en: "bugs among resolved tasks", from: "45%", to: "37%" }
       ],
       note: {
-        ru: "Честно про цифры. Обычных продуктовых MR столько же, 37 против 40. Рост дал новый класс работы: 37 MR-кампаний «одна правка на 10–12 сервисов» и 30 MR во внутренние инструменты. Медиана времени до мержа не сократилась, поскольку узкое место в QA и релизах, а не в написании кода. Стоит это около $18 за рабочий день в пересчёте на API.",
+        ru: "По цифрам есть оговорка. Обычных продуктовых MR почти столько же, 37 против 40. Вырос новый тип работы: 37 MR это правки, которые разом раскатываются на 10–12 сервисов, и ещё 30 MR во внутренние инструменты. Время до мержа не сократилось, поскольку упирается в QA и релизы, а не в написание кода. По деньгам выходит около $18 за рабочий день, если считать по ценам API.",
         en: "Being honest about the numbers: regular product MRs stayed flat, 37 vs 40. The growth is a new class of work: 37 cross-service campaigns (one change across 10–12 services) and 30 MRs into internal tooling. Median time to merge did not drop, because the bottleneck is QA and releases, not writing code. All of it costs about $18 per working day at API prices."
       },
       stack: "Claude Code, MCP, Agent Skills, Go, Ruby, GitLab API",
@@ -145,20 +145,20 @@ const DATA = {
     },
     {
       id: "review",
-      title: { ru: "«Оценка 540»: performance review из Excel в продукт", en: "“Review 540”: performance reviews out of Excel" },
-      tag: { ru: "Пет-проект, B2B SaaS, 16 дней", en: "Side project, B2B SaaS, 16 days" },
+      title: { ru: "«Оценка 540»: performance review без Excel", en: "“Review 540”: performance reviews out of Excel" },
+      tag: { ru: "Пет-проект, B2B, сделал за 16 дней", en: "Side project, B2B SaaS, 16 days" },
       problem: {
-        ru: "Оценка сотрудников по методике 540° жила в Google-формах и Excel. 3 280 строк ответов, HR считал всё формулами руками. Методика рабочая, но приватность держалась на честном слове, а разговор по итогам никак не поддерживался.",
+        ru: "Оценка сотрудников по методике 540° жила в Google-формах и Excel. 3 280 строк ответов, HR всё считал формулами руками. Сама методика рабочая, но анонимность держалась на честном слове, а встречу по итогам никак не поддерживало.",
         en: "A 540° review methodology lived in Google Forms and Excel: 3,280 answer rows, HR computed everything by hand with formulas. The method worked, but privacy relied on trust and the follow-up conversation had no support at all."
       },
       did: {
         ru: [
-          "перенёс методику без изменений, а её запреты сделал кодом: общего рейтинга людей нету, у групп равный вес, «Н/О» не ноль, группа ниже порога скрыта и не участвует в расчёте",
-          "ответ хранит HMAC вместо id респондента, ключ шифруется мастер-ключом, по истечении срока удаляется, и связка «ответ и человек» становится необратимой",
-          "мультитенантность с первого дня: составные внешние ключи, сослаться на строку чужой организации нельзя физически",
-          "три способа пройти анкету, включая матрицу «вопрос × люди» для руководителя с 20 подчинёнными и прохождение в чат-боте",
-          "ИИ-советы по итогам видят ровно тот срез, что и зритель, а совет утверждает человек; 94 MCP-тула под токеном пользователя",
-          "дизайн-система собрана в Claude Design, потом разобрал расхождения «макет против методики»"
+          "методику перенёс как есть, а её правила сделал кодом. Общего рейтинга людей нету, у групп равный вес, «Н/О» это не ноль, группа ниже порога скрыта и в расчёт не идёт",
+          "в ответе хранится HMAC вместо id респондента. Ключ лежит под мастер-ключом и удаляется по истечении срока, после этого связать ответ с человеком уже нельзя",
+          "мультитенантность сразу, с составными внешними ключами, поэтому сослаться на строку чужой организации нельзя даже по ошибке",
+          "анкету можно пройти тремя способами, в том числе матрицей «вопрос × люди» для руководителя, у которого 20 подчинённых, и через чат-бота",
+          "ИИ-советы по итогам видят ровно тот срез, что и сам зритель, а утверждает их человек. Агент подключается по MCP, 94 тула, работает под токеном пользователя",
+          "дизайн-систему собрал в Claude Design, потом прошёлся по расхождениям макетов с методикой"
         ],
         en: [
           "kept the methodology intact and turned its rules into code: no overall ranking of people, equal group weights, “N/A” is not zero, groups below the threshold are hidden and excluded from math",
@@ -175,7 +175,7 @@ const DATA = {
         { ru: "находок аудита безопасности открыто", en: "open security audit findings", from: "55", to: "0 за 2 дня", toEn: "0 in 2 days" }
       ],
       note: {
-        ru: "Выжившие мутанты нашли реальный баг: колонка, где все ответы «Н/О», читалась как «нет ответов». А регрессия по Excel показала расхождение до 0.023 при ошибке округления 0.005, поскольку порядок агрегации в таблице другой.",
+        ru: "Выжившие мутанты привели к реальному багу: колонку, где все ответы «Н/О», код читал как «нет ответов». А сверка с Excel показала расхождение до 0.023 при ошибке округления 0.005. Оказалось, в таблице другой порядок агрегации.",
         en: "The surviving mutants led to a real bug: a column where every answer was “N/A” was read as “no answers”. The Excel regression surfaced a 0.023 drift against a 0.005 rounding error, because the spreadsheet aggregates in a different order."
       },
       facts: {
@@ -197,20 +197,20 @@ const DATA = {
     },
     {
       id: "svod",
-      title: { ru: "«Свод»: документы, где оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
+      title: { ru: "«Свод»: оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
       tag: { ru: "Пет-проект, закрытая бета, svod.webtm.ru", en: "Side project, closed beta, svod.webtm.ru" },
       problem: {
-        ru: "В Word оформление хранится в самом тексте: у каждого абзаца свой шрифт и отступ. Поэтому диплом по ГОСТу или договор расползаются от любой правки. Началось с моего собственного диплома.",
+        ru: "В Word оформление хранится прямо в тексте, у каждого абзаца свой шрифт и отступ. Поэтому диплом по ГОСТу или договор разъезжается от любой правки. Началось всё с моего собственного диплома.",
         en: "Word stores formatting inside the text: every paragraph carries its own font and indent. So a thesis or a contract falls apart with every edit. It started with my own thesis."
       },
       did: {
         ru: [
-          "абзац знает только свою роль, например «заголовок 2-го уровня»; шрифты, поля и нумерация лежат в настройках шаблона",
-          "один JSON-AST и один серверный рендерер для PDF, DOCX, HTML и Markdown, поэтому превью и скачанный файл совпадают",
-          "компоненты со слотами, линейные версии с закреплением, защита от потерянных правок (409), шаринг по ссылке",
-          "MCP-сервер на 43 тула: прикладываешь вордовский договор в Claude и получаешь шаблон со шапкой-компонентом и полями для номера и даты",
-          "повторы в docx ищутся по сигнатурам абзацев и становятся компонентами; знания для агента генерируются из реестра блоков, CI падает при расхождении",
-          "прогнал на реальном дипломе, ГОСТ-шаблон поправил под ЕСКД; из бенчмарка моделей выбрал ту, что выиграла 3 задачи из 4 и в 9 раз дешевле"
+          "абзац знает только свою роль, например «заголовок 2-го уровня». Шрифты, поля и нумерация лежат в настройках шаблона",
+          "документ это JSON-AST, из него один серверный рендерер собирает PDF, DOCX, HTML и Markdown. Поэтому превью и скачанный файл совпадают",
+          "компоненты со слотами, версии с закреплением, защита от потерянных правок (409), шаринг по ссылке",
+          "MCP-сервер на 43 тула. Прикладываешь в Claude вордовский договор и получаешь шаблон со шапкой-компонентом и полями под номер и дату",
+          "повторяющиеся куски docx ищутся по сигнатурам абзацев и становятся компонентами. Описание конструктора для агента генерируется из реестра блоков, если разъехалось, CI падает",
+          "прогнал на реальном дипломе и поправил ГОСТ-шаблон. Модель выбрал своим бенчмарком: она выиграла 3 задачи из 4 и в 9 раз дешевле"
         ],
         en: [
           "a paragraph only knows its role, like “heading level 2”; fonts, margins and numbering live in the template settings",
@@ -242,18 +242,18 @@ const DATA = {
     },
     {
       id: "tools",
-      title: { ru: "Внутренние AI-инструменты для команды", en: "Internal AI tools for the team" },
+      title: { ru: "Внутренние AI-инструменты", en: "Internal AI tools for the team" },
       tag: { ru: "Основная работа, 2025–2026", en: "Day job, 2025–2026" },
       problem: {
-        ru: "Ответы на вопросы «как у нас устроено» лежали в 1 800 страницах вики и в головах. Трекером агенты пользоваться не умели, а разбор дефектов делался вручную раз в квартал.",
+        ru: "Ответы на вопрос «а как у нас это устроено» лежали в 1 800 страницах вики и у людей в головах. С трекером агенты работать не умели, а дефекты разбирали руками раз в квартал.",
         en: "Answers to “how does this work here” were spread across 1,800 wiki pages and people's heads. Agents could not use the tracker, and defect analysis was a manual quarterly chore."
       },
       did: {
         ru: [
-          "MCP-сервер для трекера и вики, 22 тула, stdio и HTTP с OAuth; стоит в marketplace компании; запись только через двухфазное подтверждение",
-          "RAG-бот по вики в рабочем мессенджере: 1 834 документа, из них 62 OpenAPI-схемы; eval на golden set, лимиты бюджета и kill-switch",
-          "нашёл тихий баг разбора таблиц, который искажал 57% страниц индекса",
-          "агентный анализ дефектов: трекер, классификация, 8 графиков, черновики паттернов; детерминированное вынес в скрипты"
+          "MCP для трекера и вики, 22 тула, stdio и HTTP с OAuth. Стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение",
+          "RAG-бот по вики в рабочем мессенджере, в индексе 1 834 документа, из них 62 OpenAPI-схемы. Качество проверяю eval'ами на golden set, на бюджет стоят лимиты и kill-switch",
+          "по ходу нашёл тихий баг разбора таблиц, который портил 57% страниц в индексе",
+          "анализ дефектов агентами: выгрузка из трекера, классификация, 8 графиков и черновики паттернов. Всё детерминированное вынес в скрипты"
         ],
         en: [
           "an MCP server for the tracker and wiki, 22 tools, stdio and HTTP with OAuth; listed in the company marketplace; writes need a two-phase confirm",
@@ -268,7 +268,7 @@ const DATA = {
         { ru: "токенов на анализ дефектов", en: "tokens per defect analysis", from: "~55K", to: "~30K" }
       ],
       note: {
-        ru: "Ответ бота стоит 0.5–1.2 ₽, вся инфраструктура около 1 960 ₽ в месяц.",
+        ru: "Ответ бота стоит 0.5–1.2 ₽, инфраструктура около 1 960 ₽ в месяц.",
         en: "A bot answer costs 0.5–1.2 ₽; the whole infra is about 1,960 ₽ a month."
       },
       stack: "Go, Yandex AI Studio, MCP, OAuth, Python, Jupyter",
@@ -280,13 +280,13 @@ const DATA = {
       title: { ru: "Open source из рабочих задач", en: "Open source born from work" },
       tag: { ru: "Ruby и Go, 2025–2026", en: "Ruby and Go, 2025–2026" },
       problem: {
-        ru: "Аудит действий пользователей в каждом сервисе писали по-своему. А для локальной разработки и нагрузки не было связных данных: дамп прода нельзя, руками долго.",
+        ru: "Аудит действий пользователей каждый сервис писал по-своему. А для локальной разработки и нагрузки не было нормальных связных данных: дамп прода брать нельзя, руками долго.",
         en: "Every service did user-action auditing its own way. And local development and load tests lacked consistent data: prod dumps are off-limits, hand-made seeds take forever."
       },
       did: {
         ru: [
-          "provenance: аудит действий и изменений моделей в Rails с группировкой по запросу и транзакции, фильтрацией чувствительных данных и хуками доставки. Вырос из внутреннего гема, который я довёл до 10 сервисов (Vector, Kafka, OpenSearch)",
-          "database-seed-cli: читает живую схему PostgreSQL, строит YAML-конфиг и выдаёт детерминированный SQL-сид; учитывает UNIQUE, CHECK и EXCLUDE, рвёт циклы внешних ключей через Tarjan SCC, понимает полиморфные связи Rails; команда fix чинит 10 из 17 видов проблем сама"
+          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки. Вырос из внутреннего гема, который я раскатил на 10 сервисов (Vector, Kafka, OpenSearch)",
+          "database-seed-cli читает живую схему PostgreSQL, собирает YAML-конфиг и выдаёт детерминированный SQL-сид. Учитывает UNIQUE, CHECK и EXCLUDE, циклы внешних ключей рвёт через Tarjan SCC, понимает полиморфные связи Rails. Команда fix сама чинит 10 видов проблем из 17"
         ],
         en: [
           "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks. It grew out of an internal gem I rolled out to 10 services (Vector, Kafka, OpenSearch)",
@@ -298,7 +298,7 @@ const DATA = {
         { ru: "данные для разработки", en: "dev data", from: "дамп прода или руками", to: "~82K строк без ручных правок", fromEn: "prod dump or by hand", toEn: "~82K rows, zero manual edits" }
       ],
       note: {
-        ru: "provenance на rubygems: 450 скачиваний. seed-cli проверен на 5 базах по 255–417 таблиц.",
+        ru: "provenance на rubygems скачали 450 раз. seed-cli гонял на 5 базах по 255–417 таблиц.",
         en: "provenance on rubygems: 450 downloads. seed-cli verified on 5 databases with 255–417 tables each."
       },
       stack: "Ruby, ActiveRecord, Go, PostgreSQL",
@@ -312,42 +312,42 @@ const DATA = {
 
   more: [
     {
-      ru: { t: "Реплики чтения без сюрпризов", d: "Записи в БД на GET-запросах мешали включить реплики. Написал детектор в RSpec и одну централизованную правку." },
+      ru: { t: "Реплики чтения без сюрпризов", d: "Включить реплики мешали записи в БД на GET-запросах. Написал детектор в RSpec, и почти всё закрылось одной правкой в общем месте." },
       en: { t: "Read replicas without surprises", d: "DB writes on GET requests blocked read replicas. Wrote an RSpec detector and one centralized fix." },
       from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
     },
     {
-      ru: { t: "Document-first тесты API", d: "Перевёл request-тесты с генерации схем на проверку против OpenAPI аналитиков. Сейчас так покрыто около 600 операций в 8 спеках." },
+      ru: { t: "Document-first тесты API", d: "Раньше схемы генерировались из тестов, перевёл на обратное: тесты проверяют API по OpenAPI аналитиков. Сейчас так около 600 операций в 8 спеках." },
       en: { t: "Document-first API tests", d: "Moved request specs from generating schemas to validating against analysts' OpenAPI. About 600 operations across 8 specs now." },
       from: "схема из тестов", to: "тесты по схеме", fromEn: "schema from tests", toEn: "tests from schema"
     },
     {
-      ru: { t: "Описания API в 10 сервисах", d: "Кампания агентом: одна CI-проверка и 13 MR." },
+      ru: { t: "Описания API в 10 сервисах", d: "Прогнал агентом по 10 сервисам: одна CI-проверка и 13 MR." },
       en: { t: "API descriptions across 10 services", d: "An agent-driven campaign: one CI check and 13 MRs." },
       from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
     },
     {
-      ru: { t: "Redis с TLS в 10 сервисах", d: "При переезде нашёл fallback, который маскировал сломанный blacklist токенов: токен оставался валидным после выхода." },
+      ru: { t: "Redis с TLS в 10 сервисах", d: "Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов. Токен оставался валидным после выхода." },
       en: { t: "Redis over TLS in 10 services", d: "During the move I found a fallback that masked a broken token blacklist: tokens stayed valid after logout." },
       from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
     },
     {
-      ru: { t: "Разбор общего бакета", d: "Разложил общий бакет MinIO по сервисам через манифесты из БД и server-side copy." },
+      ru: { t: "Разбор общего бакета", d: "Общий бакет MinIO разложил по сервисам, через манифесты из БД и server-side copy." },
       en: { t: "Splitting a shared bucket", d: "Split a shared MinIO bucket per service using DB manifests and server-side copy." },
       from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
     },
     {
-      ru: { t: "Шум в Sentry", d: "Нашёл зомби-джобы Sidekiq и вычистил их rake-таском." },
+      ru: { t: "Шум в Sentry", d: "Нашёл зомби-джобы Sidekiq, почистил rake-таском." },
       en: { t: "Sentry noise", d: "Tracked down zombie Sidekiq jobs and cleaned them up with a rake task." },
       from: "52K событий", to: "минус 85% шума", fromEn: "52K events", toEn: "85% of the noise gone"
     },
     {
-      ru: { t: "Импорт результатов конкурса", d: "Импорт результатов школьников и студентов с проверкой уникальности СНИЛС, задача с критичным приоритетом." },
+      ru: { t: "Импорт результатов конкурса", d: "Импорт результатов школьников и студентов с проверкой уникальности СНИЛС. Задача шла с критичным приоритетом." },
       en: { t: "Contest results import", d: "Importing school and university results with national ID uniqueness checks, flagged critical." },
       from: "413 на файле", to: "25K строк проходят", fromEn: "413 on upload", toEn: "25K rows go through"
     },
     {
-      ru: { t: "Отчёт по delivery", d: "Заменил ручной Excel-отчёт дашбордом в Grafana." },
+      ru: { t: "Отчёт по delivery", d: "Ручной отчёт в Excel заменил дашбордом в Grafana." },
       en: { t: "Delivery report", d: "Replaced a hand-made Excel report with a Grafana dashboard." },
       from: "Excel руками", to: "Grafana", fromEn: "manual Excel", toEn: "Grafana"
     }
@@ -363,7 +363,7 @@ const DATA = {
       org: "lab", from: { ru: "ноя 2023", en: "Nov 2023" }, to: null,
       role: { ru: "Старший бэкенд-разработчик, главный инженер-программист", en: "Senior Backend Engineer, Lead Software Engineer" },
       text: {
-        ru: "Образовательная платформа: около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. Модули админки, импорт и экспорт данных, рефакторинг легаси, перенос данных из старой CMS на Python. В основном сервисе третий по числу коммитов из 59 авторов. Провожу ревью и менторю.",
+        ru: "Образовательная платформа, около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. Делал модули админки, импорт и экспорт, рефакторил легаси и переносил данные из старой CMS на Python. В основном сервисе я третий по коммитам из 59 авторов. Ревьюю и менторю.",
         en: "An education platform: about 30 services in Ruby on Rails and Go, Kafka, PostgreSQL with replicas, k8s. Admin modules, data import and export, legacy refactoring, data migration off an old Python CMS. Third by commits out of 59 authors in the main service. I review code and mentor."
       }
     },
@@ -371,7 +371,7 @@ const DATA = {
       org: "space", from: { ru: "авг 2020", en: "Aug 2020" }, to: { ru: "ноя 2023", en: "Nov 2023" },
       role: { ru: "Фулстек-разработчик", en: "Full-stack Developer" },
       text: {
-        ru: "Внешние проекты под заказчиков. Через год стал ментором самого крупного из них: оценивал задачи и вместе с менеджером превращал «надо ещё вчера» в реализацию, которая не ломает процессы проекта. Потом продуктовая команда, фича на ChatGPT и менторство бекенда в мобильной команде.",
+        ru: "Попал в команду внешних проектов. Через год стал ментором самого крупного из них: оценивал задачи и вместе с проджектом переводил «хочу ещё вчера» заказчика в реализацию, которая не ломает процессы проекта. Потом перешёл в продуктовую команду, поработал с ChatGPT и менторил бекенд в мобильной команде.",
         en: "Client projects. A year in, I became the mentor on the largest one: estimated work and, together with the PM, turned “we needed it yesterday” into something that did not break the project's processes. Later a product team, a ChatGPT feature, and backend mentoring for the mobile team."
       },
       stack: "Ruby on Rails, NestJS, GraphQL, TypeScript, Angular, Vue.js"
@@ -380,7 +380,7 @@ const DATA = {
       org: "college", from: { ru: "фев 2022", en: "Feb 2022" }, to: { ru: "июн 2023", en: "Jun 2023" },
       role: { ru: "Преподаватель спецдисциплин, параллельно с работой", en: "Lecturer, alongside the main job" },
       text: {
-        ru: "Базы данных, внедрение ИС, операционные системы. Давал задачи из своей рабочей практики, готовил студентов к чемпионату по мобильной разработке, ездил с ними на хакатоны.",
+        ru: "Вёл базы данных, внедрение ИС и операционные системы. Старался давать задачи, близкие к тем, что сам решаю на работе. Готовил студентов по компетенции «Разработка мобильных приложений», ездили на хакатоны.",
         en: "Databases, information systems, operating systems. Built assignments from real work, coached students for a mobile development championship, took them to hackathons."
       }
     },
@@ -396,7 +396,7 @@ const DATA = {
       org: "kiskis", from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
       role: { ru: "Техник", en: "Technician" },
       text: {
-        ru: "Первый сервис на Ruby on Rails: техподдержка с серверным рендерингом. Настройка FTP, Moodle и серверов БД.",
+        ru: "Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом. Плюс настройка FTP, Moodle и серверов БД.",
         en: "My first Ruby on Rails service: a support desk with server-side rendering. FTP, Moodle and DB server setup."
       }
     }
@@ -424,10 +424,10 @@ const DATA = {
 
   now: {
     ru: [
-      "работаю в цифровой лаборатории над образовательной платформой",
-      "довожу «Свод» до публичного запуска",
-      "на домашнем NAS живёт агент, который помогает с бытовыми делами",
-      "открыт к предложениям: Product Engineer, remote"
+      "работаю в цифровой лаборатории, делаю образовательную платформу",
+      "по вечерам довожу «Свод» до публичного запуска",
+      "на NAS поднял агента, который помогает с домашними делами",
+      "смотрю предложения на Product Engineer, можно удалённо"
     ],
     en: [
       "building an education platform at a digital lab",
