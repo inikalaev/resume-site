@@ -1,0 +1,48 @@
+name: Build CV PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - orgs.example.js
+      - assets/photo.jpg
+      - tools/**
+      - .github/workflows/cv.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cv
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install playwright-core
+        run: npm install --no-save --no-package-lock playwright-core@1
+
+      - name: Generate orgs.js
+        env:
+          ORGS_JSON: ${{ secrets.ORGS_JSON }}
+        run: node tools/gen-orgs.js
+
+      - name: Build PDFs
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: mkdir -p cv && node tools/build-cv.js
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cv
+          path: cv/*.pdf
+          retention-days: 30

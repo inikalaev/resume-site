@@ -13,9 +13,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="orgs.js"></script>
 <script>
 /* ============================================================
-   DATA: весь текст сайта. Названия компаний и вузов меняются тут.
+   DATA: весь текст сайта. Названия компаний и вузов в orgs.js.
    ============================================================ */
 const DATA = {
   name: { ru: "Иван Николаев", en: "Ivan Nikolaev" },
@@ -28,15 +29,7 @@ const DATA = {
     github: "inikalaev",
     habr: "ShonZander"
   },
-  orgs: {
-    lab: "цифровая лаборатория",
-    space: "спейс",
-    kiskis: "КисКис",
-    college: "Шарага",
-    onlineUni: "Онлайн Университет",
-    uni: "Национальный исследовательский университет «шеи»",
-    school: "ESEDU"
-  },
+  orgs: typeof ORGS !== "undefined" ? ORGS : {},
 
   ui: {
     ru: {
