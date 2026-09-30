@@ -137,8 +137,7 @@ const DATA = {
       diff: [
         { ru: "замечаний на ревью на MR", en: "review comments per MR", from: "1.57", to: "0.49" },
         { ru: "MR без единого замечания", en: "MRs with zero comments", from: "71%", to: "83%" },
-        { ru: "смерженных MR, апрель–сентябрь к тому же сезону 2025", en: "merged MRs, Apr–Sep vs same season 2025", from: "40", to: "104" },
-        { ru: "доля багов среди закрытых задач", en: "bugs among resolved tasks", from: "45%", to: "37%" }
+        { ru: "смерженных MR, апрель–сентябрь к тому же сезону 2025", en: "merged MRs, Apr–Sep vs same season 2025", from: "40", to: "104" }
       ],
       note: {
         ru: "По цифрам есть оговорка. Обычных продуктовых MR почти столько же, 37 против 40. Вырос новый тип работы: 37 MR это правки, которые разом раскатываются на 10–12 сервисов, и ещё 30 MR во внутренние инструменты. Время до мержа не сократилось, поскольку упирается в QA и релизы, а не в написание кода. По деньгам выходит около $18 за рабочий день, если считать по ценам API.",
@@ -360,30 +359,30 @@ const DATA = {
     },
     {
       id: "oss",
-      short: { ru: "provenance, гем аудита для Rails, вырос из внутреннего гема на 10 сервисах. database-seed-cli на Go, генератор связных данных для PostgreSQL.", en: "provenance, an audit gem for Rails grown from an internal gem used in 10 services. database-seed-cli in Go, a consistent data generator for PostgreSQL." },
-      title: { ru: "Open source из рабочих задач", en: "Open source born from work" },
-      tag: { ru: "Ruby и Go, 2025–2026", en: "Ruby and Go, 2025–2026" },
+      short: { ru: "provenance, гем аудита для Rails, 450 скачиваний. database-seed-cli на Go, генератор связных данных для PostgreSQL, проверен на базах до 417 таблиц.", en: "provenance, an audit gem for Rails, 450 downloads. database-seed-cli in Go, a consistent data generator for PostgreSQL, tested on databases with up to 417 tables." },
+      title: { ru: "Open source: provenance и database-seed-cli", en: "Open source: provenance and database-seed-cli" },
+      tag: { ru: "Свои библиотеки, Ruby и Go, 2026", en: "My own libraries, Ruby and Go, 2026" },
       problem: {
-        ru: "Аудит действий пользователей каждый сервис писал по-своему. А для локальной разработки и нагрузки не было нормальных связных данных: дамп прода брать нельзя, руками долго.",
-        en: "Every service did user-action auditing its own way. And local development and load tests lacked consistent data: prod dumps are off-limits, hand-made seeds take forever."
+        ru: "В Rails-проектах аудит действий пользователей обычно пишут заново в каждом сервисе, и каждый раз по-своему. А для локальной разработки и нагрузочных тестов нужны связные данные: дамп прода брать нельзя, руками долго.",
+        en: "Rails projects tend to rebuild user-action auditing in every service, each time differently. And local development and load tests need consistent data: prod dumps are off-limits, hand-made seeds take forever."
       },
       did: {
         ru: [
-          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки. Вырос из внутреннего гема, который я раскатил на 10 сервисов (Vector, Kafka, OpenSearch)",
+          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки., события можно отправлять куда угодно, например в Kafka",
           "database-seed-cli читает живую схему PostgreSQL, собирает YAML-конфиг и выдаёт детерминированный SQL-сид. Учитывает UNIQUE, CHECK и EXCLUDE, циклы внешних ключей рвёт через Tarjan SCC, понимает полиморфные связи Rails. Команда fix сама чинит 10 видов проблем из 17"
         ],
         en: [
-          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks. It grew out of an internal gem I rolled out to 10 services (Vector, Kafka, OpenSearch)",
+          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks., events can be shipped anywhere, Kafka for example",
           "database-seed-cli: reads a live PostgreSQL schema, builds a YAML config and emits a deterministic SQL seed; handles UNIQUE, CHECK and EXCLUDE, breaks FK cycles with Tarjan SCC, understands Rails polymorphic associations; the fix command auto-repairs 10 of 17 issue kinds"
         ]
       },
       diff: [
-        { ru: "аудит действий в сервисах", en: "user-action auditing", from: "в каждом сервисе свой", to: "один гем на 10 сервисах", fromEn: "a custom one per service", toEn: "one gem across 10 services" },
+        { ru: "аудит в Rails-проекте", en: "auditing in a Rails app", from: "пишется заново в каждом сервисе", to: "gem \"provenance\"", fromEn: "rewritten in every service", toEn: "gem \"provenance\"" },
         { ru: "данные для разработки", en: "dev data", from: "дамп прода или руками", to: "~82K строк без ручных правок", fromEn: "prod dump or by hand", toEn: "~82K rows, zero manual edits" }
       ],
       note: {
-        ru: "provenance на rubygems скачали 450 раз. seed-cli гонял на 5 базах по 255–417 таблиц.",
-        en: "provenance on rubygems: 450 downloads. seed-cli verified on 5 databases with 255–417 tables each."
+        ru: "provenance на rubygems скачали 450 раз, лицензия MIT. seed-cli проверял на 5 базах по 255–417 таблиц.",
+        en: "provenance has 450 downloads on rubygems, MIT license. seed-cli was tested on 5 databases with 255–417 tables each."
       },
       stack: "Ruby, ActiveRecord, Go, PostgreSQL",
       links: [
