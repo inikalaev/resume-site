@@ -44,25 +44,25 @@ const DATA = {
       sub: "Бэкенд на Ruby on Rails и Go, в разработке почти 7 лет. Москва, можно удалённо.",
       quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
       cv: "Скачать резюме, PDF",
-      cvCases: "Ключевые кейсы",
+      cvCases: "Основные кейсы",
       cvMore: "Полная версия с кейсами и скриншотами",
       write: "Написать в Telegram",
-      nav: { cases: "Кейсы", more: "Ещё", exp: "Опыт", writing: "Тексты", now: "Сейчас" },
-      casesTitle: "Кейсы",
+      nav: { cases: "Основные кейсы", more: "Другие кейсы", exp: "Опыт", writing: "Сообщество", now: "Сейчас" },
+      casesTitle: "Основные кейсы",
       casesLead: "Что было, что сделал и что поменялось. Цифры из трекера, GitLab и тестов.",
       problem: "Проблема",
       did: "Что сделал",
       result: "Что поменялось",
       stack: "Стек",
-      moreTitle: "Ещё из рабочего",
-      moreLead: "Задачи поменьше, но у каждой есть цифра.",
+      moreTitle: "Другие кейсы",
+      moreLead: "",
       expTitle: "Опыт",
       eduTitle: "Образование",
-      writingTitle: "Тексты и open source",
+      writingTitle: "Сообщество",
       nowTitle: "Сейчас",
       skillsTitle: "Чем работаю",
       contactTitle: "Связаться",
-      contactLead: "Ищу роль Product Engineer или сеньора на бэкенде, где фичу можно вести целиком, от проблемы пользователя до метрики. Хочу расти как инженер, в управление людьми уходить не хочу.",
+      contactLead: "Ищу роль Product Engineer, где фичу можно вести целиком, от проблемы пользователя до метрики. Рассматриваю и позиции техлида или тимлида.",
       zoom: "Нажмите, чтобы увеличить",
       close: "Закрыть",
       present: "сейчас",
@@ -74,25 +74,25 @@ const DATA = {
       sub: "Backend in Ruby on Rails and Go, almost 7 years shipping. Moscow, open to remote.",
       quote: "For years my answer to everything was “it depends on the context”. True, and useless. Now I collect that context, hand it to AI agents, and measure what comes out.",
       cv: "Download CV, PDF",
-      cvCases: "Key work",
+      cvCases: "Main work",
       cvMore: "Full version with case studies and screenshots",
       write: "Message on Telegram",
-      nav: { cases: "Work", more: "More", exp: "Experience", writing: "Writing", now: "Now" },
-      casesTitle: "Selected work",
+      nav: { cases: "Main work", more: "Other work", exp: "Experience", writing: "Community", now: "Now" },
+      casesTitle: "Main work",
       casesLead: "The problem, what I did, what changed. Numbers come from the tracker, GitLab and test suites, rounded down.",
       problem: "Problem",
       did: "What I did",
       result: "What changed",
       stack: "Stack",
-      moreTitle: "More from the day job",
-      moreLead: "Smaller pieces, each with a number attached.",
+      moreTitle: "Other work",
+      moreLead: "",
       expTitle: "Experience",
       eduTitle: "Education",
-      writingTitle: "Writing and open source",
+      writingTitle: "Community",
       nowTitle: "Now",
       skillsTitle: "Tools",
       contactTitle: "Get in touch",
-      contactLead: "Looking for a Product Engineer or senior backend role where I own a feature end to end, from the user's problem to the metric. I want to grow as an engineer, not into people management.",
+      contactLead: "Looking for a Product Engineer role where I own a feature end to end, from the user's problem to the metric. Tech lead and team lead roles are on the table too.",
       zoom: "Click to enlarge",
       close: "Close",
       present: "now",
@@ -462,13 +462,13 @@ const DATA = {
       "работаю в цифровой лаборатории, делаю образовательную платформу",
       "по вечерам довожу «Свод» до публичного запуска",
       "на NAS поднял агента, который помогает с домашними делами",
-      "смотрю предложения на Product Engineer, можно удалённо"
+      "смотрю предложения: Product Engineer, техлид или тимлид, можно удалённо"
     ],
     en: [
       "building an education platform at a digital lab",
       "getting “Svod” ready for public launch",
       "running a home agent on my NAS that helps with chores",
-      "open to Product Engineer roles, remote"
+      "open to Product Engineer, tech lead or team lead roles, remote"
     ]
   },
 
@@ -898,7 +898,7 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
 
       <section id="more" aria-labelledby="more-h">
         <h2 id="more-h">${esc(u.moreTitle)}</h2>
-        <p class="lead">${esc(u.moreLead)}</p>
+        ${u.moreLead ? `<p class="lead">${esc(u.moreLead)}</p>` : ""}
         <div class="more">
           ${DATA.more.map(m => `
             <article>
