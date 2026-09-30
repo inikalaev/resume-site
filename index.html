@@ -194,40 +194,6 @@ const DATA = {
       shots: []
     },
     {
-      id: "ci",
-      short: { ru: "Разбил тесты на 5 шардов через parallel_tests, починил кэш гемов в образе. Детект flaky-тестов вынес в общий CI-компонент и раскатил на 12 Ruby-сервисов.", en: "Split tests into 5 shards with parallel_tests and fixed gem caching in the image. Moved flaky-test detection into a shared CI component used by 12 Ruby services." },
-      title: { ru: "CI: тесты в 2.6 раза быстрее, флаки на виду", en: "CI: tests 2.6× faster, flaky tests in plain sight" },
-      tag: { ru: "Основная работа, 2026", en: "Day job, 2026" },
-      problem: {
-        ru: "Тесты основного сервиса шли в CI одной джобой больше 12 минут, 567 спек, и каждый MR ждал их целиком. Плюс флаки: тест падал, пайплайн перезапускали и забывали, причину никто не искал.",
-        en: "The main service ran its tests in CI as a single 12+ minute job, 567 spec files, and every MR waited for all of it. On top of that, flaky tests: something failed, someone re-ran the pipeline, and nobody looked for the cause."
-      },
-      did: {
-        ru: [
-          "сначала профилировал медленные спеки, потом разбил прогон на 5 шардов через parallel_tests и собрал покрытие из шардов обратно в один отчёт",
-          "в Dockerfile перестал вырезать .git, после этого bundle check проходит и шард не ставит гемы заново, минус ~100 с на шард. С кэшем слоёв сборка образа на повторных прогонах идёт ~3 минуты вместо ~13",
-          "пробовал параллелить ещё и внутри шарда, но это вскрыло тесты, которые мешают друг другу: утечка I18n-локали, общий Rails.cache, состояние БД между процессами. Откатил и записал их отдельно",
-          "флаки: упавший тест ретраится один раз, и если со второго раза прошёл, джоба вешает на MR лейбл flaky и комментарий с seed, спеком и ссылкой на шард",
-          "вынес это в общий CI-компонент и раскатил на 12 Ruby-сервисов, все сидят на одной версии компонента"
-        ],
-        en: [
-          "profiled slow specs first, then split the run into 5 shards with parallel_tests and merged coverage from the shards back into one report",
-          "stopped stripping .git in the Dockerfile, so bundle check passes and shards no longer reinstall gems, about 100 s saved per shard. With layer caching, image builds on repeat runs take ~3 minutes instead of ~13",
-          "tried parallelizing inside each shard too, which exposed tests that interfere with each other: leaking I18n locale, shared Rails.cache, DB state across processes. Rolled that back and listed them separately",
-          "flaky tests: a failed example retries once, and if it passes the second time the job labels the MR flaky and comments with the seed, spec and a link to the shard",
-          "moved it into a shared CI component and rolled it out to 12 Ruby services, all pinned to the same component version"
-        ]
-      },
-      diff: [
-        { ru: "тесты в пайплайне", en: "tests in the pipeline", from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min" },
-        { ru: "сборка образа на повторном прогоне", en: "image build on repeat runs", from: "~13 мин", to: "~3 мин", fromEn: "~13 min", toEn: "~3 min" },
-        { ru: "сервисов, где флаки видны на MR", en: "services where flaky tests show up on the MR", from: "0", to: "12" }
-      ],
-      stack: "GitLab CI, CI/CD components, parallel_tests, rspec-retry, Docker, SimpleCov",
-      links: [],
-      shots: []
-    },
-    {
       id: "review",
       short: { ru: "Перенёс методику оценки 540° из Excel в B2B-сервис на Go и React за 16 дней: псевдонимизация ответов через HMAC, мультитенантность, 94 MCP-тула, мутационные тесты.", en: "Moved a 540° review methodology from Excel into a Go and React B2B service in 16 days: HMAC pseudonymization, multi-tenancy, 94 MCP tools, mutation testing." },
       title: { ru: "«Оценка 540»: performance review без Excel", en: "“Review 540”: performance reviews out of Excel" },
@@ -329,35 +295,6 @@ const DATA = {
       ]
     },
     {
-      id: "tools",
-      short: { ru: "MCP для трекера и вики на 22 тула, стоит в marketplace компании. Разбор дефектов агентами, детерминированные шаги вынесены в скрипты.", en: "A 22-tool MCP server for the tracker and wiki, listed in the company marketplace. Agent-driven defect analysis with deterministic steps moved into scripts." },
-      title: { ru: "MCP для трекера и разбор дефектов агентами", en: "A tracker MCP and agent-driven defect analysis" },
-      tag: { ru: "Основная работа, 2025–2026", en: "Day job, 2025–2026" },
-      problem: {
-        ru: "С трекером агенты работать не умели, а дефекты разбирали руками раз в квартал, и выводы делались скорее по ощущениям.",
-        en: "Agents could not use the tracker, and defects were reviewed by hand once a quarter, mostly by gut feeling."
-      },
-      did: {
-        ru: [
-          "MCP для трекера и вики, 22 тула, stdio и HTTP с OAuth. Стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение",
-          "по ходу поймал баг, когда списанные 8 часов улетали в трекер как 0 минут",
-          "разбор дефектов агентами: выгрузка из трекера, классификация, 8 графиков и черновики паттернов. Всё детерминированное вынес в скрипты, поскольку агенту там думать не нужно"
-        ],
-        en: [
-          "an MCP server for the tracker and wiki, 22 tools, stdio and HTTP with OAuth. Listed in the company marketplace. Writes require a two-phase confirm",
-          "caught a bug along the way where 8 logged hours landed in the tracker as 0 minutes",
-          "agent-driven defect analysis: tracker export, classification, 8 charts and draft patterns. Everything deterministic moved into scripts, since the agent has nothing to think about there"
-        ]
-      },
-      diff: [
-        { ru: "разбор дефектов", en: "defect analysis", from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks" },
-        { ru: "токенов на один разбор", en: "tokens per analysis", from: "~55K", to: "~30K" }
-      ],
-      stack: "Go, MCP, OAuth, Python, Jupyter",
-      links: [],
-      shots: []
-    },
-    {
       id: "oss",
       short: { ru: "provenance, гем аудита для Rails, 450 скачиваний. database-seed-cli на Go, генератор связных данных для PostgreSQL, проверен на базах до 417 таблиц.", en: "provenance, an audit gem for Rails, 450 downloads. database-seed-cli in Go, a consistent data generator for PostgreSQL, tested on databases with up to 417 tables." },
       title: { ru: "Open source: provenance и database-seed-cli", en: "Open source: provenance and database-seed-cli" },
@@ -394,6 +331,26 @@ const DATA = {
   ],
 
   more: [
+    {
+      ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "Разбил прогон на 5 шардов через parallel_tests и починил кэш гемов в образе, шард больше не ставит их заново." },
+      en: { t: "CI tests 2.6× faster", d: "Split the run into 5 shards with parallel_tests and fixed gem caching in the image, so shards no longer reinstall gems." },
+      from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
+    },
+    {
+      ru: { t: "Флаки видны прямо на MR", d: "Упавший тест ретраится один раз, и если прошёл, на MR появляется лейбл flaky и комментарий с seed. Вынес в общий CI-компонент." },
+      en: { t: "Flaky tests show up on the MR", d: "A failed test retries once, and if it passes the MR gets a flaky label and a comment with the seed. Shipped as a shared CI component." },
+      from: "0", to: "12", unit: { ru: "Ruby-сервисов с детектом", en: "Ruby services with detection" }
+    },
+    {
+      ru: { t: "MCP для трекера и вики", d: "22 тула, stdio и HTTP с OAuth, стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение." },
+      en: { t: "An MCP server for the tracker and wiki", d: "22 tools, stdio and HTTP with OAuth, listed in the company marketplace. Writes need a two-phase confirm." },
+      from: "агент не видит задачи", to: "22 тула", fromEn: "agent can't see tasks", toEn: "22 tools"
+    },
+    {
+      ru: { t: "Разбор дефектов агентами", d: "Выгрузка из трекера, классификация, 8 графиков и черновики паттернов. Детерминированные шаги вынес в скрипты." },
+      en: { t: "Agent-driven defect analysis", d: "Tracker export, classification, 8 charts and draft patterns. Deterministic steps moved into scripts." },
+      from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks"
+    },
     {
       ru: { t: "Реплики чтения без сюрпризов", d: "Включить реплики мешали записи в БД на GET-запросах. Написал детектор в RSpec, и почти всё закрылось одной правкой в общем месте." },
       en: { t: "Read replicas without surprises", d: "DB writes on GET requests blocked read replicas. Wrote an RSpec detector and one centralized fix." },
@@ -768,6 +725,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
   .cv-skills { margin: 0; display: grid; grid-template-columns: 34mm 1fr; gap: 1pt 8pt; }
   .cv-skills dt { color: #555; }
   .cv-skills dd { margin: 0; }
+  .cv-more { margin: 0; padding-left: 10pt; columns: 2; column-gap: 14pt; }
+  .cv-more li { margin: 0 0 2pt; break-inside: avoid; }
   .cv-foot { margin-top: 8pt; font-size: 8.5pt; color: #444; }
 }
 </style>
@@ -855,6 +814,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
           <p>${esc(tr(c.short))}</p>
           <p class="res">${c.diff.slice(0, 2).map(r => esc(arrow(r))).join("; ")}</p>
         </div>`).join("")}
+      <h2>${esc(u.moreTitle)}</h2>
+      <ul class="cv-more">${DATA.more.map(m => `<li><b>${esc(m[lang].t)}.</b> ${esc(pick(m, "from"))} → ${esc(pick(m, "to"))}${m.unit ? " " + esc(tr(m.unit)) : ""}</li>`).join("")}</ul>
       <h2>${esc(u.expTitle)}</h2>
       ${DATA.experience.map(e => `
         <div class="cv-exp">
