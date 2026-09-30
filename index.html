@@ -20,6 +20,8 @@
 const DATA = {
   name: { ru: "Иван Николаев", en: "Ivan Nikolaev" },
   photo: "assets/photo.jpg",
+  site: "https://inikolaev.ru", /* TODO: заменить на реальный домен сайта */
+  cvFile: { ru: "cv/Ivan_Nikolaev_CV_ru.pdf", en: "cv/Ivan_Nikolaev_CV_en.pdf" },
   contacts: {
     telegram: "shonnylZ",
     email: "ivan_n6_20@icloud.com",
@@ -41,7 +43,9 @@ const DATA = {
       role: "Product Engineer",
       sub: "Бэкенд на Ruby on Rails и Go, в разработке почти 7 лет. Москва, можно удалённо.",
       quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
-      cv: "Скачать PDF",
+      cv: "Скачать резюме, PDF",
+      cvCases: "Ключевые кейсы",
+      cvMore: "Полная версия с кейсами и скриншотами",
       write: "Написать в Telegram",
       nav: { cases: "Кейсы", more: "Ещё", exp: "Опыт", writing: "Тексты", now: "Сейчас" },
       casesTitle: "Кейсы",
@@ -69,7 +73,9 @@ const DATA = {
       role: "Product Engineer",
       sub: "Backend in Ruby on Rails and Go, almost 7 years shipping. Moscow, open to remote.",
       quote: "For years my answer to everything was “it depends on the context”. True, and useless. Now I collect that context, hand it to AI agents, and measure what comes out.",
-      cv: "Download PDF",
+      cv: "Download CV, PDF",
+      cvCases: "Key work",
+      cvMore: "Full version with case studies and screenshots",
       write: "Message on Telegram",
       nav: { cases: "Work", more: "More", exp: "Experience", writing: "Writing", now: "Now" },
       casesTitle: "Selected work",
@@ -105,6 +111,7 @@ const DATA = {
   cases: [
     {
       id: "context",
+      short: { ru: "Подключил к агенту трекер, вики и GitLab через свои MCP, написал около 15 скиллов под рутину, навёл гигиену контекста и всё мерил по трекеру и GitLab.", en: "Wired the tracker, wiki and GitLab into the agent via my own MCP servers, wrote ~15 skills for daily chores, set up context hygiene and measured everything." },
       title: { ru: "Контекст важнее промпта", en: "Context for agents, not prompts" },
       tag: { ru: "AI в разработке, основная работа, 2026", en: "AI in engineering, day job, 2026" },
       problem: {
@@ -145,6 +152,7 @@ const DATA = {
     },
     {
       id: "rag",
+      short: { ru: "Бот на Go по 1 834 документам вики и OpenAPI. Завёл eval на golden set, нашёл тихий баг таблиц, который портил 57% страниц, починил молчаливую порчу длинных тредов.", en: "A Go bot over 1,834 wiki pages and OpenAPI specs. Added golden-set evals, found a silent table bug corrupting 57% of pages, fixed silent degradation of long threads." },
       title: { ru: "RAG-бот по вики в рабочем мессенджере", en: "A RAG bot over the wiki, in the team messenger" },
       tag: { ru: "Основная работа, в эксплуатации, 2026", en: "Day job, in production, 2026" },
       problem: {
@@ -188,6 +196,7 @@ const DATA = {
     },
     {
       id: "ci",
+      short: { ru: "Разбил тесты на 5 шардов через parallel_tests, починил кэш гемов в образе. Детект flaky-тестов вынес в общий CI-компонент и раскатил на 12 Ruby-сервисов.", en: "Split tests into 5 shards with parallel_tests and fixed gem caching in the image. Moved flaky-test detection into a shared CI component used by 12 Ruby services." },
       title: { ru: "CI: тесты в 2.6 раза быстрее, флаки на виду", en: "CI: tests 2.6× faster, flaky tests in plain sight" },
       tag: { ru: "Основная работа, 2026", en: "Day job, 2026" },
       problem: {
@@ -221,6 +230,7 @@ const DATA = {
     },
     {
       id: "review",
+      short: { ru: "Перенёс методику оценки 540° из Excel в B2B-сервис на Go и React за 16 дней: псевдонимизация ответов через HMAC, мультитенантность, 94 MCP-тула, мутационные тесты.", en: "Moved a 540° review methodology from Excel into a Go and React B2B service in 16 days: HMAC pseudonymization, multi-tenancy, 94 MCP tools, mutation testing." },
       title: { ru: "«Оценка 540»: performance review без Excel", en: "“Review 540”: performance reviews out of Excel" },
       tag: { ru: "Пет-проект, B2B, сделал за 16 дней", en: "Side project, B2B SaaS, 16 days" },
       problem: {
@@ -273,6 +283,7 @@ const DATA = {
     },
     {
       id: "svod",
+      short: { ru: "Редактор документов, где оформление живёт в шаблоне. Один AST и один рендерер для PDF, DOCX, HTML и Markdown. MCP на 43 тула: из вордовского договора агент собирает шаблон.", en: "A document editor where styling lives in the template. One AST and one renderer for PDF, DOCX, HTML and Markdown. 43 MCP tools: an agent turns a Word contract into a template." },
       title: { ru: "«Свод»: оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
       tag: { ru: "Пет-проект, закрытая бета, svod.webtm.ru", en: "Side project, closed beta, svod.webtm.ru" },
       problem: {
@@ -320,6 +331,7 @@ const DATA = {
     },
     {
       id: "tools",
+      short: { ru: "MCP для трекера и вики на 22 тула, стоит в marketplace компании. Разбор дефектов агентами, детерминированные шаги вынесены в скрипты.", en: "A 22-tool MCP server for the tracker and wiki, listed in the company marketplace. Agent-driven defect analysis with deterministic steps moved into scripts." },
       title: { ru: "MCP для трекера и разбор дефектов агентами", en: "A tracker MCP and agent-driven defect analysis" },
       tag: { ru: "Основная работа, 2025–2026", en: "Day job, 2025–2026" },
       problem: {
@@ -348,6 +360,7 @@ const DATA = {
     },
     {
       id: "oss",
+      short: { ru: "provenance, гем аудита для Rails, вырос из внутреннего гема на 10 сервисах. database-seed-cli на Go, генератор связных данных для PostgreSQL.", en: "provenance, an audit gem for Rails grown from an internal gem used in 10 services. database-seed-cli in Go, a consistent data generator for PostgreSQL." },
       title: { ru: "Open source из рабочих задач", en: "Open source born from work" },
       tag: { ru: "Ruby и Go, 2025–2026", en: "Ruby and Go, 2025–2026" },
       problem: {
@@ -426,7 +439,7 @@ const DATA = {
 
   experience: [
     {
-      org: "lab", from: { ru: "ноя 2023", en: "Nov 2023" }, to: null,
+      org: "lab", short: { ru: "Образовательная платформа, около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. 427 закрытых задач, 346 MR, третий по коммитам в основном сервисе из 59 авторов. Ревью и менторство.", en: "An education platform, ~30 services in Ruby on Rails and Go, Kafka, PostgreSQL with replicas, k8s. 427 resolved tasks, 346 MRs, third by commits of 59 authors in the main service. Code review and mentoring." }, from: { ru: "ноя 2023", en: "Nov 2023" }, to: null,
       role: { ru: "Старший бэкенд-разработчик, главный инженер-программист", en: "Senior Backend Engineer, Lead Software Engineer" },
       text: {
         ru: "Образовательная платформа, около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. Делал модули админки, импорт и экспорт, рефакторил легаси и переносил данные из старой CMS на Python. В основном сервисе я третий по коммитам из 59 авторов. Ревьюю и менторю.",
@@ -434,7 +447,7 @@ const DATA = {
       }
     },
     {
-      org: "space", from: { ru: "авг 2020", en: "Aug 2020" }, to: { ru: "ноя 2023", en: "Nov 2023" },
+      org: "space", short: { ru: "Внешние проекты под заказчиков, через год ментор самого крупного из них: оценка задач, требования вместе с проджектом. Потом продуктовая команда и менторство бекенда в мобильной команде.", en: "Client projects; a year in, mentor on the largest one: estimates and requirements together with the PM. Later a product team and backend mentoring for the mobile team." }, from: { ru: "авг 2020", en: "Aug 2020" }, to: { ru: "ноя 2023", en: "Nov 2023" },
       role: { ru: "Фулстек-разработчик", en: "Full-stack Developer" },
       text: {
         ru: "Попал в команду внешних проектов. Через год стал ментором самого крупного из них: оценивал задачи и вместе с проджектом переводил «хочу ещё вчера» заказчика в реализацию, которая не ломает процессы проекта. Потом перешёл в продуктовую команду, поработал с ChatGPT и менторил бекенд в мобильной команде.",
@@ -443,7 +456,7 @@ const DATA = {
       stack: "Ruby on Rails, NestJS, GraphQL, TypeScript, Angular, Vue.js"
     },
     {
-      org: "college", from: { ru: "фев 2022", en: "Feb 2022" }, to: { ru: "июн 2023", en: "Jun 2023" },
+      org: "college", short: { ru: "Базы данных, внедрение ИС, операционные системы. Подготовка студентов к чемпионатам и хакатонам.", en: "Databases, information systems, operating systems. Coached students for championships and hackathons." }, from: { ru: "фев 2022", en: "Feb 2022" }, to: { ru: "июн 2023", en: "Jun 2023" },
       role: { ru: "Преподаватель спецдисциплин, параллельно с работой", en: "Lecturer, alongside the main job" },
       text: {
         ru: "Вёл базы данных, внедрение ИС и операционные системы. Старался давать задачи, близкие к тем, что сам решаю на работе. Готовил студентов по компетенции «Разработка мобильных приложений», ездили на хакатоны.",
@@ -451,7 +464,7 @@ const DATA = {
       }
     },
     {
-      org: "onlineUni", from: { ru: "окт 2022", en: "Oct 2022" }, to: { ru: "дек 2022", en: "Dec 2022" },
+      org: "onlineUni", short: { ru: "Git, основы программирования, проектирование баз данных.", en: "Git, programming basics, database design." }, from: { ru: "окт 2022", en: "Oct 2022" }, to: { ru: "дек 2022", en: "Dec 2022" },
       role: { ru: "Преподаватель", en: "Instructor" },
       text: {
         ru: "Git, основы программирования, проектирование баз данных, введение в тестирование.",
@@ -459,7 +472,7 @@ const DATA = {
       }
     },
     {
-      org: "kiskis", from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
+      org: "kiskis", short: { ru: "Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом.", en: "My first Ruby on Rails service, a support desk with server-side rendering." }, from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
       role: { ru: "Техник", en: "Technician" },
       text: {
         ru: "Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом. Плюс настройка FTP, Moodle и серверов БД.",
@@ -715,48 +728,37 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
   .hero-diff-anim .row { animation: none; opacity: 1; transform: none; }
 }
 
+.cv { display: none; }
 @media print {
-  @page { size: A4; margin: 14mm 14mm 16mm; }
-  :root, :root[data-theme="dark"] {
-    --paper: #fff; --surface: #fff; --ink: #000; --muted: #444; --line: #bbb; --link: #000;
-    --del: #9a1c12; --del-bg: #fff; --ins: #0f5a31; --ins-bg: #fff; color-scheme: light;
-  }
-  body { font-size: 10pt; line-height: 1.45; }
-  .bar, .cta .btn, .shots, dialog, .no-print { display: none !important; }
-  .wrap { max-width: none; padding: 0; }
-  .hero { padding: 0 0 12pt; gap: 8pt 16pt; }
-  .hero h1 { font-size: 24pt; }
-  .hero .photo { width: 72px; height: 72px; }
-  .quote { font-size: 11pt; }
-  section { padding: 12pt 0; }
-  h2 { font-size: 16pt; }
-  .lead { margin-bottom: 8pt; }
-  .case { padding: 10pt 0; }
-  .case h3, .case .tag, .case h4 { break-after: avoid; }
-  .case h3 { font-size: 13pt; }
-  .case-grid { grid-template-columns: 1fr; gap: 4pt; }
-  .case .aside { position: static; }
-  .diff { font-size: 8.5pt; border-color: #bbb; }
-  .diff .row.del .sign::after { content: ""; }
-  .more { grid-template-columns: 1fr 1fr; gap: 8pt 16pt; }
-  .more article { break-inside: avoid; }
-  .exp li { grid-template-columns: 7rem 1fr; padding: 6pt 0; break-inside: avoid; }
-  .two { grid-template-columns: 1fr 1fr; gap: 16pt; }
-  a { text-decoration: none; }
-  a.print-url::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: #444; word-break: break-all; }
-  footer { padding: 12pt 0 0; }
-  .case .note, .case .facts, #now, .more .diff, .lead, footer h2, footer .cta { display: none !important; }
-  .case li { margin: 1pt 0; }
-  .case h4 { margin: 6pt 0 2pt; }
-  .case .tag { margin-bottom: 4pt; }
-  .hero .diff { max-width: none; }
-  .diff { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: 8pt; padding: 3pt 0; break-inside: avoid; }
-  .diff .head { grid-column: 1 / -1; padding: 2pt 6pt; }
-  .diff .row { display: block; padding: 1pt 6pt; background: none !important; }
-  .diff .row.hunk { padding-top: 1pt; }
-  .diff .row .sign { display: none; }
-  .diff .row.del .v { text-decoration: line-through; font-weight: 400; }
-  .more p { margin: 0; }
+  @page { size: A4; margin: 12mm 14mm 12mm; }
+  html, body { background: #fff !important; color: #000; }
+  body { font-size: 9.5pt; line-height: 1.4; }
+  .wrap, dialog { display: none !important; }
+  .cv { display: block; color: #111; }
+  .cv a { color: #111; text-decoration: none; }
+  .cv-head { display: flex; justify-content: space-between; gap: 12pt; align-items: flex-start; border-bottom: 1.2pt solid #111; padding-bottom: 6pt; margin-bottom: 8pt; }
+  .cv-head h1 { font-size: 20pt; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  .cv-head .r { font-size: 11.5pt; font-weight: 600; margin: 2pt 0 0; }
+  .cv-head .s { margin: 2pt 0 0; color: #333; }
+  .cv-head .c { text-align: right; font-size: 9pt; line-height: 1.5; color: #222; }
+  .cv-head img { width: 58pt; height: 58pt; border-radius: 50%; object-fit: cover; }
+  .cv-head .left { display: flex; gap: 10pt; align-items: center; }
+  .cv-metrics { font-family: var(--mono); font-size: 8.5pt; margin: 0 0 6pt; display: flex; flex-wrap: wrap; gap: 2pt 14pt; }
+  .cv-metrics b { font-weight: 600; }
+  .cv h2 { font-size: 11pt; margin: 9pt 0 4pt; padding-bottom: 2pt; border-bottom: .6pt solid #999; letter-spacing: 0; }
+  .cv-case { margin: 0 0 5pt; break-inside: avoid; }
+  .cv-case h3 { font-size: 10pt; margin: 0; display: flex; justify-content: space-between; gap: 8pt; }
+  .cv-case h3 span { font-weight: 400; color: #555; font-size: 8.5pt; white-space: nowrap; }
+  .cv-case p { margin: 1pt 0 0; }
+  .cv-case .res { font-family: var(--mono); font-size: 8.3pt; color: #222; margin-top: 1.5pt; }
+  .cv-exp { margin: 0 0 4pt; display: grid; grid-template-columns: 30mm 1fr; gap: 8pt; break-inside: avoid; }
+  .cv-exp .w { color: #555; font-size: 8.5pt; }
+  .cv-exp h3 { font-size: 9.8pt; margin: 0; }
+  .cv-exp p { margin: 1pt 0 0; }
+  .cv-skills { margin: 0; display: grid; grid-template-columns: 34mm 1fr; gap: 1pt 8pt; }
+  .cv-skills dt { color: #555; }
+  .cv-skills dd { margin: 0; }
+  .cv-foot { margin-top: 8pt; font-size: 8.5pt; color: #444; }
 }
 </style>
 </head>
@@ -771,6 +773,8 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
   </header>
   <main id="app"></main>
 </div>
+
+<div id="cv" class="cv" aria-hidden="true"></div>
 
 <dialog id="lightbox">
   <form method="dialog"><button id="lb-close">Закрыть</button></form>
@@ -810,6 +814,48 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
       </figure>`).join("")}</div>`;
   }
 
+
+  function renderCV(u, C) {
+    const arrow = r => `${pick(r, "from")} → ${pick(r, "to")} ${tr(r)}`;
+    const years = e => `${tr(e.from)} – ${e.to ? tr(e.to) : u.present}`;
+    $("#cv").innerHTML = `
+      <div class="cv-head">
+        <div class="left">
+          ${lang === "ru" && DATA.photo ? `<img src="${esc(DATA.photo)}" alt="">` : ""}
+          <div>
+            <h1>${esc(tr(DATA.name))}</h1>
+            <p class="r">${esc(u.role)}</p>
+            <p class="s">${esc(u.sub)}</p>
+          </div>
+        </div>
+        <div class="c">
+          <a href="https://t.me/${C.telegram}">t.me/${C.telegram}</a><br>
+          <a href="mailto:${C.email}">${C.email}</a><br>
+          <a href="https://github.com/${C.github}">github.com/${C.github}</a><br>
+          <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>
+        </div>
+      </div>
+      <p class="cv-metrics">${DATA.headline.map(h => `<span><b>${esc(pick(h, "from"))} → ${esc(pick(h, "to"))}</b> ${esc(tr(h))}</span>`).join("")}</p>
+      <h2>${esc(u.cvCases)}</h2>
+      ${DATA.cases.map(c => `
+        <div class="cv-case">
+          <h3>${esc(tr(c.title))}<span>${esc(tr(c.tag))}</span></h3>
+          <p>${esc(tr(c.short))}</p>
+          <p class="res">${c.diff.slice(0, 2).map(r => esc(arrow(r))).join("; ")}</p>
+        </div>`).join("")}
+      <h2>${esc(u.expTitle)}</h2>
+      ${DATA.experience.map(e => `
+        <div class="cv-exp">
+          <div class="w">${esc(years(e))}</div>
+          <div><h3>${esc(tr(e.role))}, ${esc(DATA.orgs[e.org])}</h3><p>${esc(tr(e.short))}</p></div>
+        </div>`).join("")}
+      <h2>${esc(u.skillsTitle)}</h2>
+      <dl class="cv-skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <h2>${esc(u.eduTitle)}</h2>
+      ${DATA.education.map(e => `<div class="cv-exp"><div class="w">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p>${esc(tr(e))}</p></div></div>`).join("")}
+      <p class="cv-foot">${esc(u.cvMore)}: <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>. ${esc(tr(DATA.writing[0].meta))}: <a href="${esc(DATA.writing[0].href)}">${esc(DATA.writing[0].href.replace(/^https?:\/\//, ""))}</a></p>`;
+  }
+
   function render() {
     const u = DATA.ui[lang];
     const C = DATA.contacts;
@@ -843,7 +889,7 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
         <div class="${firstRender ? "hero-diff-anim" : ""}" style="grid-column:1/-1;max-width:40rem">${diffBlock(DATA.headline, heroHead)}</div>
         <div class="cta">
           <a class="btn" href="https://t.me/${C.telegram}">${esc(u.write)}</a>
-          <button class="btn ghost" type="button" id="print-btn">${esc(u.cv)}</button>
+          <a class="btn ghost" href="${esc(DATA.cvFile[lang])}" download>${esc(u.cv)}</a>
           <div class="links">${contactLinks}</div>
         </div>
       </div>
@@ -941,7 +987,7 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
         </div>
       </footer>`;
 
-    $("#print-btn").addEventListener("click", () => window.print());
+    renderCV(u, C);
     document.querySelectorAll("[data-shots]").forEach(el => {
       const n = el.querySelectorAll("[data-shot]").length;
       if (n === 1) el.classList.add("single");
