@@ -229,10 +229,6 @@ const DATA = {
         { ru: "связь ответа с респондентом", en: "answer-to-respondent link", from: "id человека рядом с оценкой", to: "HMAC, после срока не восстановить", fromEn: "person id next to the score", toEn: "HMAC, unrecoverable after retention" },
         { ru: "от пустого репозитория до рабочего сервиса", en: "from empty repo to working service", from: "Excel и Google-формы", to: "16 дней", fromEn: "Excel and Google Forms", toEn: "16 days" }
       ],
-      note: {
-        ru: "Выжившие мутанты привели к реальному багу: колонку, где все ответы «Н/О», код читал как «нет ответов». А сверка с Excel показала расхождение до 0.023 при ошибке округления 0.005. Оказалось, в таблице другой порядок агрегации.",
-        en: "The surviving mutants led to a real bug: a column where every answer was “N/A” was read as “no answers”. The Excel regression surfaced a 0.023 drift against a 0.005 rounding error, because the spreadsheet aggregates in a different order."
-      },
       facts: {
         ru: ["176 коммитов", "166 эндпоинтов", "696 Go-тестов", "11 e2e-сценариев"],
         en: ["176 commits", "166 endpoints", "696 Go tests", "11 e2e flows"]
