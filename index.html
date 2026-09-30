@@ -382,9 +382,9 @@ const DATA = {
       from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
     },
     {
-      ru: { t: "Шум в Sentry", d: "Нашёл зомби-джобы Sidekiq, почистил rake-таском." },
-      en: { t: "Sentry noise", d: "Tracked down zombie Sidekiq jobs and cleaned them up with a rake task." },
-      from: "52K событий", to: "минус 85% шума", fromEn: "52K events", toEn: "85% of the noise gone"
+      ru: { t: "Настоящие ошибки в Sentry снова видно", d: "85% из 52K событий в Sentry давали зомби-джобы Sidekiq, и настоящие ошибки в них тонули. Нашёл, откуда они берутся, и вычистил rake-таском." },
+      en: { t: "Real errors visible in Sentry again", d: "85% of 52K Sentry events came from zombie Sidekiq jobs, drowning out the real errors. Found where they came from and cleaned them up with a rake task." },
+      from: "ошибки тонут в зомби-джобах", to: "видно то, что надо чинить", fromEn: "errors buried under zombie jobs", toEn: "you see what needs fixing"
     },
     {
       ru: { t: "Отчёт по delivery", d: "Ручной отчёт в Excel заменил дашбордом в Grafana." },
