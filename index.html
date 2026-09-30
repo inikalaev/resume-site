@@ -327,8 +327,8 @@ const DATA = {
 
   more: [
     {
-      ru: { t: "EDUG, бот для обучения", d: "Делали со студентами, пока я преподавал. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
-      en: { t: "EDUG, a learning bot", d: "Built with students while I was teaching. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
+      ru: { t: "EDUG, бот для обучения", d: "Был наставником команды из 4 студентов, пока преподавал. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
+      en: { t: "EDUG, a learning bot", d: "I mentored a team of 4 students while teaching. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
       from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
     },
     {
@@ -502,6 +502,7 @@ const DATA = {
   championships: {
     title: { ru: "WorldSkills Russia, «Программные решения для бизнеса»", en: "WorldSkills Russia, “IT Software Solutions for Business”" },
     years: "2017–2019",
+    photo: { src: "assets/worldskills.jpg", ru: "На площадке чемпионата: слева схема БД, справа макеты экранов", en: "At the championship: DB schema on the left, screen mockups on the right" },
     results: [
       { place: "1", ru: "место на чемпионате Москвы", en: "place, Moscow championship" },
       { place: "5", ru: "место в национальном финале", en: "place, national final" },
@@ -711,10 +712,16 @@ h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-he
 .now .tile.seek .k { color: var(--ins); }
 h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
 .games-intro { margin: 0; color: var(--muted); }
-.champ { margin-top: 2.5rem; max-width: 52rem; }
+.champ { margin-top: 2.5rem; }
+.champ-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+.champ-photo { margin: 0; }
+.champ-photo button { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: zoom-in; background: var(--shot-bg); }
+.champ-photo img { width: 100%; }
+.champ-photo figcaption { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+@media (max-width: 860px) { .champ-body { grid-template-columns: 1fr; } }
 .champ-title { font-weight: 600; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: baseline; }
 .champ-title span { color: var(--muted); font-weight: 400; font-size: .9375rem; }
-.champ-res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+.champ-res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 .champ-res div { display: flex; align-items: baseline; gap: .6rem; padding: .9rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
 .champ-res b { font-family: var(--mono); font-size: 2rem; line-height: 1; color: var(--ins); }
 .champ-res span { color: var(--muted); font-size: .9375rem; line-height: 1.35; }
@@ -1041,7 +1048,15 @@ dialog form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color:
           <h3 class="sub">${esc(u.champTitle)}</h3>
           <p class="champ-title">${esc(tr(DATA.championships.title))}<span>${esc(DATA.championships.years)}</span></p>
           <div class="champ-res">${DATA.championships.results.map(r => `<div><b>${esc(r.place)}</b><span>${esc(tr(r))}</span></div>`).join("")}</div>
-          <ul class="champ-text">${DATA.championships.text[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+          <div class="champ-body">
+            <ul class="champ-text">${DATA.championships.text[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+            <figure class="champ-photo" data-shots>
+              <button type="button" data-src="${esc(DATA.championships.photo.src)}" data-cap="${esc(tr(DATA.championships.photo))}" aria-label="${esc(tr(DATA.championships.photo))}. ${esc(u.zoom)}">
+                <img src="${esc(DATA.championships.photo.src)}" alt="${esc(tr(DATA.championships.photo))}" loading="lazy">
+              </button>
+              <figcaption>${esc(tr(DATA.championships.photo))}</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
