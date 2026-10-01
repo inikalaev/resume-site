@@ -513,18 +513,19 @@ const DATA = {
       }
     },
     {
-      org: "kiskis", short: { ru: "Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом.", en: "My first Ruby on Rails service, a support desk with server-side rendering." }, from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
-      role: { ru: "Техник", en: "Technician" },
+      org: "kiskis", short: { ru: "Стажёр-программист, затем техник. Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом.", en: "Intern developer, then technician. My first Ruby on Rails service, a support desk with server-side rendering." }, from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
+      role: { ru: "Стажёр-программист → техник", en: "Intern developer → Technician" },
       text: {
-        ru: "Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом. Плюс настройка FTP, Moodle и серверов БД.",
-        en: "My first Ruby on Rails service: a support desk with server-side rendering. FTP, Moodle and DB server setup."
+        ru: "Пришёл стажёром-программистом, потом перевели в техники. Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом. Плюс настройка FTP, Moodle и серверов БД.",
+        en: "Joined as an intern developer, then moved up to technician. My first Ruby on Rails service: a support desk with server-side rendering. FTP, Moodle and DB server setup."
       }
     }
   ],
 
   education: [
     { org: "uni", years: "2021–2025", ru: "Институт радиотехники и электроники", en: "Institute of Radio Engineering and Electronics" },
-    { org: "school", years: "2016–2021", ru: "Информатика и вычислительная техника", en: "Computer Science and Engineering" }
+    { org: "school", years: "2016–2021", ru: "Информатика и вычислительная техника", en: "Computer Science and Engineering" },
+    { title: { ru: "Курсы", en: "Courses" }, years: "2019", ru: "C# 6.0, Microsoft M10262A", en: "C# 6.0, Microsoft M10262A" }
   ],
 
   skills: {
@@ -596,6 +597,19 @@ const DATA = {
       { place: "5", ru: "место в национальном финале", en: "place, national final" },
       { place: "4", ru: "место на DigitalSkills", en: "place, DigitalSkills" }
     ],
+    expert: {
+      title: { ru: "Как эксперт", en: "As an expert" },
+      ru: [
+        "эксперт-компатриот на WorldSkills: готовил и сопровождал 4 участников",
+        "дважды приглашённый отраслевой эксперт на чемпионатах Москвы",
+        "50+ демонстрационных экзаменов в роли эксперта и главного эксперта"
+      ],
+      en: [
+        "compatriot expert at WorldSkills: coached and accompanied 4 competitors",
+        "twice invited industry expert at Moscow championships",
+        "50+ demonstration exams as expert and chief expert"
+      ]
+    },
     text: {
       ru: [
         "чемпионат это 6 сессий по 3 часа, по две в день. За это время по требованиям заказчика нужно спроектировать систему, от схемы БД до интерфейса, написать её и защитить перед экспертами",
@@ -832,6 +846,7 @@ h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
 .champ-res b { font-family: var(--mono); font-size: 2rem; line-height: 1; color: var(--ins); }
 .champ-res span { color: var(--muted); font-size: .9375rem; line-height: 1.35; }
 .champ-text { margin: 0; padding-left: 1.1rem; }
+.champ-exp-h { font-size: 1rem; font-weight: 600; margin: 1.75rem 0 .4rem; }
 .champ-text li { margin: .4rem 0; }
 @media (max-width: 560px) { .champ-res { grid-template-columns: 1fr; } }
 .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
@@ -1020,11 +1035,11 @@ footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
       <h2>${esc(u.skillsTitle)}</h2>
       <dl class="cv-skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
       <h2>${esc(u.champTitle)}</h2>
-      <p style="margin:0"><b>${esc(tr(DATA.championships.title))}, ${esc(DATA.championships.years)}.</b> ${DATA.championships.results.map(r => `${esc(r.place)} ${esc(tr(r))}`).join("; ")}.</p>
+      <p style="margin:0"><b>${esc(tr(DATA.championships.title))}, ${esc(DATA.championships.years)}.</b> ${DATA.championships.results.map(r => `${esc(r.place)} ${esc(tr(r))}`).join("; ")}. ${esc(tr(DATA.championships.expert.title))}: ${DATA.championships.expert[lang].map(esc).join("; ")}.</p>
       <h2>${esc(u.gamesTitle)}</h2>
       <p style="margin:0">${DATA.games.items.map(g => `<b>${esc(g.name)}</b> (${esc(tr(g.meta))})`).join("; ")}. itch.io/zander-games</p>
       <h2>${esc(u.eduTitle)}</h2>
-      ${DATA.education.map(e => `<div class="cv-exp"><div class="w">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p>${esc(tr(e))}</p></div></div>`).join("")}
+      ${DATA.education.map(e => `<div class="cv-exp"><div class="w">${esc(e.years)}</div><div><h3>${esc(e.org ? DATA.orgs[e.org] : tr(e.title))}</h3><p>${esc(tr(e))}</p></div></div>`).join("")}
       <p class="cv-foot">${esc(u.cvMore)}: <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>. ${esc(tr(DATA.writing[0].meta))}: <a href="${esc(DATA.writing[0].href)}">${esc(DATA.writing[0].href.replace(/^https?:\/\//, ""))}</a></p>`;
   }
 
@@ -1127,7 +1142,7 @@ footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
           <h3>${esc(u.eduTitle)}</h3>
           <ol class="exp">
             ${DATA.education.map(e => `
-              <li><div class="when">${esc(e.years)}</div><div><h3>${esc(DATA.orgs[e.org])}</h3><p class="org">${esc(tr(e))}</p></div></li>`).join("")}
+              <li><div class="when">${esc(e.years)}</div><div><h3>${esc(e.org ? DATA.orgs[e.org] : tr(e.title))}</h3><p class="org">${esc(tr(e))}</p></div></li>`).join("")}
           </ol>
         </div>
         <div class="edu">
@@ -1171,6 +1186,8 @@ footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
               <figcaption>${esc(tr(DATA.championships.photo))}</figcaption>
             </figure>
           </div>
+          <h4 class="champ-exp-h">${esc(tr(DATA.championships.expert.title))}</h4>
+          <ul class="champ-text">${DATA.championships.expert[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
         </div>
       </section>
 
