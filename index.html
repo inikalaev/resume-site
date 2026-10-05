@@ -127,16 +127,12 @@ const DATA = {
         ru: [
           "подключил к агенту трекер, вики и GitLab через свои MCP-серверы, по итогу у него перед глазами 494 задачи и 410 MR",
           "написал около 15 скиллов под свою рутину: rails-команды в подах k8s, разбор упавших пайплайнов, релизная документация, трекер",
-          "сделал карту кода на 94 строки, чтобы агент не грепал весь репозиторий, и граф кода. Устаревшие описания уношу в архив, поскольку они вредят сильнее, чем их отсутствие",
-          "комментарии в трекер агент пишет только черновиком, токенов он не видит",
-          "по логам посмотрел, что реально работает: универсальный пайплайн был в 88% вызовов скиллов, сейчас 0%, свои скиллы дают 81%"
+          "сделал карту кода на 94 строки, чтобы агент не грепал весь репозиторий, и граф кода. Устаревшие описания уношу в архив, поскольку они вредят сильнее, чем их отсутствие"
         ],
         en: [
           "pulled context from 494 tasks and 410 MRs: tracker, wiki and GitLab wired to the agent through my own MCP servers",
           "wrote about 15 domain skills for real chores: rails commands in k8s pods, triaging failed pipelines, release notes, tracker work",
-          "set up context hygiene: a 94-line code map instead of grepping the repo, a code graph, stale docs moved to an archive",
-          "writes to external systems only as a draft plus confirmation, the agent never sees tokens",
-          "measured everything: the generic pipeline went from 88% of skill calls to 0%, my own skills now make up 81%"
+          "set up context hygiene: a 94-line code map instead of grepping the repo, a code graph, stale docs moved to an archive"
         ]
       },
       diff: [
@@ -144,10 +140,6 @@ const DATA = {
         { ru: "MR без единого замечания", en: "MRs with zero comments", from: "71%", to: "83%" },
         { ru: "смерженных MR, апрель–сентябрь к тому же сезону 2025", en: "merged MRs, Apr–Sep vs same season 2025", from: "40", to: "104" }
       ],
-      note: {
-        ru: "По цифрам есть оговорка. Обычных продуктовых MR почти столько же, 37 против 40. Вырос новый тип работы: 37 MR это правки, которые разом раскатываются на 10–12 сервисов, и ещё 30 MR во внутренние инструменты. Время до мержа не сократилось, поскольку упирается в QA и релизы, а не в написание кода. По деньгам выходит около $18 за рабочий день, если считать по ценам API.",
-        en: "Being honest about the numbers: regular product MRs stayed flat, 37 vs 40. The growth is a new class of work: 37 cross-service campaigns (one change across 10–12 services) and 30 MRs into internal tooling. Median time to merge did not drop, because the bottleneck is QA and releases, not writing code. All of it costs about $18 per working day at API prices."
-      },
       stack: "Claude Code, MCP, Agent Skills, Go, Ruby, GitLab API",
       links: [
         { ru: "Статья на Хабре, 6 тыс. прочтений", en: "Article on Habr (in Russian), 6K reads", href: "https://habr.com/ru/articles/1075224/" }
@@ -306,11 +298,11 @@ const DATA = {
       },
       did: {
         ru: [
-          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки., события можно отправлять куда угодно, например в Kafka",
+          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки; события можно отправлять куда угодно, например в Kafka",
           "database-seed-cli читает живую схему PostgreSQL, собирает YAML-конфиг и выдаёт детерминированный SQL-сид. Учитывает UNIQUE, CHECK и EXCLUDE, циклы внешних ключей рвёт через Tarjan SCC, понимает полиморфные связи Rails. Команда fix сама чинит 10 видов проблем из 17"
         ],
         en: [
-          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks., events can be shipped anywhere, Kafka for example",
+          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks; events can be shipped anywhere, Kafka for example",
           "database-seed-cli: reads a live PostgreSQL schema, builds a YAML config and emits a deterministic SQL seed; handles UNIQUE, CHECK and EXCLUDE, breaks FK cycles with Tarjan SCC, understands Rails polymorphic associations; the fix command auto-repairs 10 of 17 issue kinds"
         ]
       },
