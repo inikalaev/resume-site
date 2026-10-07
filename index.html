@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иван Николаев, AI Engineer</title>
+<meta name="description" content="AI Engineer. Разбираю процесс на шаги и ставлю агентов туда, где они добавляют ценность. Senior backend на Go и Ruby on Rails.">
+<meta property="og:title" content="Иван Николаев, AI Engineer">
+<meta property="og:description" content="Разбираю процесс на шаги, ставлю агентов туда, где они дают выигрыш, и меряю, что из этого вышло.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%231a2233%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%236fd49b%22%3E+%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#131822" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="orgs.js"></script>
+<script>
+/* ============================================================
+   DATA: весь текст сайта. Названия компаний и вузов в orgs.js.
+   ============================================================ */
+const DATA = {
+  name: { ru: "Иван Николаев", en: "Ivan Nikolaev" },
+  photo: "assets/photo.jpg",
+  site: "https://nikolaevyiu.ru",
+  cvFile: { ru: "cv/Ivan_Nikolaev_CV_ru.pdf", en: "cv/Ivan_Nikolaev_CV_en.pdf" },
+  contacts: {
+    telegram: "shonnylZ",
+    email: "ivan_n6_20@icloud.com",
+    github: "inikalaev",
+    habr: "ShonZander"
+  },
+  orgs: typeof ORGS !== "undefined" ? ORGS : {},
+
+  ui: {
+    ru: {
+      role: "AI Engineer",
+      sub: "Разбираю процесс на шаги и ставлю агентов туда, где они делают шаг быстрее и качественнее. Под капотом senior backend на Go и Ruby on Rails, в разработке почти 7 лет. Москва, удалённо.",
+      quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
+      cv: "Скачать резюме, PDF",
+      cvCases: "Основные кейсы",
+      cvMore: "Полная версия с кейсами и скриншотами",
+      write: "Написать в Telegram",
+      nav: { cases: "Основные кейсы", more: "Другие кейсы", exp: "Опыт", writing: "Сообщество", now: "Сейчас" },
+      casesTitle: "Основные кейсы",
+      casesLead: "Сверху одной строкой: какой шаг процесса улучшил и что это дало. Ниже детали. Цифры из трекера, GitLab и тестов.",
+      problem: "Проблема",
+      did: "Что сделал",
+      result: "Что поменялось",
+      stack: "Стек",
+      moreTitle: "Другие кейсы",
+      moreLead: "",
+      expTitle: "Опыт",
+      eduTitle: "Образование",
+      writingTitle: "Сообщество",
+      nowTitle: "Сейчас",
+      skillsTitle: "Навыки",
+      gamesTitle: "Игры",
+      champTitle: "Чемпионаты",
+      dWas: "Было",
+      dDid: "Что сделал",
+      dGot: "Что вышло",
+      libsTitle: "Статьи и библиотеки",
+      contactTitle: "Связаться",
+      contactLead: "Ищу роль AI Engineer: взять процесс команды, разложить на шаги, посчитать, где агент добавит ценность, встроить его и померить результат. Рассматриваю и позиции техлида или тимлида.",
+      zoom: "Нажмите, чтобы увеличить",
+      close: "Закрыть",
+      present: "сейчас",
+      theme: "Тема",
+      updated: "Обновлено 30 сентября 2026"
+    },
+    en: {
+      role: "AI Engineer",
+      sub: "I break a process into steps and put AI agents where they make a step faster and better. Under the hood, a senior backend engineer in Go and Ruby on Rails, almost 7 years shipping. Moscow, remote.",
+      quote: "For years my answer to everything was “it depends on the context”. True, and useless. Now I collect that context, hand it to AI agents, and measure what comes out.",
+      cv: "Download CV, PDF",
+      cvCases: "Main work",
+      cvMore: "Full version with case studies and screenshots",
+      write: "Message on Telegram",
+      nav: { cases: "Main work", more: "Other work", exp: "Experience", writing: "Community", now: "Now" },
+      casesTitle: "Main work",
+      casesLead: "One line on top: which step of the process I improved and what it changed. Details below. Numbers come from the tracker, GitLab and test suites, rounded down.",
+      problem: "Problem",
+      did: "What I did",
+      result: "What changed",
+      stack: "Stack",
+      moreTitle: "Other work",
+      moreLead: "",
+      expTitle: "Experience",
+      eduTitle: "Education",
+      writingTitle: "Community",
+      nowTitle: "Now",
+      skillsTitle: "Skills",
+      gamesTitle: "Games",
+      champTitle: "Championships",
+      dWas: "Before",
+      dDid: "What I did",
+      dGot: "Result",
+      libsTitle: "Articles and libraries",
+      contactTitle: "Get in touch",
+      contactLead: "Looking for an AI Engineer role: take a team's process, break it into steps, work out where an agent adds value, build it in and measure the result. Tech lead and team lead roles are on the table too.",
+      zoom: "Click to enlarge",
+      close: "Close",
+      present: "now",
+      theme: "Theme",
+      updated: "Updated September 30, 2026"
+    }
+  },
+
+  /* Три цифры в шапке: было -> стало */
+  headline: [
+    { ru: "замечаний на ревью, в среднем на MR", en: "review comments per MR", from: "1.57", to: "0.49" },
+    { ru: "смерженных MR за полгода", en: "merged MRs per half-year", from: "40", to: "104" },
+    { ru: "задач за спринт, медиана", en: "tasks per sprint, median", from: "2", to: "6" }
+  ],
+
+  cases: [
+    {
+      id: "context",
+      impact: { ru: "Шаг: написание кода и ревью. Агент получил контекст команды, и замечаний на ревью стало в 3 раза меньше, а смерженных MR за полгода в 2.5 раза больше.", en: "Step: writing code and review. The agent got the team's context: 3× fewer review comments per MR and 2.5× more merged MRs per half-year." },
+      short: { ru: "Подключил к агенту трекер, вики и GitLab через свои MCP, написал около 15 скиллов под рутину, навёл гигиену контекста и всё мерил по трекеру и GitLab.", en: "Wired the tracker, wiki and GitLab into the agent via my own MCP servers, wrote ~15 skills for daily chores, set up context hygiene and measured everything." },
+      title: { ru: "Контекст важнее промпта", en: "Context for agents, not prompts" },
+      tag: { ru: "AI в разработке, основная работа, 2026", en: "AI in engineering, day job, 2026" },
+      problem: {
+        ru: "Агент на рабочем проекте писал код, который потом разворачивали на ревью. Промпты я переписывал много раз, и это почти ничего не давало. Проблема была в том, что агент не знал того, что знает команда: что решили в трекере, о чём договорились в вики, что было в прошлых MR.",
+        en: "At work the agent wrote code that got torn apart in review. Prompts were not the issue. The agent simply did not know what the team knew: decisions buried in the tracker, conventions in the wiki, MR history."
+      },
+      did: {
+        ru: [
+          "подключил к агенту трекер, вики и GitLab через свои MCP-серверы, по итогу у него перед глазами 494 задачи и 410 MR",
+          "написал около 15 скиллов под свою рутину: rails-команды в подах k8s, разбор упавших пайплайнов, релизная документация, трекер",
+          "сделал карту кода на 94 строки, чтобы агент не грепал весь репозиторий, и граф кода. Устаревшие описания уношу в архив, поскольку они вредят сильнее, чем их отсутствие"
+        ],
+        en: [
+          "pulled context from 494 tasks and 410 MRs: tracker, wiki and GitLab wired to the agent through my own MCP servers",
+          "wrote about 15 domain skills for real chores: rails commands in k8s pods, triaging failed pipelines, release notes, tracker work",
+          "set up context hygiene: a 94-line code map instead of grepping the repo, a code graph, stale docs moved to an archive"
+        ]
+      },
+      diff: [
+        { ru: "замечаний на ревью на MR", en: "review comments per MR", from: "1.57", to: "0.49" },
+        { ru: "MR без единого замечания", en: "MRs with zero comments", from: "71%", to: "83%" },
+        { ru: "смерженных MR, апрель–сентябрь к тому же сезону 2025", en: "merged MRs, Apr–Sep vs same season 2025", from: "40", to: "104" }
+      ],
+      stack: "Claude Code, MCP, Agent Skills, Go, Ruby, GitLab API",
+      links: [
+        { ru: "Статья на Хабре, 6 тыс. прочтений", en: "Article on Habr (in Russian), 6K reads", href: "https://habr.com/ru/articles/1075224/" }
+      ],
+      shots: []
+    },
+    {
+      id: "rag",
+      impact: { ru: "Шаг: найти ответ «как у нас это устроено». Вместо вопросов в личку бот отвечает по вики за 0.5–1.2 ₽, а качество меряется eval, не на глаз.", en: "Step: finding out “how does this work here”. Instead of DMs, a bot answers from the wiki for 0.5–1.2 ₽, and quality is measured by evals, not by eye." },
+      short: { ru: "Бот на Go по 1 834 документам вики и OpenAPI. Завёл eval на golden set, нашёл тихий баг таблиц, который портил 57% страниц, починил молчаливую порчу длинных тредов.", en: "A Go bot over 1,834 wiki pages and OpenAPI specs. Added golden-set evals, found a silent table bug corrupting 57% of pages, fixed silent degradation of long threads." },
+      title: { ru: "RAG-бот по вики в рабочем мессенджере", en: "A RAG bot over the wiki, in the team messenger" },
+      tag: { ru: "Основная работа, в эксплуатации, 2026", en: "Day job, in production, 2026" },
+      problem: {
+        ru: "Ответы на вопрос «а как у нас это устроено» лежат в 1 800 страницах вики, и люди шли спрашивать в личку. Первые версии бота отвечали уверенно, но иногда неправильно, а по ощущениям «вроде стало лучше» ничего не сравнишь.",
+        en: "Answers to “how does this work here” live in 1,800 wiki pages, so people kept asking each other in DMs. Early versions of the bot answered confidently and sometimes wrongly, and “feels better now” is not something you can compare."
+      },
+      did: {
+        ru: [
+          "сделал на Go два бинаря: один синкает вики и схемы API из GitLab в индекс Yandex AI Studio, второй отвечает в мессенджере. В индексе 1 834 документа: 1 772 страницы и 62 OpenAPI-схемы, по чанку на операцию",
+          "завёл eval: 17 вопросов, у каждого ожидаемая страница вики. Проверяю, нашлась ли страница, а не текст ответа, поскольку текст каждый раз разный. Прогон стоит около 25 ₽, плюс golden-тест на разбивку 20 сложных страниц",
+          "нашёл тихий баг: пустые ячейки таблиц съедали колонку, и значения уезжали под чужие заголовки. Задевало 1 013 страниц из 1 772. Бот при этом отвечал уверенно и с правильной ссылкой, что хуже, чем «данных нету»",
+          "семь страниц «Команда» в разных доменах были неразличимы, поскольку в хлебных крошках был транслит slug. Заменил на заголовки родительских страниц",
+          "длинные треды молча портились: у платформы по умолчанию 7 000 токенов на промпт. Поднял до 24 000, а при переполнении бот начинает новый тред с пересказом трёх последних обменов",
+          "индексация инкрементальная, на бота стоят лимиты частоты, дневной бюджет и kill-switch"
+        ],
+        en: [
+          "built two Go binaries: one syncs the wiki and API specs from GitLab into a Yandex AI Studio index, the other answers in the messenger. The index holds 1,834 docs: 1,772 pages and 62 OpenAPI specs, one chunk per operation",
+          "added evals: 17 questions, each with the wiki page it should find. I check whether the page was retrieved, not the answer text, because the text changes every run. A run costs about 25 ₽, plus a golden test for chunking 20 tricky pages",
+          "found a silent bug: empty table cells swallowed a column and values shifted under the wrong headers. It hit 1,013 of 1,772 pages. The bot still answered confidently with the right source link, which is worse than “no data”",
+          "seven “Team” pages across domains were indistinguishable because breadcrumbs used transliterated slugs. Switched them to parent page titles",
+          "long threads degraded silently: the platform defaults to 7,000 prompt tokens. Raised it to 24,000, and on overflow the bot starts a new thread with a recap of the last three exchanges",
+          "incremental indexing, rate limits, a daily budget and a kill switch"
+        ]
+      },
+      diff: [
+        { ru: "eval на golden set", en: "golden-set eval", from: "13 / 15", to: "16 / 17" },
+        { ru: "контекст в длинных тредах, токенов", en: "context in long threads, tokens", from: "7K, дальше ответы молча портились", to: "24K и пересказ при переполнении", fromEn: "7K, answers silently degraded", toEn: "24K plus a recap on overflow" },
+        { ru: "стоимость переиндексации", en: "reindex cost", from: "~200 ₽ полный", to: "0.08 ₽ за страницу", fromEn: "~200 ₽ full", toEn: "0.08 ₽ per page" }
+      ],
+      note: {
+        ru: "Ответ стоит 0.5–1.2 ₽, вся инфраструктура около 1 960 ₽ в месяц. До этого был локальный прототип, за день поднял его с 3/15 до 12/15 и дальше без eval двигаться было уже вслепую.",
+        en: "An answer costs 0.5–1.2 ₽; the whole infra is about 1,960 ₽ a month. Before this there was a local prototype that went from 3/15 to 12/15 in a day, and past that point working without evals was flying blind."
+      },
+      facts: {
+        ru: ["71 коммит", "2 бинаря на Go", "1 834 документа", "Terraform"],
+        en: ["71 commits", "2 Go binaries", "1,834 docs", "Terraform"]
+      },
+      stack: "Go, Yandex AI Studio (Vector Store, Assistants), PostgreSQL, Cloud Functions, Terraform",
+      links: [],
+      shots: []
+    },
+    {
+      id: "review",
+      impact: { ru: "Шаг: подсчёт performance review. HR больше не считает 3 280 строк формулами в Excel, расчёт сверяется с эталоном в тесте, анонимность держится на HMAC.", en: "Step: scoring performance reviews. HR no longer runs 3,280 rows through Excel formulas, scoring is checked against a reference in tests, and anonymity rests on HMAC." },
+      short: { ru: "Перенёс методику оценки 540° из Excel в B2B-сервис на Go и React за 16 дней: псевдонимизация ответов через HMAC, мультитенантность, 94 MCP-тула, мутационные тесты.", en: "Moved a 540° review methodology from Excel into a Go and React B2B service in 16 days: HMAC pseudonymization, multi-tenancy, 94 MCP tools, mutation testing." },
+      title: { ru: "«Оценка 540»: performance review без Excel", en: "“Review 540”: performance reviews out of Excel" },
+      tag: { ru: "Пет-проект, B2B, сделал за 16 дней", en: "Side project, B2B SaaS, 16 days" },
+      problem: {
+        ru: "Оценка сотрудников по методике 540° жила в Google-формах и Excel. 3 280 строк ответов, HR всё считал формулами руками. Сама методика рабочая, но анонимность держалась на честном слове, а встречу по итогам никак не поддерживало.",
+        en: "A 540° review methodology lived in Google Forms and Excel: 3,280 answer rows, HR computed everything by hand with formulas. The method worked, but privacy relied on trust and the follow-up conversation had no support at all."
+      },
+      did: {
+        ru: [
+          "методику перенёс как есть, а её правила сделал кодом. Общего рейтинга людей нету, у групп равный вес, «Н/О» это не ноль, группа ниже порога скрыта и в расчёт не идёт",
+          "в ответе хранится HMAC вместо id респондента. Ключ лежит под мастер-ключом и удаляется по истечении срока, после этого связать ответ с человеком уже нельзя",
+          "мультитенантность сразу, с составными внешними ключами, поэтому сослаться на строку чужой организации нельзя даже по ошибке",
+          "анкету можно пройти тремя способами, в том числе матрицей «вопрос × люди» для руководителя, у которого 20 подчинённых, и через чат-бота",
+          "ИИ-советы по итогам видят ровно тот срез, что и сам зритель, а утверждает их человек. Агент подключается по MCP, 94 тула, работает под токеном пользователя",
+          "дизайн-систему собрал в Claude Design, потом прошёлся по расхождениям макетов с методикой"
+        ],
+        en: [
+          "kept the methodology intact and turned its rules into code: no overall ranking of people, equal group weights, “N/A” is not zero, groups below the threshold are hidden and excluded from math",
+          "answers store an HMAC instead of the respondent id; the key is wrapped by a master key and deleted after retention, making the answer-to-person link irreversible",
+          "multi-tenant from day one: composite foreign keys make referencing another org's row physically impossible",
+          "three ways to fill a survey, including a “question × people” matrix for a manager with 20 reports, and a chat-bot flow",
+          "AI advice sees exactly the slice the viewer can see and is approved by a human; 94 MCP tools run under the user's own token",
+          "design system built in Claude Design, followed by a gap review of mockups against the methodology"
+        ]
+      },
+      diff: [
+        { ru: "расчёт", en: "scoring", from: "формулы в Excel руками", to: "эталон из Excel в регрессионном тесте", fromEn: "hand-made Excel formulas", toEn: "Excel reference locked in a regression test" },
+        { ru: "связь ответа с респондентом", en: "answer-to-respondent link", from: "id человека рядом с оценкой", to: "HMAC, после срока не восстановить", fromEn: "person id next to the score", toEn: "HMAC, unrecoverable after retention" },
+        { ru: "от пустого репозитория до рабочего сервиса", en: "from empty repo to working service", from: "Excel и Google-формы", to: "16 дней", fromEn: "Excel and Google Forms", toEn: "16 days" }
+      ],
+      facts: {
+        ru: ["176 коммитов", "166 эндпоинтов", "696 Go-тестов", "11 e2e-сценариев"],
+        en: ["176 commits", "166 endpoints", "696 Go tests", "11 e2e flows"]
+      },
+      stack: "Go (chi, pgx, sqlc), PostgreSQL, React, TypeScript, MCP, OAuth 2.1",
+      links: [],
+      shots: [
+        { src: "assets/pr-dashboard.png", ru: "Дашборд волны: ячейки ниже порога раскрытия скрыты", en: "Wave dashboard: cells under the disclosure threshold are hidden" },
+        { src: "assets/pr-subject-card.png", ru: "Карточка оцениваемого", en: "Person card" },
+        { src: "assets/pr-survey-builder.png", ru: "Конструктор анкет", en: "Survey builder" },
+        { src: "assets/pr-matrix.png", ru: "Матрица «вопрос × люди»", en: "Question × people matrix" },
+        { src: "assets/pr-dashboard-table.png", ru: "Таблица результатов волны", en: "Wave results table" },
+        { src: "assets/pr-focus-groups.png", ru: "Фокус-группы", en: "Focus groups" },
+        { src: "assets/pr-wave-launch-preview.png", ru: "Предпросмотр запуска волны", en: "Wave launch preview" },
+        { src: "assets/pr-mcp.png", ru: "Подключение ИИ-агента по MCP", en: "Connecting an AI agent over MCP" }
+      ]
+    },
+    {
+      id: "svod",
+      impact: { ru: "Шаг: оформление документов. Оформление задаётся один раз в шаблоне, и шаблон из вордовского договора агент собирает сам через MCP.", en: "Step: formatting documents. Styling is set once in the template, and an agent builds that template from a Word contract on its own via MCP." },
+      short: { ru: "Редактор документов, где оформление живёт в шаблоне. Один AST и один рендерер для PDF, DOCX, HTML и Markdown. MCP на 43 тула: из вордовского договора агент собирает шаблон.", en: "A document editor where styling lives in the template. One AST and one renderer for PDF, DOCX, HTML and Markdown. 43 MCP tools: an agent turns a Word contract into a template." },
+      title: { ru: "«Свод»: оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
+      tag: { ru: "Пет-проект, закрытая бета, svod.webtm.ru", en: "Side project, closed beta, svod.webtm.ru" },
+      problem: {
+        ru: "В Word оформление хранится прямо в тексте, у каждого абзаца свой шрифт и отступ. Поэтому диплом по ГОСТу или договор разъезжается от любой правки. Началось всё с моего собственного диплома.",
+        en: "Word stores formatting inside the text: every paragraph carries its own font and indent. So a thesis or a contract falls apart with every edit. It started with my own thesis."
+      },
+      did: {
+        ru: [
+          "абзац знает только свою роль, например «заголовок 2-го уровня». Шрифты, поля и нумерация лежат в настройках шаблона",
+          "документ это JSON-AST, из него один серверный рендерер собирает PDF, DOCX, HTML и Markdown. Поэтому превью и скачанный файл совпадают",
+          "компоненты со слотами, версии с закреплением, защита от потерянных правок (409), шаринг по ссылке",
+          "MCP-сервер на 43 тула. Прикладываешь в Claude вордовский договор и получаешь шаблон со шапкой-компонентом и полями под номер и дату",
+          "повторяющиеся куски docx ищутся по сигнатурам абзацев и становятся компонентами. Описание конструктора для агента генерируется из реестра блоков, если разъехалось, CI падает",
+          "прогнал на реальном дипломе и поправил ГОСТ-шаблон. Модель выбрал своим бенчмарком: она выиграла 3 задачи из 4 и в 9 раз дешевле"
+        ],
+        en: [
+          "a paragraph only knows its role, like “heading level 2”; fonts, margins and numbering live in the template settings",
+          "one JSON AST and one server-side renderer for PDF, DOCX, HTML and Markdown, so preview and download always match",
+          "components with slots, linear versions with pinning, lost-update protection (409), share links",
+          "an MCP server with 43 tools: attach a Word contract in Claude and get a template with a header component and fields for number and date",
+          "repeated blocks in docx are found by paragraph signatures and become components; agent docs are generated from the block registry and CI fails on drift",
+          "tested on a real thesis and fixed the GOST template; picked a model from my own benchmark that won 3 of 4 tasks at 9× lower cost"
+        ]
+      },
+      diff: [
+        { ru: "оформление", en: "formatting", from: "в каждом абзаце", to: "в одном шаблоне", fromEn: "in every paragraph", toEn: "in one template" },
+        { ru: "находок аудита (19 измерений)", en: "audit findings (19 dimensions)", from: "214", to: "разобраны волнами", toEn: "fixed in waves" }
+      ],
+      facts: {
+        ru: ["731 коммит", "~1 700 тестов", "43 MCP-тула", "24 типа блоков"],
+        en: ["731 commits", "~1,700 tests", "43 MCP tools", "24 block types"]
+      },
+      stack: "Rails 8, dry-rb, PostgreSQL, React 19, TipTap, TypeScript, Solid Queue, MCP",
+      links: [
+        { ru: "svod.webtm.ru", en: "svod.webtm.ru", href: "https://svod.webtm.ru" }
+      ],
+      shots: [
+        { src: "assets/svod-constructor-gost.png", ru: "Конструктор шаблона: слева блоки, справа настройки оформления", en: "Template builder: blocks on the left, styling settings on the right" },
+        { src: "assets/svod-editor.png", ru: "Редактор документа", en: "Document editor" },
+        { src: "assets/svod-preview.png", ru: "Печатный вид, совпадает с PDF", en: "Print view, identical to the PDF" },
+        { src: "assets/svod-constructor.png", ru: "Шаблон договора", en: "Contract template" },
+        { src: "assets/svod-templates.png", ru: "Галерея шаблонов", en: "Template gallery" },
+        { src: "assets/svod-landing.png", ru: "Лендинг", en: "Landing page" }
+      ]
+    },
+    {
+      id: "oss",
+      impact: { ru: "Шаг: аудит и тестовые данные в новых сервисах. Аудит подключается гемом вместо написания с нуля, связные данные для разработки генерируются без дампа прода.", en: "Step: auditing and test data in new services. Auditing comes from a gem instead of being rewritten, and consistent dev data is generated without a prod dump." },
+      short: { ru: "provenance, гем аудита для Rails, 450 скачиваний. database-seed-cli на Go, генератор связных данных для PostgreSQL, проверен на базах до 417 таблиц.", en: "provenance, an audit gem for Rails, 450 downloads. database-seed-cli in Go, a consistent data generator for PostgreSQL, tested on databases with up to 417 tables." },
+      title: { ru: "Open source: provenance и database-seed-cli", en: "Open source: provenance and database-seed-cli" },
+      tag: { ru: "Свои библиотеки, Ruby и Go, 2026", en: "My own libraries, Ruby and Go, 2026" },
+      problem: {
+        ru: "В Rails-проектах аудит действий пользователей обычно пишут заново в каждом сервисе, и каждый раз по-своему. А для локальной разработки и нагрузочных тестов нужны связные данные: дамп прода брать нельзя, руками долго.",
+        en: "Rails projects tend to rebuild user-action auditing in every service, each time differently. And local development and load tests need consistent data: prod dumps are off-limits, hand-made seeds take forever."
+      },
+      did: {
+        ru: [
+          "provenance это гем аудита для Rails: действия пользователей и изменения моделей, группировка по запросу и транзакции, фильтрация чувствительных данных, хуки доставки; события можно отправлять куда угодно, например в Kafka",
+          "database-seed-cli читает живую схему PostgreSQL, собирает YAML-конфиг и выдаёт детерминированный SQL-сид. Учитывает UNIQUE, CHECK и EXCLUDE, циклы внешних ключей рвёт через Tarjan SCC, понимает полиморфные связи Rails. Команда fix сама чинит 10 видов проблем из 17"
+        ],
+        en: [
+          "provenance: user-action and model-change auditing for Rails, grouped by request and transaction, with sensitive-data filtering and delivery hooks; events can be shipped anywhere, Kafka for example",
+          "database-seed-cli: reads a live PostgreSQL schema, builds a YAML config and emits a deterministic SQL seed; handles UNIQUE, CHECK and EXCLUDE, breaks FK cycles with Tarjan SCC, understands Rails polymorphic associations; the fix command auto-repairs 10 of 17 issue kinds"
+        ]
+      },
+      diff: [
+        { ru: "аудит в Rails-проекте", en: "auditing in a Rails app", from: "пишется заново в каждом сервисе", to: "gem \"provenance\"", fromEn: "rewritten in every service", toEn: "gem \"provenance\"" },
+        { ru: "данные для разработки", en: "dev data", from: "дамп прода или руками", to: "~82K строк без ручных правок", fromEn: "prod dump or by hand", toEn: "~82K rows, zero manual edits" }
+      ],
+      note: {
+        ru: "provenance на rubygems скачали 450 раз, лицензия MIT. seed-cli проверял на 5 базах по 255–417 таблиц.",
+        en: "provenance has 450 downloads on rubygems, MIT license. seed-cli was tested on 5 databases with 255–417 tables each."
+      },
+      stack: "Ruby, ActiveRecord, Go, PostgreSQL",
+      links: [
+        { ru: "github.com/inikalaev/provenance", en: "github.com/inikalaev/provenance", href: "https://github.com/inikalaev/provenance" },
+        { ru: "github.com/inikalaev/database-seed-cli", en: "github.com/inikalaev/database-seed-cli", href: "https://github.com/inikalaev/database-seed-cli" }
+      ],
+      shots: []
+    }
+  ],
+
+  more: [
+    {
+      meta: { ru: "Сбор контекста для агента, основная работа", en: "Context for the agent, day job" },
+      shots: [],
+      details: {
+        ru: ["Агенты не видели задачи, комментарии и вики, контекст приходилось копировать в чат руками.", "Написал MCP-сервер на Go для трекера и вики, 22 тула, работает по stdio и HTTP с OAuth. Запись только в два шага: сначала превью, потом подтверждение. Есть read-only режим и маскирование секретов, 95 тестов. По ходу поймал баг, когда списанные 8 часов улетали в трекер как 0 минут.", "Сервер стоит во внутреннем marketplace компании, агент сам читает задачи и вики."],
+        en: ["Agents could not see tasks, comments or the wiki, so context had to be pasted into the chat by hand.", "Wrote an MCP server in Go for the tracker and wiki, 22 tools, over stdio and HTTP with OAuth. Writes take two steps: a preview, then a confirmation. Read-only mode, secret masking, 95 tests. Along the way caught a bug where 8 logged hours landed in the tracker as 0 minutes.", "The server is listed in the company's internal marketplace, and the agent reads tasks and the wiki on its own."]
+      },
+      ru: { t: "MCP для трекера и вики", d: "Агент сам видит задачи, комментарии и вики, копировать контекст в чат больше не нужно. 22 тула, запись только через подтверждение." },
+      en: { t: "An MCP server for the tracker and wiki", d: "The agent sees tasks, comments and the wiki itself, no more pasting context into the chat. 22 tools, writes only after a confirm." },
+      from: "агент не видит задачи", to: "22 тула", fromEn: "agent can't see tasks", toEn: "22 tools"
+    },
+    {
+      meta: { ru: "Разбор дефектов, основная работа", en: "Defect analysis, day job" },
+      shots: [],
+      details: {
+        ru: ["Дефекты разбирали руками раз в квартал, и выводы делались скорее по ощущениям.", "Собрал пайплайн из нескольких агентов: выгрузка задач из трекера, классификация, notebook с 8 графиками и черновики паттернов дефектов. Всё детерминированное вынес в скрипты, агенту осталась классификация и выводы.", "Разбор 24 задач стоит ~$0.17, токенов на разбор ~55K → ~30K."],
+        en: ["Defects were reviewed by hand once a quarter, and conclusions were mostly gut feeling.", "Built a pipeline of several agents: tracker export, classification, a notebook with 8 charts and draft defect patterns. Everything deterministic moved into scripts; the agent only classifies and draws conclusions.", "Analyzing 24 tasks costs ~$0.17, tokens per run ~55K → ~30K."]
+      },
+      ru: { t: "Разбор дефектов агентами", d: "Разбор дефектов из ручного раз в квартал стал регулярным: агенты классифицируют, скрипты строят 8 графиков, ~$0.17 на 24 задачи." },
+      en: { t: "Agent-driven defect analysis", d: "Defect review went from a manual quarterly chore to a routine: agents classify, scripts draw 8 charts, ~$0.17 per 24 tasks." },
+      from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks"
+    },
+    {
+      meta: { ru: "Документация API, основная работа", en: "API docs, day job" },
+      shots: [],
+      details: {
+        ru: ["В swagger десяти сервисов у параметров не было описаний, фронту и аналитикам приходилось угадывать.", "Добавил CI-проверку описаний и прогнал агентом по всем сервисам одной кампанией: одна правка, 13 MR.", "1 100+ описаний параметров, а новый эндпоинт без описаний CI не пропустит."],
+        en: ["Parameters in the swagger of ten services had no descriptions, so frontend devs and analysts had to guess.", "Added a CI check for descriptions and ran an agent across all services as one campaign: one change, 13 MRs.", "1,100+ parameter descriptions, and CI rejects new endpoints without them."]
+      },
+      ru: { t: "Описания API в 10 сервисах", d: "Фронт и аналитики больше не угадывают параметры: агент дописал 1 100+ описаний в 10 сервисах, CI не пускает новые без описания." },
+      en: { t: "API descriptions across 10 services", d: "Frontend and analysts no longer guess parameters: an agent added 1,100+ descriptions across 10 services, and CI blocks new ones without them." },
+      from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
+    },
+    {
+      meta: { ru: "Пет-проект, NAS, локальная модель", en: "Side project, NAS, local model" },
+      shots: [],
+      details: {
+        ru: ["Дома на NAS крутится больше десяти сервисов: фото, документы, рецепты, заметки, торренты, RSS. У каждого свой веб-интерфейс, и в каждый нужно ходить отдельно.", "Поднял агента Hermes на локальной модели через Ollama, облако не используется. Написал 20 MCP-серверов к этим сервисам и к мониторингу Docker. Docker агент видит только через read-only прокси, а любое действие с внешним эффектом, например запрос фильма или удаление торрента, ждёт кнопки в Telegram, без ответа запрос отклоняется. Отдельный демон без LLM следит за RSS и каналами и шлёт алерты и дайджесты.", "Всё доступно из одного чата в Telegram, и данные не уходят из дома."],
+        en: ["My home NAS runs more than ten services: photos, documents, recipes, notes, torrents, RSS. Each has its own web UI that you have to open separately.", "Set up the Hermes agent on a local model via Ollama, no cloud. Wrote 20 MCP servers for these services and for Docker monitoring. The agent sees Docker only through a read-only proxy, and any action with an external effect, like requesting a movie or deleting a torrent, waits for a Telegram button; no answer means no. A separate LLM-free daemon watches RSS and channels and sends alerts and digests.", "Everything is reachable from one Telegram chat, and the data never leaves home."]
+      },
+      ru: { t: "Домашний агент Hermes", d: "Агент на NAS на локальной модели: поиск, дайджесты, мониторинг, напоминания. 20 своих MCP-серверов к фото, документам, рецептам, заметкам, торрентам и новостям. Docker он видит только через read-only прокси, а всё, что меняет что-то снаружи, ждёт кнопки в Telegram, без ответа отказ." },
+      en: { t: "Hermes, a home agent", d: "An agent on my NAS running a local model: search, digests, monitoring, reminders. 20 custom MCP servers for photos, documents, recipes, notes, torrents and news. It sees Docker only through a read-only proxy, and anything with an external effect waits for a Telegram button, no answer means no." },
+      from: "10+ веб-интерфейсов домашних сервисов", to: "один чат в Telegram, 20 MCP", fromEn: "10+ home service web UIs", toEn: "one Telegram chat, 20 MCP servers"
+    },
+    {
+      meta: { ru: "Стабильность CI, 12 сервисов", en: "CI stability, 12 services" },
+      shots: [],
+      details: {
+        ru: ["Флаки-тест падал, пайплайн перезапускали и забывали, причину никто не искал.", "Упавший тест ретраится один раз. Если со второго раза прошёл, джоба вешает на MR лейбл flaky и комментарий с seed, спеком и ссылкой на шард. Вынес это в общий CI-компонент и раскатил на 12 Ruby-сервисов, все сидят на одной версии.", "С июня метку получили 75 MR, найдено 15 флаки-спеков, их увидели 16 разработчиков."],
+        en: ["A flaky test failed, someone re-ran the pipeline and forgot about it; nobody looked for the cause.", "A failed test retries once. If it passes the second time, the job labels the MR flaky and comments with the seed, the spec and a link to the shard. Shipped it as a shared CI component across 12 Ruby services, all pinned to one version.", "Since June 75 MRs got the label, 15 flaky specs were found and 16 developers saw them."]
+      },
+      ru: { t: "Флаки видны прямо на MR", d: "Флаки-тесты перестали теряться: упавший тест перезапускается сам, а на MR появляется лейбл и seed. Так нашлось 15 флаки-спеков." },
+      en: { t: "Flaky tests show up on the MR", d: "Flaky tests stopped getting lost: a failed test reruns itself and the MR gets a label and the seed. That surfaced 15 flaky specs." },
+      from: "перезапустили пайплайн и забыли", to: "15 флаки-спеков найдено на 75 MR", fromEn: "re-run the pipeline and forget", toEn: "15 flaky specs caught on 75 MRs"
+    },
+    {
+      meta: { ru: "Ожидание CI, основная работа", en: "Waiting on CI, day job" },
+      shots: [],
+      details: {
+        ru: ["Тесты основного сервиса шли одной джобой больше 12 минут, 567 спек, и каждый MR ждал их целиком.", "Профилировал медленные спеки, разбил прогон на 5 шардов через parallel_tests и собрал покрытие из шардов в один отчёт. В Dockerfile перестал вырезать .git, после этого шард не ставит гемы заново, минус ~100 с на шард. Пробовал параллелить ещё и внутри шарда, но это вскрыло тесты, которые мешают друг другу: общий Rails.cache, утечка локали, состояние БД. Откатил и записал их отдельно.", "Тесты в пайплайне ~12.5 → ~4.5 минуты, сборка образа на повторных прогонах ~13 → ~3 минуты."],
+        en: ["The main service ran its tests as a single job for 12+ minutes, 567 spec files, and every MR waited for all of it.", "Profiled slow specs, split the run into 5 shards with parallel_tests and merged coverage back into one report. Stopped stripping .git in the Dockerfile so shards no longer reinstall gems, about 100 s saved per shard. Tried parallelizing inside shards too, which exposed tests that interfere with each other: shared Rails.cache, leaking locale, DB state. Rolled it back and listed them separately.", "Pipeline tests ~12.5 → ~4.5 minutes, image build on repeat runs ~13 → ~3 minutes."]
+      },
+      ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "MR ждёт тесты 4.5 минуты вместо 12.5, поскольку прогон разбит на 5 параллельных шардов." },
+      en: { t: "CI tests 2.6× faster", d: "MRs wait 4.5 min for tests instead of 12.5, since the run is split into 5 parallel shards." },
+      from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
+    },
+    {
+      meta: { ru: "Контракт API, основная работа", en: "API contract, day job" },
+      shots: [],
+      details: {
+        ru: ["Схемы API генерировались из тестов, поэтому документация повторяла код, даже если код был неправ.", "Перевёл request-тесты на обратный подход: аналитики пишут OpenAPI, а тесты проверяют реализацию по схеме через skooma, форк лежит у меня на GitHub. Переписал тесты за один проход, 50 файлов.", "Сейчас так покрыто около 600 операций в 8 спецификациях, и расхождение кода со схемой ловится тестами."],
+        en: ["API schemas were generated from tests, so the docs mirrored the code even when the code was wrong.", "Flipped request specs around: analysts write the OpenAPI, and tests validate the implementation against it with skooma (my fork is on GitHub). Rewrote the tests in one pass, 50 files.", "About 600 operations across 8 specs are covered this way, and code drifting from the schema is caught by tests."]
+      },
+      ru: { t: "Document-first тесты API", d: "Документацию API пишут аналитики, а тесты проверяют по ней код. Расхождение ловится в CI, около 600 операций." },
+      en: { t: "Document-first API tests", d: "Analysts write the API docs, and tests check the code against them. Drift is caught in CI, about 600 operations." },
+      from: "схема из тестов", to: "тесты по схеме", fromEn: "schema from tests", toEn: "tests from schema"
+    },
+    {
+      meta: { ru: "Ошибки прода, основная работа", en: "Production errors, day job" },
+      shots: [],
+      details: {
+        ru: ["85% из 52K событий в Sentry давали зомби-джобы Sidekiq, и настоящие ошибки в них тонули.", "Разобрался, откуда берутся зомби-джобы, и вычистил их rake-таском.", "В Sentry снова видно то, что надо чинить."],
+        en: ["85% of 52K Sentry events came from zombie Sidekiq jobs, and real errors drowned in them.", "Found where the zombie jobs came from and cleaned them up with a rake task.", "Sentry shows what actually needs fixing again."]
+      },
+      ru: { t: "Настоящие ошибки в Sentry снова видно", d: "В Sentry снова видно, что чинить: убрал 85% шума от зомби-джоб Sidekiq." },
+      en: { t: "Real errors visible in Sentry again", d: "Sentry shows what to fix again: removed 85% of the noise from zombie Sidekiq jobs." },
+      from: "ошибки тонут в зомби-джобах", to: "видно то, что надо чинить", fromEn: "errors buried under zombie jobs", toEn: "you see what needs fixing"
+    },
+    {
+      meta: { ru: "Отчётность, основная работа", en: "Reporting, day job" },
+      shots: [],
+      details: {
+        ru: ["Отчёт по delivery собирали руками в Excel.", "Перенёс его в дашборд Grafana, данные подтягиваются сами.", "Отчёт всегда актуальный, руками его больше никто не собирает."],
+        en: ["The delivery report was assembled by hand in Excel.", "Moved it into a Grafana dashboard that pulls the data itself.", "The report is always up to date and nobody builds it by hand anymore."]
+      },
+      ru: { t: "Отчёт по delivery", d: "Отчёт по delivery никто не собирает руками: Excel заменён дашбордом в Grafana." },
+      en: { t: "Delivery report", d: "Nobody builds the delivery report by hand: Excel replaced with a Grafana dashboard." },
+      from: "Excel руками", to: "Grafana", fromEn: "manual Excel", toEn: "Grafana"
+    },
+    {
+      meta: { ru: "Нагрузка на БД, основная работа", en: "Database load, day job" },
+      shots: [],
+      details: {
+        ru: ["Реплики чтения PostgreSQL не получалось включить, поскольку часть GET-запросов писала в базу.", "Сделал детектор в RSpec: тест падает, если GET-запрос пытается писать. Прогнал на всех 17 207 примерах и нашёл 805 нарушений, из них 85 прямых и 720 каскадных. Почти все закрылись одной правкой в общем месте. Попутно в SSO на Go перевёл 35 мест чтения на реплику.", "805 → 0 нарушений, на stage лаг реплики 0.27 с, ошибок нету."],
+        en: ["PostgreSQL read replicas could not be enabled because some GET requests wrote to the database.", "Built an RSpec detector that fails a test when a GET request tries to write. Ran it across all 17,207 examples and found 805 violations: 85 direct and 720 cascading. Almost all of them were fixed by one change in a shared place. Along the way moved 35 read paths in the Go SSO service to the replica.", "805 → 0 violations; on stage replica lag is 0.27 s with no errors."]
+      },
+      ru: { t: "Реплики чтения без сюрпризов", d: "Чтение можно увести на реплики и снять нагрузку с основной базы: детектор в тестах нашёл 805 записей на GET-запросах, все закрыты." },
+      en: { t: "Read replicas without surprises", d: "Reads can move to replicas and off the primary: a test detector found 805 writes on GET requests, all fixed." },
+      from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
+    },
+    {
+      meta: { ru: "Безопасность, 10 сервисов", en: "Security, 10 services" },
+      shots: [],
+      details: {
+        ru: ["Сервисы ходили в Redis без TLS, нужно было переехать на managed Redis.", "Перевёл клиент SSO в 10 сервисах. Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов: токен оставался валидным после выхода. В самом SSO нашёл второй Redis-клиент без TLS и панику на пустой длительности.", "10 сервисов на TLS, и выход из аккаунта снова отзывает токен."],
+        en: ["Services talked to Redis without TLS and had to move to a managed Redis.", "Migrated the SSO client in 10 services. Along the way found a fallback that silently broke the token blacklist: a token stayed valid after logout. In the SSO service itself found a second Redis client without TLS and a panic on an empty duration.", "10 services on TLS, and logging out revokes the token again."]
+      },
+      ru: { t: "Redis с TLS в 10 сервисах", d: "Токен после выхода снова перестаёт работать: при переезде на Redis с TLS нашёл и починил молчавший blacklist." },
+      en: { t: "Redis over TLS in 10 services", d: "A token stops working after logout again: during the move to Redis over TLS I found and fixed a silently broken blacklist." },
+      from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
+    },
+    {
+      meta: { ru: "Хранение файлов, основная работа", en: "File storage, day job" },
+      shots: [],
+      details: {
+        ru: ["Файлы всех сервисов лежали в одном бакете на 78 ГБ, права и бэкапы по сервисам не разделить.", "Собрал из БД каждого сервиса манифест его файлов и разложил объекты по отдельным бакетам через server-side copy, без выкачивания. До этого писал скрипты seed, migrate и verify для переезда на кластерный MinIO.", "По бакету на сервис, и данные ни разу не гонялись через сеть."],
+        en: ["Files of all services lived in one 78 GB bucket, so permissions and backups could not be split per service.", "Built a manifest of each service's files from its database and moved objects into separate buckets with server-side copy, no downloading. Before that I wrote seed, migrate and verify scripts for the move to clustered MinIO.", "One bucket per service, and no data was pulled through the network."]
+      },
+      ru: { t: "Разбор общего бакета", d: "Права и бэкапы файлов теперь по каждому сервису: общий бакет на 78 ГБ разложен без скачивания." },
+      en: { t: "Splitting a shared bucket", d: "Permissions and backups are now per service: a shared 78 GB bucket was split without downloading anything." },
+      from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
+    },
+    {
+      meta: { ru: "Наставник команды, 2-е место", en: "Team mentor, 2nd place" },
+      shots: [],
+      details: {
+        ru: ["По опросу команды большинство учеников хотели учиться не по старинке, а в кружках и конкурсах участвовала меньшая часть.", "Был наставником команды из 4 студентов: программист, менеджер проекта, дизайнер и аналитик. Придумали чат-бот с геймификацией: у студента курсы по шагам, прогресс и домашка, у преподавателя публикация курса и результаты учеников. Сам сделал архитектуру и написал код бота, команда закрывала аналитику, дизайн и презентацию.", "Рабочий бот и презентация с дорожной картой развития, 2-е место."],
+        en: ["According to the team's survey, most students wanted something other than old-school teaching, and few took part in clubs and contests.", "I mentored a team of 4 students: a developer, a project manager, a designer and an analyst. We came up with a gamified chat bot: step-by-step courses, progress and homework for students, course publishing and student results for teachers. I designed the architecture and wrote the bot's code; the team handled analysis, design and the pitch.", "A working bot and a pitch with a development roadmap, 2nd place."]
+      },
+      ru: { t: "EDUG, бот для обучения", d: "Был наставником команды из 4 студентов, пока преподавал, и сам писал архитектуру и код. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
+      en: { t: "EDUG, a learning bot", d: "I mentored a team of 4 students while teaching, and did the architecture and code myself. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
+      from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
+    }
+  ],
+
+
+  experience: [
+    {
+      org: "lab", short: { ru: "Образовательная платформа, около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. 427 закрытых задач, 346 MR, третий по коммитам в основном сервисе из 59 авторов. Ревью, бади для новых сотрудников.", en: "An education platform, ~30 services in Ruby on Rails and Go, Kafka, PostgreSQL with replicas, k8s. 427 resolved tasks, 346 MRs, third by commits of 59 authors in the main service. Code review, buddy for new hires." }, from: { ru: "ноя 2023", en: "Nov 2023" }, to: null,
+      role: { ru: "Старший бэкенд-разработчик, главный инженер-программист", en: "Senior Backend Engineer, Lead Software Engineer" },
+      text: {
+        ru: "Образовательная платформа, около 30 сервисов на Ruby on Rails и Go, Kafka, PostgreSQL с репликами, k8s. Делал модули админки, импорт и экспорт, рефакторил легаси и переносил данные из старой CMS на Python. В основном сервисе я третий по коммитам из 59 авторов. Провожу ревью, был бади у нескольких новых сотрудников и помогал им войти в проект.",
+        en: "An education platform: about 30 services in Ruby on Rails and Go, Kafka, PostgreSQL with replicas, k8s. Admin modules, data import and export, legacy refactoring, data migration off an old Python CMS. Third by commits out of 59 authors in the main service. I do code review and have been a buddy for several new hires, helping them get up to speed."
+      }
+    },
+    {
+      org: "space", short: { ru: "Внешние проекты под заказчиков, через год ментор самого крупного из них: оценка задач, требования вместе с проджектом. Потом продуктовая команда и менторство бекенда в мобильной команде.", en: "Client projects; a year in, mentor on the largest one: estimates and requirements together with the PM. Later a product team and backend mentoring for the mobile team." }, from: { ru: "авг 2020", en: "Aug 2020" }, to: { ru: "ноя 2023", en: "Nov 2023" },
+      role: { ru: "Фулстек-разработчик", en: "Full-stack Developer" },
+      text: {
+        ru: "Попал в команду внешних проектов. Через год стал ментором самого крупного из них: оценивал задачи и вместе с проджектом переводил «хочу ещё вчера» заказчика в реализацию, которая не ломает процессы проекта. Потом перешёл в продуктовую команду, поработал с ChatGPT и менторил бекенд в мобильной команде.",
+        en: "Client projects. A year in, I became the mentor on the largest one: estimated work and, together with the PM, turned “we needed it yesterday” into something that did not break the project's processes. Later a product team, a ChatGPT feature, and backend mentoring for the mobile team."
+      },
+      stack: "Ruby on Rails, NestJS, GraphQL, TypeScript, Angular, Vue.js"
+    },
+    {
+      org: "college", short: { ru: "Базы данных, внедрение ИС, операционные системы. Руководил дипломами 20 студентов, готовил студентов к чемпионатам и хакатонам.", en: "Databases, information systems, operating systems. Supervised graduation projects of 20 students, coached students for championships and hackathons." }, from: { ru: "фев 2022", en: "Feb 2022" }, to: { ru: "июн 2023", en: "Jun 2023" },
+      role: { ru: "Преподаватель спецдисциплин, параллельно с работой", en: "Lecturer, alongside the main job" },
+      text: {
+        ru: "Вёл базы данных, внедрение ИС и операционные системы. Старался давать задачи, близкие к тем, что сам решаю на работе. Готовил студентов по компетенции «Разработка мобильных приложений», ездили на хакатоны. Был научным руководителем дипломов у 20 студентов.",
+        en: "Databases, information systems, operating systems. Built assignments from real work, coached students for a mobile development championship, took them to hackathons. Supervised graduation projects of 20 students."
+      }
+    },
+    {
+      org: "onlineUni", short: { ru: "Git, основы программирования, проектирование баз данных.", en: "Git, programming basics, database design." }, from: { ru: "окт 2022", en: "Oct 2022" }, to: { ru: "дек 2022", en: "Dec 2022" },
+      role: { ru: "Преподаватель", en: "Instructor" },
+      text: {
+        ru: "Git, основы программирования, проектирование баз данных, введение в тестирование.",
+        en: "Git, programming basics, database design, intro to QA."
+      }
+    },
+    {
+      org: "kiskis", short: { ru: "Стажёр-программист, затем техник. Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом.", en: "Intern developer, then technician. My first Ruby on Rails service, a support desk with server-side rendering." }, from: { ru: "дек 2019", en: "Dec 2019" }, to: { ru: "авг 2020", en: "Aug 2020" },
+      role: { ru: "Стажёр-программист → техник", en: "Intern developer → Technician" },
+      text: {
+        ru: "Пришёл стажёром-программистом, потом перевели в техники. Первый сервис на Ruby on Rails, техподдержка с серверным рендерингом. Плюс настройка FTP, Moodle и серверов БД.",
+        en: "Joined as an intern developer, then moved up to technician. My first Ruby on Rails service: a support desk with server-side rendering. FTP, Moodle and DB server setup."
+      }
+    }
+  ],
+
+  education: [
+    { org: "uni", years: "2021–2025", ru: "Институт радиотехники и электроники", en: "Institute of Radio Engineering and Electronics" },
+    { org: "school", years: "2016–2021", ru: "Информатика и вычислительная техника", en: "Computer Science and Engineering" },
+    { title: { ru: "Курсы", en: "Courses" }, years: "2019", ru: "C# 6.0, Microsoft M10262A", en: "C# 6.0, Microsoft M10262A" }
+  ],
+
+  skills: {
+    ru: [
+      ["Основное", "Go, Ruby on Rails, PostgreSQL, Kafka, Redis, Sidekiq, REST, GraphQL, OpenAPI"],
+      ["Инфраструктура", "Docker, Kubernetes, GitLab CI, MinIO, OpenSearch, Grafana, Sentry"],
+      ["Фронт, когда нужно", "TypeScript, React"],
+      ["Команда", "ревью кода, бади для новых сотрудников, менторство бекенда, руководство дипломами 20 студентов, подготовка к WorldSkills"],
+      ["Языки", "русский родной, английский B1: документация и переписка"],
+      ["AI в работе", "LLM, AI-агенты, Claude Code, MCP, tool calling, RAG, evals, свои скиллы"]
+    ],
+    en: [
+      ["Core", "Go, Ruby on Rails, PostgreSQL, Kafka, Redis, Sidekiq, REST, GraphQL, OpenAPI"],
+      ["Infra", "Docker, Kubernetes, GitLab CI, MinIO, OpenSearch, Grafana, Sentry"],
+      ["Frontend when needed", "TypeScript, React"],
+      ["Team", "code review, buddy for new hires, backend mentoring, supervised graduation projects of 20 students, WorldSkills coaching"],
+      ["Languages", "Russian native, English B1: docs and written communication"],
+      ["AI at work", "LLM, AI agents, Claude Code, MCP, tool calling, RAG, evals, custom skills"]
+    ]
+  },
+
+  now: [
+    { k: { ru: "Работа", en: "Work" }, v: { ru: "Образовательная платформа на Ruby on Rails и Go, около 30 сервисов", en: "An education platform in Ruby on Rails and Go, about 30 services" } },
+    { k: { ru: "Пет-проект", en: "Side project" }, v: { ru: "«Свод» готовлю к публичному запуску, «Оценку 540» к первым пользователям", en: "Getting “Svod” ready for public launch and “Review 540” ready for first users" } },
+    { k: { ru: "Дома", en: "At home" }, v: { ru: "Агент Hermes на NAS: дайджесты, напоминания, мониторинг сервисов", en: "Hermes agent on my NAS: digests, reminders, service monitoring" } },
+    { k: { ru: "Игры", en: "Games" }, v: { ru: "Bull Hellsing и Tagman в разработке", en: "Bull Hellsing and Tagman in development" } },
+    { k: { ru: "Ищу", en: "Looking for" }, v: { ru: "Product Engineer, техлид или тимлид, удалённо", en: "Product Engineer, tech lead or team lead, remote" } }
+  ],
+
+  games: {
+    intro: {
+      ru: "Игры делаю на джемах и для себя. Джем это релиз за выходные с темой и ограничениями, хорошо тренирует резать скоуп и думать о том, как игрок всё это почувствует.",
+      en: "I make games at jams and for myself. A jam is a release in one weekend with a theme and constraints, great practice for cutting scope and thinking about how the player will feel it."
+    },
+    items: [
+      {
+        name: "Papenture", href: "https://zander-games.itch.io/papenture",
+        meta: { ru: "Unreal Engine, Unreal MegaJam 2022, команда из 6 человек", en: "Unreal Engine, Unreal MegaJam 2022, a team of 6" },
+        d: { ru: "Два художника и два параллельных мира, предмет через портал превращается в свою версию из другого мира. Сами себе поставили ограничение: одна текстура на всю игру, спрайты лежат в атласе и берутся сдвигом UV.",
+             en: "Two artists, two parallel worlds; an item passed through a portal turns into its counterpart. We set our own constraint: one texture for the whole game, with sprites taken from an atlas by shifting UVs." }
+      },
+      {
+        name: "AV", href: "https://zander-games.itch.io/av",
+        meta: { ru: "GameMaker, Major Jam 3, тема «Retro»", en: "GameMaker, Major Jam 3, theme “Retro”" },
+        d: { ru: "Пазл-платформер про первобытного человека с огнём. AV-разъём переключает цвет, звук или картинку, и от этого меняется уровень.",
+             en: "A puzzle platformer about a caveman carrying fire. An AV plug switches color, sound or picture, and the level changes with it." }
+      },
+      {
+        name: "Bull Hellsing", href: "https://zander-games.itch.io/bull-hellsing",
+        meta: { ru: "GameMaker, в разработке", en: "GameMaker, in development" },
+        d: { ru: "2D shoot 'em up: днём охотишься на зверей ради ресурсов, ночью отбиваешься от нежити. Прокачка, оружие, квесты.",
+             en: "A 2D shoot 'em up: hunt animals for resources by day, fight the undead by night. Upgrades, weapons, quests." }
+      },
+      {
+        name: "Tagman", href: "https://zander-games.itch.io/tagman",
+        meta: { ru: "Экшен-платформер, в разработке", en: "Action platformer, in development" },
+        d: { ru: "Супергерой носится по городу и спасает стариков, оставляя за собой граффити тегером. Генеративный ИИ в игре не использовали.",
+             en: "A superhero dashes across the city saving the elderly and leaves graffiti behind with a tagger. No generative AI used in the game." }
+      }
+    ]
+  },
+
+  championships: {
+    title: { ru: "WorldSkills Russia, «Программные решения для бизнеса»", en: "WorldSkills Russia, “IT Software Solutions for Business”" },
+    years: "2017–2019",
+    photo: { src: "assets/worldskills.jpg", ru: "Финал WorldSkills Russia, Казань, 2019", en: "WorldSkills Russia national final, Kazan, 2019" },
+    results: [
+      { place: "1", ru: "место на чемпионате Москвы", en: "place, Moscow championship" },
+      { place: "5", ru: "место в национальном финале", en: "place, national final" },
+      { place: "4", ru: "место на DigitalSkills", en: "place, DigitalSkills" }
+    ],
+    expert: {
+      title: { ru: "Как эксперт", en: "As an expert" },
+      ru: [
+        "эксперт-компатриот на WorldSkills: готовил и сопровождал 4 участников",
+        "дважды приглашённый отраслевой эксперт на чемпионатах Москвы",
+        "50+ демонстрационных экзаменов в роли эксперта и главного эксперта"
+      ],
+      en: [
+        "compatriot expert at WorldSkills: coached and accompanied 4 competitors",
+        "twice invited industry expert at Moscow championships",
+        "50+ demonstration exams as expert and chief expert"
+      ]
+    },
+    text: {
+      ru: [
+        "чемпионат это 6 сессий по 3 часа, по две в день. За это время по требованиям заказчика нужно спроектировать систему, от схемы БД до интерфейса, написать её и защитить перед экспертами",
+        "по сути это продуктовый цикл в миниатюре: разобраться в требованиях, порезать скоуп так, чтобы успеть к дедлайну, и объяснить, почему решение такое. Например, CRM с лидами, звонками и авторизацией на C#, WPF и Entity Framework",
+        "ездил на чемпионаты в разные регионы, а позже уже как преподаватель сам готовил студентов к WorldSkills"
+      ],
+      en: [
+        "a championship is 6 sessions of 3 hours, two per day. In that time you take a client's requirements, design the system from DB schema to UI, build it and defend it in front of experts",
+        "it is a product cycle in miniature: understand the requirements, cut scope to hit the deadline, and explain why the solution looks the way it does. For example, a CRM with leads, calls and auth in C#, WPF and Entity Framework",
+        "competed in several regions, and later, as a lecturer, coached students for WorldSkills myself"
+      ]
+    }
+  },
+
+  writing: [
+    {
+      ru: "Я постоянно говорил, что все зависит от контекста, но не стал системным архитектором, или почему контекст важнее промпта",
+      en: "“It depends on the context”, or why context beats the prompt (Habr, in Russian)",
+      meta: { ru: "Хабр, август 2026, 6.3 тыс. прочтений", en: "Habr, August 2026, 6.3K reads" },
+      href: "https://habr.com/ru/articles/1075224/"
+    },
+    {
+      ru: "provenance, гем аудита для Rails",
+      en: "provenance, an audit gem for Rails",
+      meta: { ru: "Ruby, rubygems, MIT", en: "Ruby, rubygems, MIT" },
+      href: "https://github.com/inikalaev/provenance"
+    },
+    {
+      ru: "database-seed-cli, генератор связных данных для PostgreSQL",
+      en: "database-seed-cli, a consistent data generator for PostgreSQL",
+      meta: { ru: "Go, v1.0.0", en: "Go, v1.0.0" },
+      href: "https://github.com/inikalaev/database-seed-cli"
+    }
+  ]
+};
+</script>
+<style>
+:root {
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --ink: #1a2233;
+  --muted: #5b6577;
+  --line: #d9dee7;
+  --link: #2a56a8;
+  --del: #b42318;
+  --del-bg: #fdecea;
+  --ins: #17703f;
+  --ins-bg: #e6f4ec;
+  --shot-bg: #e8ecf2;
+  --sans: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure: 44rem;
+  --wide: 68rem;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --paper: #131822;
+  --surface: #1a2130;
+  --ink: #e4e8ef;
+  --muted: #98a2b3;
+  --line: #2c3547;
+  --link: #8db4f5;
+  --del: #ff8a80;
+  --del-bg: #3a1f22;
+  --ins: #6fd49b;
+  --ins-bg: #173326;
+  --shot-bg: #0f131b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  font-feature-settings: "tnum" 0;
+}
+a { color: var(--link); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+.col { max-width: var(--measure); }
+
+/* top bar */
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.25rem 0; }
+.bar nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: .9375rem; }
+.bar nav a { color: var(--muted); text-decoration: none; }
+.bar nav a:hover { color: var(--ink); }
+.toggles { display: flex; gap: .5rem; }
+.toggles button {
+  font: 500 .875rem/1 var(--sans); color: var(--ink); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: .45rem .8rem; cursor: pointer;
+}
+.toggles button:hover { border-color: var(--muted); }
+
+/* hero */
+.hero { padding: 3.5rem 0 4rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem 3rem; align-items: start; }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.02; letter-spacing: -.025em; font-weight: 700; margin: 0; }
+.hero .role { font-size: clamp(1.25rem, 2.4vw, 1.625rem); font-weight: 500; margin: .6rem 0 0; }
+.hero .sub { color: var(--muted); margin: .4rem 0 0; }
+.hero .photo { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.quote { grid-column: 1 / -1; max-width: 40rem; font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.55; margin: .5rem 0 0; }
+
+/* the diff: единственный яркий элемент */
+.diff {
+  font-family: var(--mono); font-size: .9375rem; line-height: 1.5;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  overflow: hidden; margin: 0;
+}
+.diff .head { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 1rem; color: var(--muted); border-bottom: 1px solid var(--line); font-size: .8125rem; }
+.diff .row { display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); padding: .15rem 1rem; }
+.diff .row.hunk { color: var(--muted); padding-top: .5rem; font-size: .92em; }
+.diff .row.del { background: var(--del-bg); color: var(--del); }
+.diff .row.ins { background: var(--ins-bg); color: var(--ins); }
+.diff .row .sign { user-select: none; }
+.diff .row .v { font-weight: 600; }
+.hero .diff { grid-column: 1 / -1; max-width: 40rem; }
+.hero-diff-anim .row { opacity: 0; transform: translateX(-6px); animation: row-in .35s ease-out forwards; }
+@keyframes row-in { to { opacity: 1; transform: none; } }
+
+.cta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; }
+.btn {
+  display: inline-block; font-weight: 600; text-decoration: none; padding: .7rem 1.15rem; border-radius: 8px;
+  background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; font-size: 1rem; font-family: var(--sans);
+}
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn:hover { text-decoration: none; opacity: .88; }
+.links { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .9375rem; }
+
+/* sections */
+section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-height: 1.15; margin: 0 0 .5rem; font-weight: 700; }
+.lead { color: var(--muted); margin: 0 0 2.5rem; max-width: var(--measure); }
+
+/* cases */
+.case { padding: 2.75rem 0; }
+.case + .case { border-top: 1px dashed var(--line); }
+.case h3 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); line-height: 1.2; letter-spacing: -.01em; margin: 0; font-weight: 700; }
+.case .tag { color: var(--muted); margin: .35rem 0 .75rem; font-size: .9375rem; }
+.case .impact { font-size: 1.0625rem; font-weight: 500; margin: 0 0 1.5rem; max-width: 48rem; }
+.case-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 24rem); gap: 2.5rem; align-items: start; }
+.case h4 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 .4rem; }
+.case h4:first-child { margin-top: 0; }
+.case p { margin: 0; }
+.case ul { margin: 0; padding-left: 1.1rem; }
+.case li { margin: .35rem 0; }
+.case li::marker { color: var(--muted); }
+.case .note { color: var(--muted); font-size: .9375rem; margin-top: 1rem; }
+.case .facts { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; padding: 0; list-style: none; }
+.case .facts li { margin: 0; font-size: .875rem; padding: .2rem .6rem; border: 1px solid var(--line); border-radius: 999px; }
+.case .stack { font-size: .9375rem; color: var(--muted); margin-top: 1rem; }
+.case .aside { position: sticky; top: 1.5rem; display: grid; gap: 1rem; }
+.case .aside .links { flex-direction: column; }
+
+.shots { margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 1rem; }
+.shots figure { margin: 0; }
+.shots figure:first-child { grid-column: 1 / -1; }
+.shots button { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--shot-bg); cursor: zoom-in; }
+.shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; }
+.shots figure:first-child img { aspect-ratio: 16 / 9; }
+.shots figcaption { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+.shots.single { grid-template-columns: 1fr; }
+
+/* more */
+.more { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 2rem 2.5rem; }
+.more article h3 { font-size: 1.0625rem; margin: 0 0 .3rem; font-weight: 600; }
+.more article p { margin: 0 0 .7rem; color: var(--muted); font-size: .9375rem; }
+.more .diff { font-size: .8125rem; }
+.totals { margin-top: 2.5rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; font-size: .9375rem; }
+
+/* experience */
+.exp { list-style: none; margin: 0; padding: 0; max-width: 52rem; }
+.exp li { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 1.5rem; padding: 1.25rem 0; }
+.exp li + li { border-top: 1px solid var(--line); }
+.exp .when { color: var(--muted); font-size: .9375rem; font-variant-numeric: tabular-nums; }
+.exp h3 { margin: 0; font-size: 1.125rem; font-weight: 600; }
+.exp .org { color: var(--muted); margin: .1rem 0 .5rem; }
+.exp p { margin: 0; }
+.exp .stack { color: var(--muted); font-size: .9375rem; margin-top: .4rem; }
+.edu { margin-top: 2.5rem; }
+.edu h3 { font-size: 1.25rem; margin: 0 0 .5rem; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.skills { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1.5rem; }
+.skills dt { color: var(--muted); }
+.skills dd { margin: 0; }
+.writing { list-style: none; padding: 0; margin: 0; }
+.writing li { padding: .75rem 0; }
+.writing li + li { border-top: 1px solid var(--line); }
+.writing .meta { display: block; color: var(--muted); font-size: .875rem; }
+.now { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 860px) { .now { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .now { grid-template-columns: 1fr; } .now .tile.seek { flex-direction: column; gap: .35rem; } }
+.now .tile { display: flex; flex-direction: column; gap: .35rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.now .k { color: var(--muted); font-size: .875rem; }
+.now .v { font-weight: 500; line-height: 1.45; }
+.now .tile.seek { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 1rem; border-color: var(--ins); background: var(--ins-bg); }
+.now .tile.seek .v { font-size: 1.125rem; font-weight: 600; }
+#now h2 { margin-bottom: 1.5rem; }
+.now .tile.seek .k { color: var(--ins); }
+h3.sub { font-size: 1.125rem; margin: .75rem 0 .5rem; font-weight: 600; }
+.games-intro { margin: 0; color: var(--muted); }
+#case-dialog { border: 0; padding: 0; background: transparent; width: min(46rem, 94vw); max-height: 92vh; color: var(--ink); }
+#case-dialog::backdrop { background: rgba(10, 14, 22, .6); }
+.cd-box { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.75rem 1.75rem 2rem; max-height: 92vh; overflow: auto; }
+.cd-box form { float: right; margin: -.5rem -.5rem 0 1rem; }
+.cd-close { font: 500 .9375rem var(--sans); background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: .4rem .9rem; cursor: pointer; }
+#cd-body h3 { font-size: 1.5rem; line-height: 1.2; margin: 0; }
+#cd-body .game-meta { display: block; margin: .35rem 0 1.25rem; }
+#cd-body p { margin: 0 0 1rem; }
+#cd-body .cd-h { font-size: .9375rem; font-weight: 600; margin: 1rem 0 .3rem; color: var(--muted); }
+#cd-body .game-meta + .cd-h { margin-top: 0; }
+#cd-body .shots { margin-top: 1.5rem; }
+.mcard { font: inherit; text-align: left; cursor: pointer; }
+.mcard .clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.mcard-res { margin-top: auto; padding-top: .5rem; font-family: var(--mono); font-size: .8125rem; color: var(--muted); }
+.mcard-res del { color: var(--del); text-decoration: none; }
+.mcard-res ins { color: var(--ins); text-decoration: none; }
+.more-cards { margin-top: 0; }
+
+.champ { margin-top: 2.5rem; }
+.champ-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+.champ-photo { margin: 0; }
+.champ-photo button { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; cursor: zoom-in; background: var(--shot-bg); }
+.champ-photo img { width: 100%; }
+.champ-photo figcaption { font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
+@media (max-width: 860px) { .champ-body { grid-template-columns: 1fr; } }
+.champ-title { font-weight: 600; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: .25rem 1rem; align-items: baseline; }
+.champ-title span { color: var(--muted); font-weight: 400; font-size: .9375rem; }
+.champ-res { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.champ-res div { display: flex; align-items: baseline; gap: .6rem; padding: .9rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.champ-res b { font-family: var(--mono); font-size: 2rem; line-height: 1; color: var(--ins); }
+.champ-res span { color: var(--muted); font-size: .9375rem; line-height: 1.35; }
+.champ-text { margin: 0; padding-left: 1.1rem; }
+.champ-exp-h { font-size: 1rem; font-weight: 600; margin: 1.75rem 0 .4rem; }
+.champ-text li { margin: .4rem 0; }
+@media (max-width: 560px) { .champ-res { grid-template-columns: 1fr; } }
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.game { display: flex; flex-direction: column; gap: .3rem; padding: 1rem 1.1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--surface); }
+.game:hover { border-color: var(--muted); text-decoration: none; }
+.game-name { font-weight: 700; font-size: 1.0625rem; color: var(--link); }
+.game-meta { color: var(--muted); font-size: .875rem; }
+.game-d { font-size: .9375rem; line-height: 1.5; }
+.updated { color: var(--muted); font-size: .875rem; margin-top: .75rem; }
+
+footer { padding: 3.5rem 0 5rem; border-top: 1px solid var(--line); }
+footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
+
+/* lightbox */
+#lightbox { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1600px); max-height: 94vh; }
+#lightbox::backdrop { background: rgba(10, 14, 22, .82); }
+#lightbox img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 6px; }
+#lightbox p { color: #e4e8ef; text-align: center; margin: .6rem 0 0; font-size: .9375rem; }
+#lightbox form { position: fixed; top: 1rem; right: 1rem; }
+.lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; border-radius: 50%;
+  border: 0; background: rgba(228, 232, 239, .92); color: #1a2233; font: 400 2rem/1 var(--sans); cursor: pointer;
+  display: grid; place-items: center; padding-bottom: .2rem;
+}
+.lb-nav:hover { background: #fff; }
+.lb-nav[hidden] { display: none; }
+.lb-prev { left: 1rem; }
+.lb-next { right: 1rem; }
+#lightbox img { user-select: none; -webkit-user-drag: none; }
+#lightbox form button { font: 500 .9375rem var(--sans); background: #e4e8ef; color: #1a2233; border: 0; border-radius: 999px; padding: .5rem 1rem; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .case-grid, .two { grid-template-columns: 1fr; }
+  .case .aside { position: static; }
+  .bar nav { display: none; }
+}
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; padding-top: 1.5rem; }
+  .hero .photo { width: 96px; height: 96px; grid-row: 1; }
+  .exp li { grid-template-columns: 1fr; gap: .25rem; }
+  .shots { grid-template-columns: 1fr 1fr; }
+  .diff { font-size: .8125rem; }
+  .diff .row { padding: .15rem .7rem; }
+  .diff .head { flex-direction: column; gap: 0; }
+  .lb-nav { top: auto; bottom: 1rem; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-diff-anim .row { animation: none; opacity: 1; transform: none; }
+}
+
+.cv { display: none; }
+@media print {
+  @page { size: A4; margin: 12mm 14mm 12mm; }
+  html, body { background: #fff !important; color: #000; }
+  body { font-size: 9.5pt; line-height: 1.4; }
+  .wrap, dialog { display: none !important; }
+  .cv { display: block; color: #111; }
+  .cv a { color: #111; text-decoration: none; }
+  .cv-head { display: flex; justify-content: space-between; gap: 12pt; align-items: flex-start; border-bottom: 1.2pt solid #111; padding-bottom: 6pt; margin-bottom: 8pt; }
+  .cv-head h1 { font-size: 20pt; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  .cv-head .r { font-size: 11.5pt; font-weight: 600; margin: 2pt 0 0; }
+  .cv-head .s { margin: 2pt 0 0; color: #333; }
+  .cv-head .c { text-align: right; font-size: 9pt; line-height: 1.5; color: #222; }
+  .cv-head img { width: 58pt; height: 58pt; border-radius: 50%; object-fit: cover; }
+  .cv-head .left { display: flex; gap: 10pt; align-items: center; }
+  .cv-metrics { font-family: var(--mono); font-size: 8.5pt; margin: 0 0 6pt; display: flex; flex-wrap: wrap; gap: 2pt 14pt; }
+  .cv-metrics b { font-weight: 600; }
+  .cv h2 { font-size: 11pt; margin: 9pt 0 4pt; padding-bottom: 2pt; border-bottom: .6pt solid #999; letter-spacing: 0; }
+  .cv-case { margin: 0 0 5pt; break-inside: avoid; }
+  .cv-case h3 { font-size: 10pt; margin: 0; display: flex; justify-content: space-between; gap: 8pt; }
+  .cv-case h3 span { font-weight: 400; color: #555; font-size: 8.5pt; white-space: nowrap; }
+  .cv-case p { margin: 1pt 0 0; }
+  .cv-case .res { font-family: var(--mono); font-size: 8.3pt; color: #222; margin-top: 1.5pt; }
+  .cv-exp { margin: 0 0 4pt; display: grid; grid-template-columns: 30mm 1fr; gap: 8pt; break-inside: avoid; }
+  .cv-exp .w { color: #555; font-size: 8.5pt; }
+  .cv-exp h3 { font-size: 9.8pt; margin: 0; }
+  .cv-exp p { margin: 1pt 0 0; }
+  .cv-skills { margin: 0; display: grid; grid-template-columns: 34mm 1fr; gap: 1pt 8pt; }
+  .cv-skills dt { color: #555; }
+  .cv-skills dd { margin: 0; }
+  .cv-more { margin: 0; padding-left: 10pt; columns: 2; column-gap: 14pt; }
+  .cv-more li { margin: 0 0 2pt; break-inside: avoid; }
+  .cv-foot { margin-top: 8pt; font-size: 8.5pt; color: #444; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <nav id="nav" aria-label="Разделы"></nav>
+    <div class="toggles">
+      <button id="lang-btn" type="button"></button>
+      <button id="theme-btn" type="button"></button>
+    </div>
+  </header>
+  <main id="app"></main>
+</div>
+
+<div id="cv" class="cv" aria-hidden="true"></div>
+
+<dialog id="case-dialog" aria-labelledby="cd-title">
+  <div class="cd-box">
+    <form method="dialog"><button class="cd-close" id="cd-close">Закрыть</button></form>
+    <div id="cd-body"></div>
+  </div>
+</dialog>
+
+<dialog id="lightbox">
+  <form method="dialog"><button id="lb-close">Закрыть</button></form>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Предыдущий">‹</button>
+  <img id="lb-img" alt="">
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Следующий">›</button>
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const params = new URLSearchParams(location.search);
+  let lang = params.get("lang") || localStorage.getItem("lang") || (navigator.language || "ru").slice(0, 2);
+  if (!["ru", "en"].includes(lang)) lang = "en";
+  let theme = localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  let firstRender = true;
+
+  const pick = (o, k) => (lang === "en" && o[k + "En"] != null) ? o[k + "En"] : o[k];
+  const tr = o => o == null ? "" : (typeof o === "string" ? o : (o[lang] ?? o.ru));
+
+  function diffBlock(rows, head) {
+    const body = rows.map((r, i) => `
+      ${tr(r) ? `<div class="row hunk" style="animation-delay:${i * 160}ms"><span class="sign">@@</span><span>${esc(tr(r))}</span></div>` : ""}
+      <div class="row del" style="animation-delay:${i * 160 + 50}ms"><span class="sign">-</span><span class="v">${esc(pick(r, "from"))}</span></div>
+      <div class="row ins" style="animation-delay:${i * 160 + 100}ms"><span class="sign">+</span><span class="v">${esc(pick(r, "to"))}</span></div>`).join("");
+    return `<div class="diff" role="table">${head ? `<div class="head"><span>${esc(head[0])}</span><span>${esc(head[1])}</span></div>` : ""}${body}</div>`;
+  }
+
+  function shotsBlock(c, u) {
+    if (!c.shots.length) return "";
+    return `<div class="shots" data-shots>${c.shots.map(s => `
+      <figure data-shot>
+        <button type="button" aria-label="${esc(tr(s))}. ${esc(u.zoom)}" data-src="${esc(s.src)}" data-cap="${esc(tr(s))}">
+          <img src="${esc(s.src)}" alt="${esc(tr(s))}" loading="lazy" decoding="async" onerror="this.closest('[data-shot]').remove()">
+        </button>
+        <figcaption>${esc(tr(s))}</figcaption>
+      </figure>`).join("")}</div>`;
+  }
+
+
+  function renderCV(u, C) {
+    const arrow = r => `${pick(r, "from")} → ${pick(r, "to")} ${tr(r)}`;
+    const years = e => `${tr(e.from)} – ${e.to ? tr(e.to) : u.present}`;
+    $("#cv").innerHTML = `
+      <div class="cv-head">
+        <div class="left">
+          ${lang === "ru" && DATA.photo ? `<img src="${esc(DATA.photo)}" alt="">` : ""}
+          <div>
+            <h1>${esc(tr(DATA.name))}</h1>
+            <p class="r">${esc(u.role)}</p>
+            <p class="s">${esc(u.sub)}</p>
+          </div>
+        </div>
+        <div class="c">
+          <a href="https://t.me/${C.telegram}">t.me/${C.telegram}</a><br>
+          <a href="mailto:${C.email}">${C.email}</a><br>
+          <a href="https://github.com/${C.github}">github.com/${C.github}</a><br>
+          <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>
+        </div>
+      </div>
+      <p class="cv-metrics">${DATA.headline.map(h => `<span><b>${esc(pick(h, "from"))} → ${esc(pick(h, "to"))}</b> ${esc(tr(h))}</span>`).join("")}</p>
+      <h2>${esc(u.cvCases)}</h2>
+      ${DATA.cases.map(c => `
+        <div class="cv-case">
+          <h3>${esc(tr(c.title))}<span>${esc(tr(c.tag))}</span></h3>
+          <p>${esc(tr(c.impact))}</p>
+          <p class="res">${c.diff.slice(0, 2).map(r => esc(arrow(r))).join("; ")}</p>
+        </div>`).join("")}
+      <h2>${esc(u.moreTitle)}</h2>
+      <ul class="cv-more">${DATA.more.map(m => `<li><b>${esc(m[lang].t)}.</b> ${esc(pick(m, "from"))} → ${esc(pick(m, "to"))}${m.unit ? " " + esc(tr(m.unit)) : ""}</li>`).join("")}</ul>
+      <h2>${esc(u.expTitle)}</h2>
+      ${DATA.experience.map(e => `
+        <div class="cv-exp">
+          <div class="w">${esc(years(e))}</div>
+          <div><h3>${esc(tr(e.role))}, ${esc(DATA.orgs[e.org])}</h3><p>${esc(tr(e.short))}</p></div>
+        </div>`).join("")}
+      <h2>${esc(u.skillsTitle)}</h2>
+      <dl class="cv-skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <h2>${esc(u.champTitle)}</h2>
+      <p style="margin:0"><b>${esc(tr(DATA.championships.title))}, ${esc(DATA.championships.years)}.</b> ${DATA.championships.results.map(r => `${esc(r.place)} ${esc(tr(r))}`).join("; ")}. ${esc(tr(DATA.championships.expert.title))}: ${DATA.championships.expert[lang].map(esc).join("; ")}.</p>
+      <h2>${esc(u.gamesTitle)}</h2>
+      <p style="margin:0">${DATA.games.items.map(g => `<b>${esc(g.name)}</b> (${esc(tr(g.meta))})`).join("; ")}. itch.io/zander-games</p>
+      <h2>${esc(u.eduTitle)}</h2>
+      ${DATA.education.map(e => `<div class="cv-exp"><div class="w">${esc(e.years)}</div><div><h3>${esc(e.org ? DATA.orgs[e.org] : tr(e.title))}</h3><p>${esc(tr(e))}</p></div></div>`).join("")}
+      <p class="cv-foot">${esc(u.cvMore)}: <a href="${esc(DATA.site)}">${esc(DATA.site.replace(/^https?:\/\//, ""))}</a>. ${esc(tr(DATA.writing[0].meta))}: <a href="${esc(DATA.writing[0].href)}">${esc(DATA.writing[0].href.replace(/^https?:\/\//, ""))}</a></p>`;
+  }
+
+  function render() {
+    const u = DATA.ui[lang];
+    const C = DATA.contacts;
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.theme = theme;
+    document.title = `${tr(DATA.name)}, ${u.role}`;
+    $("#lang-btn").textContent = lang === "ru" ? "EN" : "RU";
+    $("#lang-btn").setAttribute("aria-label", lang === "ru" ? "Switch to English" : "Переключить на русский");
+    $("#theme-btn").textContent = theme === "dark" ? (lang === "ru" ? "Светлая" : "Light") : (lang === "ru" ? "Тёмная" : "Dark");
+    $("#lb-close").textContent = u.close;
+    $("#lb-prev").setAttribute("aria-label", lang === "ru" ? "Предыдущий" : "Previous");
+    $("#lb-next").setAttribute("aria-label", lang === "ru" ? "Следующий" : "Next");
+    $("#nav").innerHTML = Object.entries(u.nav).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join("");
+
+    const contactLinks = `
+      <a class="print-url" href="https://t.me/${C.telegram}">Telegram @${C.telegram}</a>
+      <a class="print-url" href="mailto:${C.email}">${C.email}</a>
+      <a class="print-url" href="https://github.com/${C.github}">GitHub</a>
+      <a class="print-url" href="https://habr.com/ru/users/${C.habr}/">Habr</a>`;
+
+    const showPhoto = lang === "ru" && DATA.photo;
+    const heroHead = lang === "ru" ? ["ivan-nikolaev.diff", "до и после агентов, 2025–2026"] : ["ivan-nikolaev.diff", "before and after agents, 2025–2026"];
+
+    $("#app").innerHTML = `
+      <div class="hero">
+        <div>
+          <h1>${esc(tr(DATA.name))}</h1>
+          <p class="role">${esc(u.role)}</p>
+          <p class="sub">${esc(u.sub)}</p>
+        </div>
+        ${showPhoto ? `<img class="photo" src="${esc(DATA.photo)}" alt="${esc(tr(DATA.name))}" width="132" height="132">` : ""}
+        <p class="quote">${esc(u.quote)}</p>
+        <div class="${firstRender ? "hero-diff-anim" : ""}" style="grid-column:1/-1;max-width:40rem">${diffBlock(DATA.headline, heroHead)}</div>
+        <div class="cta">
+          <a class="btn" href="https://t.me/${C.telegram}">${esc(u.write)}</a>
+          <a class="btn ghost" href="${esc(DATA.cvFile[lang])}" download>${esc(u.cv)}</a>
+          <div class="links">${contactLinks}</div>
+        </div>
+      </div>
+
+      <section id="cases" aria-labelledby="cases-h">
+        <h2 id="cases-h">${esc(u.casesTitle)}</h2>
+        <p class="lead">${esc(u.casesLead)}</p>
+        ${DATA.cases.map(c => `
+          <article class="case" id="case-${c.id}">
+            <h3>${esc(tr(c.title))}</h3>
+            <p class="tag">${esc(tr(c.tag))}</p>
+            <p class="impact">${esc(tr(c.impact))}</p>
+            <div class="case-grid">
+              <div>
+                <h4>${esc(u.problem)}</h4>
+                <p>${esc(tr(c.problem))}</p>
+                <h4>${esc(u.did)}</h4>
+                <ul>${c.did[lang].map(d => `<li>${esc(d)}</li>`).join("")}</ul>
+                ${c.note ? `<p class="note">${esc(tr(c.note))}</p>` : ""}
+              </div>
+              <div class="aside">
+                <h4>${esc(u.result)}</h4>
+                ${diffBlock(c.diff)}
+                ${c.facts ? `<ul class="facts">${c.facts[lang].map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : ""}
+                <p class="stack">${esc(u.stack)}: ${esc(c.stack)}</p>
+                ${c.links.length ? `<div class="links">${c.links.map(l => `<a class="print-url" href="${esc(l.href)}">${esc(tr(l))}</a>`).join("")}</div>` : ""}
+              </div>
+            </div>
+            ${shotsBlock(c, u)}
+          </article>`).join("")}
+      </section>
+
+      <section id="more" aria-labelledby="more-h">
+        <h2 id="more-h">${esc(u.moreTitle)}</h2>
+        ${u.moreLead ? `<p class="lead">${esc(u.moreLead)}</p>` : ""}
+        <div class="games more-cards">
+          ${DATA.more.map((m, i) => `
+            <button type="button" class="game mcard" data-more="${i}" aria-haspopup="dialog">
+              <span class="game-name">${esc(m[lang].t)}</span>
+              <span class="game-meta">${esc(tr(m.meta))}</span>
+              <span class="game-d clamp">${esc(m[lang].d)}</span>
+              <span class="mcard-res"><del>${esc(pick(m, "from"))}</del> → <ins>${esc(pick(m, "to"))}</ins></span>
+            </button>`).join("")}
+        </div>
+      </section>
+
+      <section id="exp" aria-labelledby="exp-h">
+        <h2 id="exp-h">${esc(u.expTitle)}</h2>
+        <ol class="exp">
+          ${DATA.experience.map(e => `
+            <li>
+              <div class="when">${esc(tr(e.from))} – ${esc(e.to ? tr(e.to) : u.present)}</div>
+              <div>
+                <h3>${esc(tr(e.role))}</h3>
+                <p class="org">${esc(DATA.orgs[e.org])}</p>
+                <p>${esc(tr(e.text))}</p>
+                ${e.stack ? `<p class="stack">${esc(e.stack)}</p>` : ""}
+              </div>
+            </li>`).join("")}
+        </ol>
+        <div class="edu">
+          <h3>${esc(u.eduTitle)}</h3>
+          <ol class="exp">
+            ${DATA.education.map(e => `
+              <li><div class="when">${esc(e.years)}</div><div><h3>${esc(e.org ? DATA.orgs[e.org] : tr(e.title))}</h3><p class="org">${esc(tr(e))}</p></div></li>`).join("")}
+          </ol>
+        </div>
+        <div class="edu">
+          <h3>${esc(u.skillsTitle)}</h3>
+          <dl class="skills">${DATA.skills[lang].map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+        </div>
+      </section>
+
+      <section id="writing" aria-labelledby="writing-h">
+        <h2 id="writing-h">${esc(u.writingTitle)}</h2>
+        <div class="two">
+          <div>
+            <h3 class="sub">${esc(u.libsTitle)}</h3>
+            <ul class="writing">
+              ${DATA.writing.map(w => `<li><a class="print-url" href="${esc(w.href)}">${esc(tr(w))}</a><span class="meta">${esc(tr(w.meta))}</span></li>`).join("")}
+            </ul>
+          </div>
+          <div>
+            <h3 class="sub">${esc(u.gamesTitle)}</h3>
+            <p class="games-intro">${esc(tr(DATA.games.intro))}</p>
+          </div>
+        </div>
+        <div class="games">
+          ${DATA.games.items.map(g => `
+            <a class="game" href="${esc(g.href)}">
+              <span class="game-name">${esc(g.name)}</span>
+              <span class="game-meta">${esc(tr(g.meta))}</span>
+              <span class="game-d">${esc(tr(g.d))}</span>
+            </a>`).join("")}
+        </div>
+        <div class="champ">
+          <h3 class="sub">${esc(u.champTitle)}</h3>
+          <p class="champ-title">${esc(tr(DATA.championships.title))}<span>${esc(DATA.championships.years)}</span></p>
+          <div class="champ-res">${DATA.championships.results.map(r => `<div><b>${esc(r.place)}</b><span>${esc(tr(r))}</span></div>`).join("")}</div>
+          <div class="champ-body">
+            <ul class="champ-text">${DATA.championships.text[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+            <figure class="champ-photo" data-shots>
+              <button type="button" data-src="${esc(DATA.championships.photo.src)}" data-cap="${esc(tr(DATA.championships.photo))}" aria-label="${esc(tr(DATA.championships.photo))}. ${esc(u.zoom)}">
+                <img src="${esc(DATA.championships.photo.src)}" alt="${esc(tr(DATA.championships.photo))}" loading="lazy">
+              </button>
+              <figcaption>${esc(tr(DATA.championships.photo))}</figcaption>
+            </figure>
+          </div>
+          <h4 class="champ-exp-h">${esc(tr(DATA.championships.expert.title))}</h4>
+          <ul class="champ-text">${DATA.championships.expert[lang].map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+        </div>
+      </section>
+
+      <section id="now" aria-labelledby="now-h">
+        <h2 id="now-h">${esc(u.nowTitle)}</h2>
+        <div class="now">${DATA.now.map((n, i) => `<div class="tile${i === DATA.now.length - 1 ? " seek" : ""}"><span class="k">${esc(tr(n.k))}</span><span class="v">${esc(tr(n.v))}</span></div>`).join("")}</div>
+        <p class="updated">${esc(u.updated)}</p>
+      </section>
+
+      <footer>
+        <div class="col">
+          <h2>${esc(u.contactTitle)}</h2>
+          <p>${esc(u.contactLead)}</p>
+          <div class="cta"><a class="btn" href="https://t.me/${C.telegram}">${esc(u.write)}</a><div class="links">${contactLinks}</div></div>
+        </div>
+      </footer>`;
+
+    renderCV(u, C);
+    document.querySelectorAll("[data-shots]").forEach(el => {
+      const n = el.querySelectorAll("[data-shot]").length;
+      if (n === 1) el.classList.add("single");
+    });
+    firstRender = false;
+  }
+
+  let lbList = [], lbIdx = 0;
+  function lbShow(i) {
+    lbIdx = (i + lbList.length) % lbList.length;
+    const b = lbList[lbIdx];
+    $("#lb-img").src = b.dataset.src;
+    $("#lb-img").alt = b.dataset.cap;
+    $("#lb-cap").textContent = lbList.length > 1 ? `${b.dataset.cap}  ${lbIdx + 1} / ${lbList.length}` : b.dataset.cap;
+    $("#lb-prev").hidden = $("#lb-next").hidden = lbList.length < 2;
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-src]");
+    if (!b) return;
+    lbList = [...b.closest("[data-shots]").querySelectorAll("[data-src]")];
+    lbShow(lbList.indexOf(b));
+    $("#lightbox").showModal();
+  });
+  document.addEventListener("click", e => {
+    const c = e.target.closest("[data-more]");
+    if (!c) return;
+    const m = DATA.more[+c.dataset.more];
+    const u = DATA.ui[lang];
+    $("#cd-close").textContent = u.close;
+    $("#cd-body").innerHTML = `
+      <h3 id="cd-title">${esc(m[lang].t)}</h3>
+      <span class="game-meta">${esc(tr(m.meta))}</span>
+      ${m.details ? [u.dWas, u.dDid, u.dGot].map((h, k) => `<h4 class="cd-h">${esc(h)}</h4><p>${esc(m.details[lang][k])}</p>`).join("") : `<p>${esc(m[lang].d)}</p>`}
+      ${diffBlock([{ ru: m.unit ? m.unit.ru : "", en: m.unit ? m.unit.en : "", from: m.from, to: m.to, fromEn: m.fromEn, toEn: m.toEn }])}
+      ${m.shots && m.shots.length ? shotsBlock(m, u) : ""}`;
+    $("#case-dialog").showModal();
+  });
+  $("#case-dialog").addEventListener("click", e => { if (e.target.id === "case-dialog") e.target.close(); });
+  $("#lb-prev").addEventListener("click", () => lbShow(lbIdx - 1));
+  $("#lb-next").addEventListener("click", () => lbShow(lbIdx + 1));
+  $("#lightbox").addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); lbShow(lbIdx - 1); }
+    if (e.key === "ArrowRight") { e.preventDefault(); lbShow(lbIdx + 1); }
+  });
+  let touchX = null;
+  $("#lightbox").addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+  $("#lightbox").addEventListener("touchend", e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) lbShow(lbIdx + (dx < 0 ? 1 : -1));
+    touchX = null;
+  });
+  $("#lightbox").addEventListener("click", e => { if (e.target.id === "lightbox") e.target.close(); });
+
+  $("#lang-btn").addEventListener("click", () => {
+    lang = lang === "ru" ? "en" : "ru";
+    localStorage.setItem("lang", lang);
+    render();
+  });
+  $("#theme-btn").addEventListener("click", () => {
+    theme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", theme);
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
