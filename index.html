@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Иван Николаев, Product Engineer</title>
-<meta name="description" content="Product Engineer. Senior backend на Go и Ruby on Rails, AI-инструменты для разработки: MCP, агенты, контекст.">
-<meta property="og:title" content="Иван Николаев, Product Engineer">
-<meta property="og:description" content="Бэкенд на Ruby on Rails и Go. Собираю контекст для агентов и меряю, что из этого вышло.">
+<title>Иван Николаев, AI Engineer</title>
+<meta name="description" content="AI Engineer. Разбираю процесс на шаги и ставлю агентов туда, где они добавляют ценность. Senior backend на Go и Ruby on Rails.">
+<meta property="og:title" content="Иван Николаев, AI Engineer">
+<meta property="og:description" content="Разбираю процесс на шаги, ставлю агентов туда, где они дают выигрыш, и меряю, что из этого вышло.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%231a2233%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22monospace%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%236fd49b%22%3E+%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#131822" media="(prefers-color-scheme: dark)">
@@ -33,8 +33,8 @@ const DATA = {
 
   ui: {
     ru: {
-      role: "Product Engineer",
-      sub: "Senior backend на Go и Ruby on Rails, AI-native разработка. В разработке почти 7 лет. Москва, удалённо.",
+      role: "AI Engineer",
+      sub: "Разбираю процесс на шаги и ставлю агентов туда, где они делают шаг быстрее и качественнее. Под капотом senior backend на Go и Ruby on Rails, в разработке почти 7 лет. Москва, удалённо.",
       quote: "Долгое время я на любой вопрос отвечал «всё зависит от контекста». Фраза правдивая и бесполезная одновременно. Сейчас я этот контекст собираю, отдаю агентам и смотрю по цифрам, что из этого вышло.",
       cv: "Скачать резюме, PDF",
       cvCases: "Основные кейсы",
@@ -42,7 +42,7 @@ const DATA = {
       write: "Написать в Telegram",
       nav: { cases: "Основные кейсы", more: "Другие кейсы", exp: "Опыт", writing: "Сообщество", now: "Сейчас" },
       casesTitle: "Основные кейсы",
-      casesLead: "Что было, что сделал и что поменялось. Цифры из трекера, GitLab и тестов.",
+      casesLead: "Сверху одной строкой: какой шаг процесса улучшил и что это дало. Ниже детали. Цифры из трекера, GitLab и тестов.",
       problem: "Проблема",
       did: "Что сделал",
       result: "Что поменялось",
@@ -61,7 +61,7 @@ const DATA = {
       dGot: "Что вышло",
       libsTitle: "Статьи и библиотеки",
       contactTitle: "Связаться",
-      contactLead: "Ищу роль Product Engineer, где фичу можно вести целиком, от проблемы пользователя до метрики. Рассматриваю и позиции техлида или тимлида.",
+      contactLead: "Ищу роль AI Engineer: взять процесс команды, разложить на шаги, посчитать, где агент добавит ценность, встроить его и померить результат. Рассматриваю и позиции техлида или тимлида.",
       zoom: "Нажмите, чтобы увеличить",
       close: "Закрыть",
       present: "сейчас",
@@ -69,8 +69,8 @@ const DATA = {
       updated: "Обновлено 30 сентября 2026"
     },
     en: {
-      role: "Product Engineer",
-      sub: "Senior backend in Go and Ruby on Rails, AI-native development. Almost 7 years shipping. Moscow, remote.",
+      role: "AI Engineer",
+      sub: "I break a process into steps and put AI agents where they make a step faster and better. Under the hood, a senior backend engineer in Go and Ruby on Rails, almost 7 years shipping. Moscow, remote.",
       quote: "For years my answer to everything was “it depends on the context”. True, and useless. Now I collect that context, hand it to AI agents, and measure what comes out.",
       cv: "Download CV, PDF",
       cvCases: "Main work",
@@ -78,7 +78,7 @@ const DATA = {
       write: "Message on Telegram",
       nav: { cases: "Main work", more: "Other work", exp: "Experience", writing: "Community", now: "Now" },
       casesTitle: "Main work",
-      casesLead: "The problem, what I did, what changed. Numbers come from the tracker, GitLab and test suites, rounded down.",
+      casesLead: "One line on top: which step of the process I improved and what it changed. Details below. Numbers come from the tracker, GitLab and test suites, rounded down.",
       problem: "Problem",
       did: "What I did",
       result: "What changed",
@@ -97,7 +97,7 @@ const DATA = {
       dGot: "Result",
       libsTitle: "Articles and libraries",
       contactTitle: "Get in touch",
-      contactLead: "Looking for a Product Engineer role where I own a feature end to end, from the user's problem to the metric. Tech lead and team lead roles are on the table too.",
+      contactLead: "Looking for an AI Engineer role: take a team's process, break it into steps, work out where an agent adds value, build it in and measure the result. Tech lead and team lead roles are on the table too.",
       zoom: "Click to enlarge",
       close: "Close",
       present: "now",
@@ -116,6 +116,7 @@ const DATA = {
   cases: [
     {
       id: "context",
+      impact: { ru: "Шаг: написание кода и ревью. Агент получил контекст команды, и замечаний на ревью стало в 3 раза меньше, а смерженных MR за полгода в 2.5 раза больше.", en: "Step: writing code and review. The agent got the team's context: 3× fewer review comments per MR and 2.5× more merged MRs per half-year." },
       short: { ru: "Подключил к агенту трекер, вики и GitLab через свои MCP, написал около 15 скиллов под рутину, навёл гигиену контекста и всё мерил по трекеру и GitLab.", en: "Wired the tracker, wiki and GitLab into the agent via my own MCP servers, wrote ~15 skills for daily chores, set up context hygiene and measured everything." },
       title: { ru: "Контекст важнее промпта", en: "Context for agents, not prompts" },
       tag: { ru: "AI в разработке, основная работа, 2026", en: "AI in engineering, day job, 2026" },
@@ -148,6 +149,7 @@ const DATA = {
     },
     {
       id: "rag",
+      impact: { ru: "Шаг: найти ответ «как у нас это устроено». Вместо вопросов в личку бот отвечает по вики за 0.5–1.2 ₽, а качество меряется eval, не на глаз.", en: "Step: finding out “how does this work here”. Instead of DMs, a bot answers from the wiki for 0.5–1.2 ₽, and quality is measured by evals, not by eye." },
       short: { ru: "Бот на Go по 1 834 документам вики и OpenAPI. Завёл eval на golden set, нашёл тихий баг таблиц, который портил 57% страниц, починил молчаливую порчу длинных тредов.", en: "A Go bot over 1,834 wiki pages and OpenAPI specs. Added golden-set evals, found a silent table bug corrupting 57% of pages, fixed silent degradation of long threads." },
       title: { ru: "RAG-бот по вики в рабочем мессенджере", en: "A RAG bot over the wiki, in the team messenger" },
       tag: { ru: "Основная работа, в эксплуатации, 2026", en: "Day job, in production, 2026" },
@@ -192,6 +194,7 @@ const DATA = {
     },
     {
       id: "review",
+      impact: { ru: "Шаг: подсчёт performance review. HR больше не считает 3 280 строк формулами в Excel, расчёт сверяется с эталоном в тесте, анонимность держится на HMAC.", en: "Step: scoring performance reviews. HR no longer runs 3,280 rows through Excel formulas, scoring is checked against a reference in tests, and anonymity rests on HMAC." },
       short: { ru: "Перенёс методику оценки 540° из Excel в B2B-сервис на Go и React за 16 дней: псевдонимизация ответов через HMAC, мультитенантность, 94 MCP-тула, мутационные тесты.", en: "Moved a 540° review methodology from Excel into a Go and React B2B service in 16 days: HMAC pseudonymization, multi-tenancy, 94 MCP tools, mutation testing." },
       title: { ru: "«Оценка 540»: performance review без Excel", en: "“Review 540”: performance reviews out of Excel" },
       tag: { ru: "Пет-проект, B2B, сделал за 16 дней", en: "Side project, B2B SaaS, 16 days" },
@@ -241,6 +244,7 @@ const DATA = {
     },
     {
       id: "svod",
+      impact: { ru: "Шаг: оформление документов. Оформление задаётся один раз в шаблоне, и шаблон из вордовского договора агент собирает сам через MCP.", en: "Step: formatting documents. Styling is set once in the template, and an agent builds that template from a Word contract on its own via MCP." },
       short: { ru: "Редактор документов, где оформление живёт в шаблоне. Один AST и один рендерер для PDF, DOCX, HTML и Markdown. MCP на 43 тула: из вордовского договора агент собирает шаблон.", en: "A document editor where styling lives in the template. One AST and one renderer for PDF, DOCX, HTML and Markdown. 43 MCP tools: an agent turns a Word contract into a template." },
       title: { ru: "«Свод»: оформление живёт в шаблоне", en: "“Svod”: documents where styling lives in the template" },
       tag: { ru: "Пет-проект, закрытая бета, svod.webtm.ru", en: "Side project, closed beta, svod.webtm.ru" },
@@ -289,6 +293,7 @@ const DATA = {
     },
     {
       id: "oss",
+      impact: { ru: "Шаг: аудит и тестовые данные в новых сервисах. Аудит подключается гемом вместо написания с нуля, связные данные для разработки генерируются без дампа прода.", en: "Step: auditing and test data in new services. Auditing comes from a gem instead of being rewritten, and consistent dev data is generated without a prod dump." },
       short: { ru: "provenance, гем аудита для Rails, 450 скачиваний. database-seed-cli на Go, генератор связных данных для PostgreSQL, проверен на базах до 417 таблиц.", en: "provenance, an audit gem for Rails, 450 downloads. database-seed-cli in Go, a consistent data generator for PostgreSQL, tested on databases with up to 417 tables." },
       title: { ru: "Open source: provenance и database-seed-cli", en: "Open source: provenance and database-seed-cli" },
       tag: { ru: "Свои библиотеки, Ruby и Go, 2026", en: "My own libraries, Ruby and Go, 2026" },
@@ -325,15 +330,37 @@ const DATA = {
 
   more: [
     {
-      meta: { ru: "Наставник команды, 2-е место", en: "Team mentor, 2nd place" },
+      meta: { ru: "Сбор контекста для агента, основная работа", en: "Context for the agent, day job" },
       shots: [],
       details: {
-        ru: ["По опросу команды большинство учеников хотели учиться не по старинке, а в кружках и конкурсах участвовала меньшая часть.", "Был наставником команды из 4 студентов: программист, менеджер проекта, дизайнер и аналитик. Придумали чат-бот с геймификацией: у студента курсы по шагам, прогресс и домашка, у преподавателя публикация курса и результаты учеников. Сам сделал архитектуру и написал код бота, команда закрывала аналитику, дизайн и презентацию.", "Рабочий бот и презентация с дорожной картой развития, 2-е место."],
-        en: ["According to the team's survey, most students wanted something other than old-school teaching, and few took part in clubs and contests.", "I mentored a team of 4 students: a developer, a project manager, a designer and an analyst. We came up with a gamified chat bot: step-by-step courses, progress and homework for students, course publishing and student results for teachers. I designed the architecture and wrote the bot's code; the team handled analysis, design and the pitch.", "A working bot and a pitch with a development roadmap, 2nd place."]
+        ru: ["Агенты не видели задачи, комментарии и вики, контекст приходилось копировать в чат руками.", "Написал MCP-сервер на Go для трекера и вики, 22 тула, работает по stdio и HTTP с OAuth. Запись только в два шага: сначала превью, потом подтверждение. Есть read-only режим и маскирование секретов, 95 тестов. По ходу поймал баг, когда списанные 8 часов улетали в трекер как 0 минут.", "Сервер стоит во внутреннем marketplace компании, агент сам читает задачи и вики."],
+        en: ["Agents could not see tasks, comments or the wiki, so context had to be pasted into the chat by hand.", "Wrote an MCP server in Go for the tracker and wiki, 22 tools, over stdio and HTTP with OAuth. Writes take two steps: a preview, then a confirmation. Read-only mode, secret masking, 95 tests. Along the way caught a bug where 8 logged hours landed in the tracker as 0 minutes.", "The server is listed in the company's internal marketplace, and the agent reads tasks and the wiki on its own."]
       },
-      ru: { t: "EDUG, бот для обучения", d: "Был наставником команды из 4 студентов, пока преподавал, и сам писал архитектуру и код. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
-      en: { t: "EDUG, a learning bot", d: "I mentored a team of 4 students while teaching, and did the architecture and code myself. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
-      from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
+      ru: { t: "MCP для трекера и вики", d: "Агент сам видит задачи, комментарии и вики, копировать контекст в чат больше не нужно. 22 тула, запись только через подтверждение." },
+      en: { t: "An MCP server for the tracker and wiki", d: "The agent sees tasks, comments and the wiki itself, no more pasting context into the chat. 22 tools, writes only after a confirm." },
+      from: "агент не видит задачи", to: "22 тула", fromEn: "agent can't see tasks", toEn: "22 tools"
+    },
+    {
+      meta: { ru: "Разбор дефектов, основная работа", en: "Defect analysis, day job" },
+      shots: [],
+      details: {
+        ru: ["Дефекты разбирали руками раз в квартал, и выводы делались скорее по ощущениям.", "Собрал пайплайн из нескольких агентов: выгрузка задач из трекера, классификация, notebook с 8 графиками и черновики паттернов дефектов. Всё детерминированное вынес в скрипты, агенту осталась классификация и выводы.", "Разбор 24 задач стоит ~$0.17, токенов на разбор ~55K → ~30K."],
+        en: ["Defects were reviewed by hand once a quarter, and conclusions were mostly gut feeling.", "Built a pipeline of several agents: tracker export, classification, a notebook with 8 charts and draft defect patterns. Everything deterministic moved into scripts; the agent only classifies and draws conclusions.", "Analyzing 24 tasks costs ~$0.17, tokens per run ~55K → ~30K."]
+      },
+      ru: { t: "Разбор дефектов агентами", d: "Разбор дефектов из ручного раз в квартал стал регулярным: агенты классифицируют, скрипты строят 8 графиков, ~$0.17 на 24 задачи." },
+      en: { t: "Agent-driven defect analysis", d: "Defect review went from a manual quarterly chore to a routine: agents classify, scripts draw 8 charts, ~$0.17 per 24 tasks." },
+      from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks"
+    },
+    {
+      meta: { ru: "Документация API, основная работа", en: "API docs, day job" },
+      shots: [],
+      details: {
+        ru: ["В swagger десяти сервисов у параметров не было описаний, фронту и аналитикам приходилось угадывать.", "Добавил CI-проверку описаний и прогнал агентом по всем сервисам одной кампанией: одна правка, 13 MR.", "1 100+ описаний параметров, а новый эндпоинт без описаний CI не пропустит."],
+        en: ["Parameters in the swagger of ten services had no descriptions, so frontend devs and analysts had to guess.", "Added a CI check for descriptions and ran an agent across all services as one campaign: one change, 13 MRs.", "1,100+ parameter descriptions, and CI rejects new endpoints without them."]
+      },
+      ru: { t: "Описания API в 10 сервисах", d: "Фронт и аналитики больше не угадывают параметры: агент дописал 1 100+ описаний в 10 сервисах, CI не пускает новые без описания." },
+      en: { t: "API descriptions across 10 services", d: "Frontend and analysts no longer guess parameters: an agent added 1,100+ descriptions across 10 services, and CI blocks new ones without them." },
+      from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
     },
     {
       meta: { ru: "Пет-проект, NAS, локальная модель", en: "Side project, NAS, local model" },
@@ -347,125 +374,103 @@ const DATA = {
       from: "10+ веб-интерфейсов домашних сервисов", to: "один чат в Telegram, 20 MCP", fromEn: "10+ home service web UIs", toEn: "one Telegram chat, 20 MCP servers"
     },
     {
-      meta: { ru: "Основная работа, GitLab CI", en: "Day job, GitLab CI" },
-      shots: [],
-      details: {
-        ru: ["Тесты основного сервиса шли одной джобой больше 12 минут, 567 спек, и каждый MR ждал их целиком.", "Профилировал медленные спеки, разбил прогон на 5 шардов через parallel_tests и собрал покрытие из шардов в один отчёт. В Dockerfile перестал вырезать .git, после этого шард не ставит гемы заново, минус ~100 с на шард. Пробовал параллелить ещё и внутри шарда, но это вскрыло тесты, которые мешают друг другу: общий Rails.cache, утечка локали, состояние БД. Откатил и записал их отдельно.", "Тесты в пайплайне ~12.5 → ~4.5 минуты, сборка образа на повторных прогонах ~13 → ~3 минуты."],
-        en: ["The main service ran its tests as a single job for 12+ minutes, 567 spec files, and every MR waited for all of it.", "Profiled slow specs, split the run into 5 shards with parallel_tests and merged coverage back into one report. Stopped stripping .git in the Dockerfile so shards no longer reinstall gems, about 100 s saved per shard. Tried parallelizing inside shards too, which exposed tests that interfere with each other: shared Rails.cache, leaking locale, DB state. Rolled it back and listed them separately.", "Pipeline tests ~12.5 → ~4.5 minutes, image build on repeat runs ~13 → ~3 minutes."]
-      },
-      ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "Разбил прогон на 5 шардов через parallel_tests и починил кэш гемов в образе, шард больше не ставит их заново." },
-      en: { t: "CI tests 2.6× faster", d: "Split the run into 5 shards with parallel_tests and fixed gem caching in the image, so shards no longer reinstall gems." },
-      from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
-    },
-    {
-      meta: { ru: "Основная работа, 12 Ruby-сервисов", en: "Day job, 12 Ruby services" },
+      meta: { ru: "Стабильность CI, 12 сервисов", en: "CI stability, 12 services" },
       shots: [],
       details: {
         ru: ["Флаки-тест падал, пайплайн перезапускали и забывали, причину никто не искал.", "Упавший тест ретраится один раз. Если со второго раза прошёл, джоба вешает на MR лейбл flaky и комментарий с seed, спеком и ссылкой на шард. Вынес это в общий CI-компонент и раскатил на 12 Ruby-сервисов, все сидят на одной версии.", "С июня метку получили 75 MR, найдено 15 флаки-спеков, их увидели 16 разработчиков."],
         en: ["A flaky test failed, someone re-ran the pipeline and forgot about it; nobody looked for the cause.", "A failed test retries once. If it passes the second time, the job labels the MR flaky and comments with the seed, the spec and a link to the shard. Shipped it as a shared CI component across 12 Ruby services, all pinned to one version.", "Since June 75 MRs got the label, 15 flaky specs were found and 16 developers saw them."]
       },
-      ru: { t: "Флаки видны прямо на MR", d: "Упавший тест ретраится один раз, и если прошёл, на MR появляется лейбл flaky и комментарий с seed и спеком. Вынес в общий CI-компонент на 12 Ruby-сервисов, за 4 месяца метку увидели 16 разработчиков." },
-      en: { t: "Flaky tests show up on the MR", d: "A failed test retries once, and if it passes the MR gets a flaky label and a comment with the seed and spec. Shipped as a shared CI component for 12 Ruby services; 16 developers saw the label in 4 months." },
+      ru: { t: "Флаки видны прямо на MR", d: "Флаки-тесты перестали теряться: упавший тест перезапускается сам, а на MR появляется лейбл и seed. Так нашлось 15 флаки-спеков." },
+      en: { t: "Flaky tests show up on the MR", d: "Flaky tests stopped getting lost: a failed test reruns itself and the MR gets a label and the seed. That surfaced 15 flaky specs." },
       from: "перезапустили пайплайн и забыли", to: "15 флаки-спеков найдено на 75 MR", fromEn: "re-run the pipeline and forget", toEn: "15 flaky specs caught on 75 MRs"
     },
     {
-      meta: { ru: "Основная работа, Go, MCP", en: "Day job, Go, MCP" },
+      meta: { ru: "Ожидание CI, основная работа", en: "Waiting on CI, day job" },
       shots: [],
       details: {
-        ru: ["Агенты не видели задачи, комментарии и вики, контекст приходилось копировать в чат руками.", "Написал MCP-сервер на Go для трекера и вики, 22 тула, работает по stdio и HTTP с OAuth. Запись только в два шага: сначала превью, потом подтверждение. Есть read-only режим и маскирование секретов, 95 тестов. По ходу поймал баг, когда списанные 8 часов улетали в трекер как 0 минут.", "Сервер стоит во внутреннем marketplace компании, агент сам читает задачи и вики."],
-        en: ["Agents could not see tasks, comments or the wiki, so context had to be pasted into the chat by hand.", "Wrote an MCP server in Go for the tracker and wiki, 22 tools, over stdio and HTTP with OAuth. Writes take two steps: a preview, then a confirmation. Read-only mode, secret masking, 95 tests. Along the way caught a bug where 8 logged hours landed in the tracker as 0 minutes.", "The server is listed in the company's internal marketplace, and the agent reads tasks and the wiki on its own."]
+        ru: ["Тесты основного сервиса шли одной джобой больше 12 минут, 567 спек, и каждый MR ждал их целиком.", "Профилировал медленные спеки, разбил прогон на 5 шардов через parallel_tests и собрал покрытие из шардов в один отчёт. В Dockerfile перестал вырезать .git, после этого шард не ставит гемы заново, минус ~100 с на шард. Пробовал параллелить ещё и внутри шарда, но это вскрыло тесты, которые мешают друг другу: общий Rails.cache, утечка локали, состояние БД. Откатил и записал их отдельно.", "Тесты в пайплайне ~12.5 → ~4.5 минуты, сборка образа на повторных прогонах ~13 → ~3 минуты."],
+        en: ["The main service ran its tests as a single job for 12+ minutes, 567 spec files, and every MR waited for all of it.", "Profiled slow specs, split the run into 5 shards with parallel_tests and merged coverage back into one report. Stopped stripping .git in the Dockerfile so shards no longer reinstall gems, about 100 s saved per shard. Tried parallelizing inside shards too, which exposed tests that interfere with each other: shared Rails.cache, leaking locale, DB state. Rolled it back and listed them separately.", "Pipeline tests ~12.5 → ~4.5 minutes, image build on repeat runs ~13 → ~3 minutes."]
       },
-      ru: { t: "MCP для трекера и вики", d: "22 тула, stdio и HTTP с OAuth, стоит в marketplace компании. Записать что-то можно только через двухфазное подтверждение." },
-      en: { t: "An MCP server for the tracker and wiki", d: "22 tools, stdio and HTTP with OAuth, listed in the company marketplace. Writes need a two-phase confirm." },
-      from: "агент не видит задачи", to: "22 тула", fromEn: "agent can't see tasks", toEn: "22 tools"
+      ru: { t: "Тесты в CI в 2.6 раза быстрее", d: "MR ждёт тесты 4.5 минуты вместо 12.5, поскольку прогон разбит на 5 параллельных шардов." },
+      en: { t: "CI tests 2.6× faster", d: "MRs wait 4.5 min for tests instead of 12.5, since the run is split into 5 parallel shards." },
+      from: "~12.5 мин", to: "~4.5 мин", fromEn: "~12.5 min", toEn: "~4.5 min", unit: { ru: "тесты в пайплайне", en: "tests in the pipeline" }
     },
     {
-      meta: { ru: "Основная работа, агенты, Python", en: "Day job, agents, Python" },
-      shots: [],
-      details: {
-        ru: ["Дефекты разбирали руками раз в квартал, и выводы делались скорее по ощущениям.", "Собрал пайплайн из нескольких агентов: выгрузка задач из трекера, классификация, notebook с 8 графиками и черновики паттернов дефектов. Всё детерминированное вынес в скрипты, агенту осталась классификация и выводы.", "Разбор 24 задач стоит ~$0.17, токенов на разбор ~55K → ~30K."],
-        en: ["Defects were reviewed by hand once a quarter, and conclusions were mostly gut feeling.", "Built a pipeline of several agents: tracker export, classification, a notebook with 8 charts and draft defect patterns. Everything deterministic moved into scripts; the agent only classifies and draws conclusions.", "Analyzing 24 tasks costs ~$0.17, tokens per run ~55K → ~30K."]
-      },
-      ru: { t: "Разбор дефектов агентами", d: "Выгрузка из трекера, классификация, 8 графиков и черновики паттернов. Детерминированные шаги вынес в скрипты." },
-      en: { t: "Agent-driven defect analysis", d: "Tracker export, classification, 8 charts and draft patterns. Deterministic steps moved into scripts." },
-      from: "руками раз в квартал", to: "~$0.17 за 24 задачи", fromEn: "by hand, quarterly", toEn: "~$0.17 per 24 tasks"
-    },
-    {
-      meta: { ru: "Основная работа, Rails, PostgreSQL", en: "Day job, Rails, PostgreSQL" },
-      shots: [],
-      details: {
-        ru: ["Реплики чтения PostgreSQL не получалось включить, поскольку часть GET-запросов писала в базу.", "Сделал детектор в RSpec: тест падает, если GET-запрос пытается писать. Прогнал на всех 17 207 примерах и нашёл 805 нарушений, из них 85 прямых и 720 каскадных. Почти все закрылись одной правкой в общем месте. Попутно в SSO на Go перевёл 35 мест чтения на реплику.", "805 → 0 нарушений, на stage лаг реплики 0.27 с, ошибок нету."],
-        en: ["PostgreSQL read replicas could not be enabled because some GET requests wrote to the database.", "Built an RSpec detector that fails a test when a GET request tries to write. Ran it across all 17,207 examples and found 805 violations: 85 direct and 720 cascading. Almost all of them were fixed by one change in a shared place. Along the way moved 35 read paths in the Go SSO service to the replica.", "805 → 0 violations; on stage replica lag is 0.27 s with no errors."]
-      },
-      ru: { t: "Реплики чтения без сюрпризов", d: "Включить реплики мешали записи в БД на GET-запросах. Написал детектор в RSpec, и почти всё закрылось одной правкой в общем месте." },
-      en: { t: "Read replicas without surprises", d: "DB writes on GET requests blocked read replicas. Wrote an RSpec detector and one centralized fix." },
-      from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
-    },
-    {
-      meta: { ru: "Основная работа, RSpec, OpenAPI", en: "Day job, RSpec, OpenAPI" },
+      meta: { ru: "Контракт API, основная работа", en: "API contract, day job" },
       shots: [],
       details: {
         ru: ["Схемы API генерировались из тестов, поэтому документация повторяла код, даже если код был неправ.", "Перевёл request-тесты на обратный подход: аналитики пишут OpenAPI, а тесты проверяют реализацию по схеме через skooma, форк лежит у меня на GitHub. Переписал тесты за один проход, 50 файлов.", "Сейчас так покрыто около 600 операций в 8 спецификациях, и расхождение кода со схемой ловится тестами."],
         en: ["API schemas were generated from tests, so the docs mirrored the code even when the code was wrong.", "Flipped request specs around: analysts write the OpenAPI, and tests validate the implementation against it with skooma (my fork is on GitHub). Rewrote the tests in one pass, 50 files.", "About 600 operations across 8 specs are covered this way, and code drifting from the schema is caught by tests."]
       },
-      ru: { t: "Document-first тесты API", d: "Раньше схемы генерировались из тестов, перевёл на обратное: тесты проверяют API по OpenAPI аналитиков. Сейчас так около 600 операций в 8 спеках." },
-      en: { t: "Document-first API tests", d: "Moved request specs from generating schemas to validating against analysts' OpenAPI. About 600 operations across 8 specs now." },
+      ru: { t: "Document-first тесты API", d: "Документацию API пишут аналитики, а тесты проверяют по ней код. Расхождение ловится в CI, около 600 операций." },
+      en: { t: "Document-first API tests", d: "Analysts write the API docs, and tests check the code against them. Drift is caught in CI, about 600 operations." },
       from: "схема из тестов", to: "тесты по схеме", fromEn: "schema from tests", toEn: "tests from schema"
     },
     {
-      meta: { ru: "Основная работа, CI, агенты", en: "Day job, CI, agents" },
-      shots: [],
-      details: {
-        ru: ["В swagger десяти сервисов у параметров не было описаний, фронту и аналитикам приходилось угадывать.", "Добавил CI-проверку описаний и прогнал агентом по всем сервисам одной кампанией: одна правка, 13 MR.", "1 100+ описаний параметров, а новый эндпоинт без описаний CI не пропустит."],
-        en: ["Parameters in the swagger of ten services had no descriptions, so frontend devs and analysts had to guess.", "Added a CI check for descriptions and ran an agent across all services as one campaign: one change, 13 MRs.", "1,100+ parameter descriptions, and CI rejects new endpoints without them."]
-      },
-      ru: { t: "Описания API в 10 сервисах", d: "Прогнал агентом по 10 сервисам: одна CI-проверка и 13 MR." },
-      en: { t: "API descriptions across 10 services", d: "An agent-driven campaign: one CI check and 13 MRs." },
-      from: "0", to: "1 100+", unit: { ru: "описаний параметров", en: "parameter descriptions" }
-    },
-    {
-      meta: { ru: "Основная работа, Redis, SSO", en: "Day job, Redis, SSO" },
-      shots: [],
-      details: {
-        ru: ["Сервисы ходили в Redis без TLS, нужно было переехать на managed Redis.", "Перевёл клиент SSO в 10 сервисах. Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов: токен оставался валидным после выхода. В самом SSO нашёл второй Redis-клиент без TLS и панику на пустой длительности.", "10 сервисов на TLS, и выход из аккаунта снова отзывает токен."],
-        en: ["Services talked to Redis without TLS and had to move to a managed Redis.", "Migrated the SSO client in 10 services. Along the way found a fallback that silently broke the token blacklist: a token stayed valid after logout. In the SSO service itself found a second Redis client without TLS and a panic on an empty duration.", "10 services on TLS, and logging out revokes the token again."]
-      },
-      ru: { t: "Redis с TLS в 10 сервисах", d: "Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов. Токен оставался валидным после выхода." },
-      en: { t: "Redis over TLS in 10 services", d: "During the move I found a fallback that masked a broken token blacklist: tokens stayed valid after logout." },
-      from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
-    },
-    {
-      meta: { ru: "Основная работа, MinIO, S3", en: "Day job, MinIO, S3" },
-      shots: [],
-      details: {
-        ru: ["Файлы всех сервисов лежали в одном бакете на 78 ГБ, права и бэкапы по сервисам не разделить.", "Собрал из БД каждого сервиса манифест его файлов и разложил объекты по отдельным бакетам через server-side copy, без выкачивания. До этого писал скрипты seed, migrate и verify для переезда на кластерный MinIO.", "По бакету на сервис, и данные ни разу не гонялись через сеть."],
-        en: ["Files of all services lived in one 78 GB bucket, so permissions and backups could not be split per service.", "Built a manifest of each service's files from its database and moved objects into separate buckets with server-side copy, no downloading. Before that I wrote seed, migrate and verify scripts for the move to clustered MinIO.", "One bucket per service, and no data was pulled through the network."]
-      },
-      ru: { t: "Разбор общего бакета", d: "Общий бакет MinIO разложил по сервисам, через манифесты из БД и server-side copy." },
-      en: { t: "Splitting a shared bucket", d: "Split a shared MinIO bucket per service using DB manifests and server-side copy." },
-      from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
-    },
-    {
-      meta: { ru: "Основная работа, Sidekiq, Sentry", en: "Day job, Sidekiq, Sentry" },
+      meta: { ru: "Ошибки прода, основная работа", en: "Production errors, day job" },
       shots: [],
       details: {
         ru: ["85% из 52K событий в Sentry давали зомби-джобы Sidekiq, и настоящие ошибки в них тонули.", "Разобрался, откуда берутся зомби-джобы, и вычистил их rake-таском.", "В Sentry снова видно то, что надо чинить."],
         en: ["85% of 52K Sentry events came from zombie Sidekiq jobs, and real errors drowned in them.", "Found where the zombie jobs came from and cleaned them up with a rake task.", "Sentry shows what actually needs fixing again."]
       },
-      ru: { t: "Настоящие ошибки в Sentry снова видно", d: "85% из 52K событий в Sentry давали зомби-джобы Sidekiq, и настоящие ошибки в них тонули. Нашёл, откуда они берутся, и вычистил rake-таском." },
-      en: { t: "Real errors visible in Sentry again", d: "85% of 52K Sentry events came from zombie Sidekiq jobs, drowning out the real errors. Found where they came from and cleaned them up with a rake task." },
+      ru: { t: "Настоящие ошибки в Sentry снова видно", d: "В Sentry снова видно, что чинить: убрал 85% шума от зомби-джоб Sidekiq." },
+      en: { t: "Real errors visible in Sentry again", d: "Sentry shows what to fix again: removed 85% of the noise from zombie Sidekiq jobs." },
       from: "ошибки тонут в зомби-джобах", to: "видно то, что надо чинить", fromEn: "errors buried under zombie jobs", toEn: "you see what needs fixing"
     },
     {
-      meta: { ru: "Основная работа, Grafana", en: "Day job, Grafana" },
+      meta: { ru: "Отчётность, основная работа", en: "Reporting, day job" },
       shots: [],
       details: {
         ru: ["Отчёт по delivery собирали руками в Excel.", "Перенёс его в дашборд Grafana, данные подтягиваются сами.", "Отчёт всегда актуальный, руками его больше никто не собирает."],
         en: ["The delivery report was assembled by hand in Excel.", "Moved it into a Grafana dashboard that pulls the data itself.", "The report is always up to date and nobody builds it by hand anymore."]
       },
-      ru: { t: "Отчёт по delivery", d: "Ручной отчёт в Excel заменил дашбордом в Grafana." },
-      en: { t: "Delivery report", d: "Replaced a hand-made Excel report with a Grafana dashboard." },
+      ru: { t: "Отчёт по delivery", d: "Отчёт по delivery никто не собирает руками: Excel заменён дашбордом в Grafana." },
+      en: { t: "Delivery report", d: "Nobody builds the delivery report by hand: Excel replaced with a Grafana dashboard." },
       from: "Excel руками", to: "Grafana", fromEn: "manual Excel", toEn: "Grafana"
+    },
+    {
+      meta: { ru: "Нагрузка на БД, основная работа", en: "Database load, day job" },
+      shots: [],
+      details: {
+        ru: ["Реплики чтения PostgreSQL не получалось включить, поскольку часть GET-запросов писала в базу.", "Сделал детектор в RSpec: тест падает, если GET-запрос пытается писать. Прогнал на всех 17 207 примерах и нашёл 805 нарушений, из них 85 прямых и 720 каскадных. Почти все закрылись одной правкой в общем месте. Попутно в SSO на Go перевёл 35 мест чтения на реплику.", "805 → 0 нарушений, на stage лаг реплики 0.27 с, ошибок нету."],
+        en: ["PostgreSQL read replicas could not be enabled because some GET requests wrote to the database.", "Built an RSpec detector that fails a test when a GET request tries to write. Ran it across all 17,207 examples and found 805 violations: 85 direct and 720 cascading. Almost all of them were fixed by one change in a shared place. Along the way moved 35 read paths in the Go SSO service to the replica.", "805 → 0 violations; on stage replica lag is 0.27 s with no errors."]
+      },
+      ru: { t: "Реплики чтения без сюрпризов", d: "Чтение можно увести на реплики и снять нагрузку с основной базы: детектор в тестах нашёл 805 записей на GET-запросах, все закрыты." },
+      en: { t: "Read replicas without surprises", d: "Reads can move to replicas and off the primary: a test detector found 805 writes on GET requests, all fixed." },
+      from: "805", to: "0", unit: { ru: "нарушений на 17 207 тестах", en: "violations over 17,207 tests" }
+    },
+    {
+      meta: { ru: "Безопасность, 10 сервисов", en: "Security, 10 services" },
+      shots: [],
+      details: {
+        ru: ["Сервисы ходили в Redis без TLS, нужно было переехать на managed Redis.", "Перевёл клиент SSO в 10 сервисах. Пока переносил, нашёл fallback, из-за которого молча не работал blacklist токенов: токен оставался валидным после выхода. В самом SSO нашёл второй Redis-клиент без TLS и панику на пустой длительности.", "10 сервисов на TLS, и выход из аккаунта снова отзывает токен."],
+        en: ["Services talked to Redis without TLS and had to move to a managed Redis.", "Migrated the SSO client in 10 services. Along the way found a fallback that silently broke the token blacklist: a token stayed valid after logout. In the SSO service itself found a second Redis client without TLS and a panic on an empty duration.", "10 services on TLS, and logging out revokes the token again."]
+      },
+      ru: { t: "Redis с TLS в 10 сервисах", d: "Токен после выхода снова перестаёт работать: при переезде на Redis с TLS нашёл и починил молчавший blacklist." },
+      en: { t: "Redis over TLS in 10 services", d: "A token stops working after logout again: during the move to Redis over TLS I found and fixed a silently broken blacklist." },
+      from: "blacklist токенов молча не работал", to: "10 сервисов на TLS, blacklist работает", fromEn: "token blacklist silently broken", toEn: "10 services on TLS, blacklist works"
+    },
+    {
+      meta: { ru: "Хранение файлов, основная работа", en: "File storage, day job" },
+      shots: [],
+      details: {
+        ru: ["Файлы всех сервисов лежали в одном бакете на 78 ГБ, права и бэкапы по сервисам не разделить.", "Собрал из БД каждого сервиса манифест его файлов и разложил объекты по отдельным бакетам через server-side copy, без выкачивания. До этого писал скрипты seed, migrate и verify для переезда на кластерный MinIO.", "По бакету на сервис, и данные ни разу не гонялись через сеть."],
+        en: ["Files of all services lived in one 78 GB bucket, so permissions and backups could not be split per service.", "Built a manifest of each service's files from its database and moved objects into separate buckets with server-side copy, no downloading. Before that I wrote seed, migrate and verify scripts for the move to clustered MinIO.", "One bucket per service, and no data was pulled through the network."]
+      },
+      ru: { t: "Разбор общего бакета", d: "Права и бэкапы файлов теперь по каждому сервису: общий бакет на 78 ГБ разложен без скачивания." },
+      en: { t: "Splitting a shared bucket", d: "Permissions and backups are now per service: a shared 78 GB bucket was split without downloading anything." },
+      from: "1 бакет, 78 ГБ", to: "по бакету на сервис", fromEn: "1 bucket, 78 GB", toEn: "one bucket per service"
+    },
+    {
+      meta: { ru: "Наставник команды, 2-е место", en: "Team mentor, 2nd place" },
+      shots: [],
+      details: {
+        ru: ["По опросу команды большинство учеников хотели учиться не по старинке, а в кружках и конкурсах участвовала меньшая часть.", "Был наставником команды из 4 студентов: программист, менеджер проекта, дизайнер и аналитик. Придумали чат-бот с геймификацией: у студента курсы по шагам, прогресс и домашка, у преподавателя публикация курса и результаты учеников. Сам сделал архитектуру и написал код бота, команда закрывала аналитику, дизайн и презентацию.", "Рабочий бот и презентация с дорожной картой развития, 2-е место."],
+        en: ["According to the team's survey, most students wanted something other than old-school teaching, and few took part in clubs and contests.", "I mentored a team of 4 students: a developer, a project manager, a designer and an analyst. We came up with a gamified chat bot: step-by-step courses, progress and homework for students, course publishing and student results for teachers. I designed the architecture and wrote the bot's code; the team handled analysis, design and the pitch.", "A working bot and a pitch with a development roadmap, 2nd place."]
+      },
+      ru: { t: "EDUG, бот для обучения", d: "Был наставником команды из 4 студентов, пока преподавал, и сам писал архитектуру и код. Чат-бот с геймификацией: студент выбирает курс, проходит материал по шагам, видит прогресс и сдаёт домашку, а преподаватель выкладывает курс и смотрит результаты учеников. От идеи до рабочего бота и защиты за короткий срок, заняли 2-е место." },
+      en: { t: "EDUG, a learning bot", d: "I mentored a team of 4 students while teaching, and did the architecture and code myself. A gamified chat bot: students pick a course, go through material step by step, track progress and hand in homework; teachers publish courses and see their students' results. From idea to a working bot and a pitch in a short time; took 2nd place." },
+      from: "идея", to: "рабочий бот и 2-е место", fromEn: "an idea", toEn: "a working bot and 2nd place"
     }
   ],
 
@@ -743,7 +748,8 @@ h2 { font-size: clamp(1.75rem, 3.4vw, 2.25rem); letter-spacing: -.015em; line-he
 .case { padding: 2.75rem 0; }
 .case + .case { border-top: 1px dashed var(--line); }
 .case h3 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); line-height: 1.2; letter-spacing: -.01em; margin: 0; font-weight: 700; }
-.case .tag { color: var(--muted); margin: .35rem 0 1.5rem; font-size: .9375rem; }
+.case .tag { color: var(--muted); margin: .35rem 0 .75rem; font-size: .9375rem; }
+.case .impact { font-size: 1.0625rem; font-weight: 500; margin: 0 0 1.5rem; max-width: 48rem; }
 .case-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 24rem); gap: 2.5rem; align-items: start; }
 .case h4 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 .4rem; }
 .case h4:first-child { margin-top: 0; }
@@ -1013,7 +1019,7 @@ footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
       ${DATA.cases.map(c => `
         <div class="cv-case">
           <h3>${esc(tr(c.title))}<span>${esc(tr(c.tag))}</span></h3>
-          <p>${esc(tr(c.short))}</p>
+          <p>${esc(tr(c.impact))}</p>
           <p class="res">${c.diff.slice(0, 2).map(r => esc(arrow(r))).join("; ")}</p>
         </div>`).join("")}
       <h2>${esc(u.moreTitle)}</h2>
@@ -1082,6 +1088,7 @@ footer .col p { font-size: 1.125rem; margin: 0 0 1.5rem; }
           <article class="case" id="case-${c.id}">
             <h3>${esc(tr(c.title))}</h3>
             <p class="tag">${esc(tr(c.tag))}</p>
+            <p class="impact">${esc(tr(c.impact))}</p>
             <div class="case-grid">
               <div>
                 <h4>${esc(u.problem)}</h4>
